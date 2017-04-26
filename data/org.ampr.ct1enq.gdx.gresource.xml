@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+	<gresource prefix="/org/ampr/ct1enq/gdx">
+    <file>main-window.ui</file>
+    <file>main-headerbar.ui</file>
+  </gresource>
+</gresources>
