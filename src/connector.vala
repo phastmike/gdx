@@ -145,8 +145,9 @@ namespace DxCluster {
         public void message_handler (string msg) {
             string message = msg.dup ();
             
-            received_message (message.escape ().replace ("\\007", "").compress () + "\r\n");
-            //print ("[%s]<[RX] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), message);
+            //received_message (message.escape ().replace ("\\007", "").compress () + "\n");
+            received_message (((message.escape (null)).replace ("\\007", "")).compress () /*+ "\n"*/);
+            print ("[%s]<[RX] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), message);
         }
     }
 }

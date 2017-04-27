@@ -32,7 +32,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
-        textbuffer_console.create_mark ("scroll", iter, true); 
+        textbuffer_console.create_mark ("scroll", iter, false); 
     }
 
     public void add_spot_to_view (string spotter, string freq, string dx, string comment, string utc) {
@@ -47,20 +47,27 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     public void add_text_to_console (string text) {
         Gtk.TextIter iter;
+        /*
         textbuffer_console.get_end_iter (out iter);
-        textbuffer_console.insert (ref iter, text, -1);
-        textbuffer_console.get_end_iter (out iter);
-        iter.set_line_offset (0);
+        textbuffer_console.insert (ref iter, "\n" + text, -1);
+        iter.set_line_index (0);
         var mark = textbuffer_console.get_mark ("scroll");
         textbuffer_console.move_mark (mark, iter);
         textview_console.scroll_mark_onscreen (mark);
-
-        //textview_console.scroll_to_mark (mark, 0.0, true, 0.0, 1.0);
-
+        */
+        textbuffer_console.get_end_iter (out iter);
+        textbuffer_console.insert (ref iter, "\n", 1);
+        textbuffer_console.insert (ref iter, text, text.length);
         //textbuffer_console.get_end_iter (out iter);
-        //textview_console.scroll_to_iter (iter, 0.0, true, 0.0, 1.0);
-
-        //textview_console.move_visually (iter, text.length);
-        //textview_console.place_cursor_onscreen ();
+        //var mark = textbuffer_console.get_mark ("insert");
+        //textview_console.scroll_to_mark (mark, 0, true, 0.0, 1.0);
+        Timeout.add (300, () => {
+            textbuffer_console.get_end_iter (out iter);
+            iter.set_line_index (0);
+            var mark = textbuffer_console.get_mark ("scroll");
+            textbuffer_console.move_mark (mark, iter);
+            textview_console.scroll_mark_onscreen (mark);
+            return false;
+        });
     }
 }
