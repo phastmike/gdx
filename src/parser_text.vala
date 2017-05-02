@@ -71,7 +71,8 @@ public class Parser : Object {
         string utc = "";
         string qth = "";
         string comment = "";
-        string s = text.substring (0, text.length - 2); // remove \r\n
+        //string s = text.substring (0, text.length - 2); // remove \r\n
+        string s = text.substring (0, text.length); // remove \r\n
 
         while (s.contains ("  ")) {
             s = s.replace ("  ", " ");
@@ -79,15 +80,18 @@ public class Parser : Object {
 
         var split = s.split_set (" :");
 
+        int index = 0; 
         /*
         foreach (string c in split) {
-            print ("component: %s\n", c);
+            print ("component[%d]: %s\n", index, c);
+            index++;
         }
         */
         
+        
         int length = split.length;
 
-        if (length < 8) return;
+        if (length < 6) return;
 
         if (split[length - 1].@get(4) == 'Z') {
             utc = split[length - 1];
@@ -110,7 +114,7 @@ public class Parser : Object {
         var freq = split[4];
         var dx = split[5];
 
-        print ("DX Station = %s @ %s by %s [OBS: %s]  [UTC: %s] [QTH: %s]\n", dx,freq,spotter, comment, utc, qth);
+        //print ("DX Station = %s @ %s by %s [OBS: %s]  [UTC: %s] [QTH: %s]\n", dx,freq,spotter, comment, utc, qth);
         rcvd_spot (new DXSpot.with_data (spotter, freq, dx, comment, utc, qth));
     }
 } 

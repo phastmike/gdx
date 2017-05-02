@@ -9,6 +9,8 @@
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/main-window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
+    private Gtk.HeaderBar headerbar1;
+    [GtkChild]
     private Gtk.TreeView treeview_spots;
     [GtkChild]
     private Gtk.TextView textview_console;
@@ -27,7 +29,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     public MainWindow () {
         Object (default_width: 720, default_height: 480);
-        set_titlebar (new MainHeaderBar ());
+        set_titlebar (headerbar1);
         show_all ();
 
         Gtk.TextIter iter;
@@ -47,21 +49,14 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     public void add_text_to_console (string text) {
         Gtk.TextIter iter;
-        /*
-        textbuffer_console.get_end_iter (out iter);
-        textbuffer_console.insert (ref iter, "\n" + text, -1);
-        iter.set_line_index (0);
-        var mark = textbuffer_console.get_mark ("scroll");
-        textbuffer_console.move_mark (mark, iter);
-        textview_console.scroll_mark_onscreen (mark);
-        */
+
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.insert (ref iter, "\n", 1);
         textbuffer_console.insert (ref iter, text, text.length);
-        //textbuffer_console.get_end_iter (out iter);
-        //var mark = textbuffer_console.get_mark ("insert");
-        //textview_console.scroll_to_mark (mark, 0, true, 0.0, 1.0);
-        Timeout.add (300, () => {
+
+
+        // Must add on Idle or Timeout otherwise won't move if a lot of text :/
+        Idle.add (() => {
             textbuffer_console.get_end_iter (out iter);
             iter.set_line_index (0);
             var mark = textbuffer_console.get_mark ("scroll");

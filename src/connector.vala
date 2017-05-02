@@ -50,6 +50,7 @@ namespace DxCluster {
 
             connection_lost.connect (()=> {
                 print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "SIGNAL::connection_lost");
+                disconnect_async ();
                 if (auto_reconnect) {
                     reconnect ();
                 }
@@ -67,6 +68,8 @@ namespace DxCluster {
 
             last_host_address = host.dup (); 
             last_host_port = port;
+
+            cancellable.reset ();
             
             try {
                 connection = yield client.connect_to_host_async (host, port, this.cancellable);
@@ -75,8 +78,8 @@ namespace DxCluster {
                 socket.set_keepalive (true);
                 stream_input = new DataInputStream (connection.get_input_stream ());
                 stream_output = new DataOutputStream (connection.get_output_stream ()); 
-                stream_input.set_buffer_size (8192);
-                stream_input.set_newline_type (DataStreamNewlineType.ANY);
+                //stream_input.set_buffer_size (8192);
+                stream_input.set_newline_type (DataStreamNewlineType.CR_LF);
                 
                 //source = (SocketSource) (socket as Socket).create_source (IOCondition.IN, this.cancellable);
                 //source.set_callback (receive_callback);
@@ -93,8 +96,9 @@ namespace DxCluster {
 
         public void disconnect_async () requires (connection != null) {
             print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "Disconnect async\n");
-            source.destroy ();
-            Source.remove (timeout_id);
+            //source.destroy ();
+            cancellable.cancel ();
+            //Source.remove (timeout_id);
             try {
                 connection.close ();
             } catch (IOError e) {
@@ -115,18 +119,20 @@ namespace DxCluster {
         }
         
         private async void receive_async () {
-            while (cancellable.is_cancelled () == false) {
             string? message = null;
-            try {
-                do {
+            while (cancellable.is_cancelled () == false && connection.is_connected () == true) {
+                try {
                     message = yield stream_input.read_line_async (Priority.DEFAULT, cancellable, null);
-                    message_handler (message);
-                } while (message != null);
-                //connection_lost ();
-            } catch (IOError e) {
-                stderr.printf ("%s\n", e.message);
-                //connection_lost ();
-            }
+                    if (message != null) {
+                        message_handler (message);
+                    } else {
+                        connection_lost ();
+                    }
+                    //connection_lost ();
+                } catch (IOError e) {
+                    stderr.printf ("%s\n", e.message);
+                    //connection_lost ();
+                }
             }
         }
 
