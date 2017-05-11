@@ -1,9 +1,8 @@
 vala_sources = [
     'main.vala',
-    'application.vala',
-    'connector.vala',
-    'main-window.vala',
-    'main-headerbar.vala',
+    'Application/application.vala',
+    'Connector/connector.vala',
+    'MainWindow/main-window.vala',
     'parser_text.vala',
 ]
 
