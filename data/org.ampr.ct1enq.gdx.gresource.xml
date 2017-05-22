@@ -2,6 +2,6 @@
 <gresources>
 	<gresource prefix="/org/ampr/ct1enq/gdx">
     <file>main-window.ui</file>
-    <file>main-headerbar.ui</file>
+    <file>spot-window.ui</file>
   </gresource>
 </gresources>

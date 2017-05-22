@@ -2,6 +2,44 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
+  <object class="GtkWindow">
+    <property name="can_focus">False</property>
+    <property name="type">popup</property>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
+  <object class="GtkHeaderBar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="title">Share Dx</property>
+    <child>
+      <object class="GtkButton" id="button_cancel">
+        <property name="label" translatable="yes">Cancel</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <style>
+          <class name="destructive-action"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="button_spot">
+        <property name="label" translatable="yes">Spot</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkListStore" id="liststore_spots">
     <columns>
       <!-- column-name spotter -->
@@ -16,6 +54,165 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkPopover" id="popover1">
+    <property name="can_focus">False</property>
+    <property name="border_width">6</property>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="row_spacing">6</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkListBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="activatable">False</property>
+                    <property name="selectable">False</property>
+                    <child>
+                      <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="border_width">6</property>
+                        <property name="column_homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Frequency (kHz)</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton">
+                            <property name="width_request">150</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="numeric">True</property>
+                            <property name="value">7000</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="activatable">False</property>
+                    <property name="selectable">False</property>
+                    <child>
+                      <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="border_width">6</property>
+                        <property name="column_homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">DX Station</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="activatable">False</property>
+                    <property name="selectable">False</property>
+                    <child>
+                      <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="border_width">6</property>
+                        <property name="column_homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Comments</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Share Dx</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkTextBuffer" id="textbuffer_console"/>
   <template class="MainWindow" parent="GtkApplicationWindow">
     <property name="width_request">740</property>
@@ -25,184 +222,20 @@
       <object class="GtkStack" id="stack1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="transition_type">slide-left-right</property>
+        <property name="transition_type">crossfade</property>
         <child>
-          <object class="GtkPaned" id="paned1">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="orientation">vertical</property>
-            <property name="position">150</property>
-            <property name="position_set">True</property>
-            <property name="wide_handle">True</property>
-            <child>
-              <object class="GtkScrolledWindow" id="scrolled_spots">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkTreeView" id="treeview_spots">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="model">liststore_spots</property>
-                    <property name="rules_hint">True</property>
-                    <property name="enable_grid_lines">both</property>
-                    <child internal-child="selection">
-                      <object class="GtkTreeSelection" id="tree_selection_spots"/>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="col_spots">
-                        <property name="title" translatable="yes">Spotter</property>
-                        <property name="expand">True</property>
-                        <property name="reorderable">True</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                          <attributes>
-                            <attribute name="text">0</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="col_freq">
-                        <property name="title" translatable="yes">Freq. (kHz)</property>
-                        <property name="expand">True</property>
-                        <property name="reorderable">True</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                          <attributes>
-                            <attribute name="text">1</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="col_dx">
-                        <property name="title" translatable="yes">DX</property>
-                        <property name="expand">True</property>
-                        <property name="reorderable">True</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext3">
-                            <property name="weight">600</property>
-                          </object>
-                          <attributes>
-                            <attribute name="text">2</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="col_comments">
-                        <property name="title" translatable="yes">Comments</property>
-                        <property name="expand">True</property>
-                        <property name="reorderable">True</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext4"/>
-                          <attributes>
-                            <attribute name="text">3</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="col_utc">
-                        <property name="title" translatable="yes">UTC</property>
-                        <property name="expand">True</property>
-                        <property name="reorderable">True</property>
-                        <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext5"/>
-                          <attributes>
-                            <attribute name="text">4</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="resize">False</property>
-                <property name="shrink">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkGrid" id="grid1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <child>
-                  <object class="GtkViewport">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkEntry" id="entry_commands">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="margin_left">3</property>
-                        <property name="margin_right">3</property>
-                        <property name="margin_top">3</property>
-                        <property name="margin_bottom">3</property>
-                        <property name="placeholder_text" translatable="yes">Type commands here...</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow" id="scrolled_console">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="shadow_type">in</property>
-                    <child>
-                      <object class="GtkTextView" id="textview_console">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="pixels_above_lines">1</property>
-                        <property name="pixels_below_lines">1</property>
-                        <property name="editable">False</property>
-                        <property name="left_margin">1</property>
-                        <property name="right_margin">1</property>
-                        <property name="top_margin">1</property>
-                        <property name="bottom_margin">1</property>
-                        <property name="cursor_visible">False</property>
-                        <property name="buffer">textbuffer_console</property>
-                        <property name="accepts_tab">False</property>
-                        <property name="monospace">True</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="resize">True</property>
-                <property name="shrink">True</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="name">page0</property>
-            <property name="title" translatable="yes">Console</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow">
+          <object class="GtkScrolledWindow" id="scrolled_spots">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="shadow_type">in</property>
             <child>
-              <object class="GtkTreeView">
+              <object class="GtkTreeView" id="treeview_spots">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="model">liststore_spots</property>
+                <property name="rules_hint">True</property>
+                <property name="search_column">2</property>
+                <property name="enable_grid_lines">both</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>
@@ -279,6 +312,68 @@
           <packing>
             <property name="name">page1</property>
             <property name="title" translatable="yes">DX Spots</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkEntry" id="entry_commands">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="margin_left">3</property>
+                    <property name="margin_right">3</property>
+                    <property name="margin_top">3</property>
+                    <property name="margin_bottom">3</property>
+                    <property name="placeholder_text" translatable="yes">Type commands here...</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolled_console">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTextView" id="textview_console">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="pixels_above_lines">1</property>
+                    <property name="pixels_below_lines">1</property>
+                    <property name="editable">False</property>
+                    <property name="left_margin">1</property>
+                    <property name="right_margin">1</property>
+                    <property name="top_margin">1</property>
+                    <property name="bottom_margin">1</property>
+                    <property name="cursor_visible">False</property>
+                    <property name="buffer">textbuffer_console</property>
+                    <property name="accepts_tab">False</property>
+                    <property name="monospace">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="title" translatable="yes">Console</property>
             <property name="position">1</property>
           </packing>
         </child>
@@ -290,7 +385,41 @@
     <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
     <child>
-      <placeholder/>
+      <object class="GtkMenuButton">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">list-add-symbolic.symbolic</property>
+          </object>
+        </child>
+        <style>
+          <class name="image-button"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="button1">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">open-menu-symbolic.symbolic</property>
+          </object>
+        </child>
+        <style>
+          <class name="image-button"/>
+        </style>
+      </object>
+      <packing>
+        <property name="position">1</property>
+      </packing>
     </child>
     <child type="title">
       <object class="GtkStackSwitcher">

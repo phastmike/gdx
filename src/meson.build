@@ -3,6 +3,7 @@ vala_sources = [
     'Application/application.vala',
     'Connector/connector.vala',
     'MainWindow/main-window.vala',
+    'SpotWindow/spot-window.vala',
     'parser_text.vala',
 ]
 

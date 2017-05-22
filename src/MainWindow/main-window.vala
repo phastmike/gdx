@@ -9,6 +9,8 @@
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/main-window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
+    public Gtk.Button button1;
+    [GtkChild]
     public Gtk.Entry entry_commands;
     [GtkChild]
     private Gtk.HeaderBar headerbar1;
@@ -35,6 +37,16 @@ public class MainWindow : Gtk.ApplicationWindow {
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
+
+        button1.clicked.connect (() => {
+            var spot_window = new SpotWindow ();
+            spot_window.set_transient_for (this);
+            spot_window.show_all ();
+
+            spot_window.spot.connect ((f, dx, c) => {
+                print ("%s : %s : %s\n", f,dx,c);
+            });
+        });
     }
 
     public void add_spot_to_view (string spotter, string freq, string dx, string comment, string utc) {
@@ -42,9 +54,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         Gtk.ListStore store;
 
         store = (Gtk.ListStore) treeview_spots.get_model ();
-        store.prepend (out iter);
+        store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
-        treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string ("0"), null, true, 0, 0);
+        treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
     }
 
     public void add_text_to_console (string text) {
