@@ -9,10 +9,12 @@
 using Gtk;
 
 public class Application : Gtk.Application {
-    private Parser parser;
+    private static Parser parser;
+    public static MainWindow window;
 
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
+
     }
 
     protected override void shutdown () {
@@ -20,6 +22,7 @@ public class Application : Gtk.Application {
     }
 
     protected override void activate () {
+        base.activate ();
         parser = new Parser ();
 
         var connector = new DxCluster.Connector ();
@@ -28,7 +31,7 @@ public class Application : Gtk.Application {
             print ("Connected!\n");
         });
 
-        var window = new MainWindow ();
+        window = new MainWindow (this);
         add_window (window);
 
         window.entry_commands.activate.connect (() => {
@@ -47,5 +50,62 @@ public class Application : Gtk.Application {
         parser.rcvd_spot.connect ((s) => {
             window.add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
         });
+    }
+
+    protected override void startup () {
+        base.startup ();
+        setup_app_menu ();
+    }
+
+    private void setup_app_menu () {
+        // Using action named Settings the option becomes not sensitive !?
+        // Although it appears as Settings on the menu, internally is preferences.
+        var action = new GLib.SimpleAction ("preferences", null);
+        action.activate.connect (() => {
+            print ("APP SETTINGS\n");
+        });
+        add_action (action);
+
+        action = new GLib.SimpleAction ("about", null);
+        action.activate.connect (() => {
+            show_about_dialog (); 
+        });
+        add_action (action);
+
+        action = new GLib.SimpleAction ("quit", null);
+        action.activate.connect (() => {
+            print ("APP QUIT\n");
+            base.quit ();
+        });
+        add_action (action);
+
+        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
+        var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
+        
+        set_app_menu (app_menu);
+    }
+
+    private void show_about_dialog(){
+        string[] authors = {
+            "José Fonte <phastmike@gmail.com>"
+        };
+        string[] artists = {
+            "José Fonte <phastmike@gmail.com>"
+        };
+        Gtk.show_about_dialog (window,
+            "artists", artists,
+            "authors", authors,
+            //"translator-credits", _("translator-credits"),
+            "translator-credits", "translator-credits",
+            "program-name", "GDx",
+            //"title", _("About GDx"),
+            "title", "About GDx",
+            "license-type", Gtk.License.GPL_3_0,
+            "logo-icon-name", "de.haeckerfelix.gradio",
+            //"version", VERSION,
+            "version", "0.1",
+            "comments", "Database: www.radio-browser.info",
+            "website", "https://github.com/phastmike/gdx",
+            "wrap-license", true);
     }
 }

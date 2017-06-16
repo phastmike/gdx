@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
 	<gresource prefix="/org/ampr/ct1enq/gdx">
-    <file>main-window.ui</file>
-    <file>spot-window.ui</file>
+		<file>ui/app-menu.ui</file>
+		<file>ui/main-window.ui</file>
+		<file>ui/spot-window.ui</file>
   </gresource>
 </gresources>

@@ -4,7 +4,8 @@ vala_sources = [
     'Connector/connector.vala',
     'MainWindow/main-window.vala',
     'SpotWindow/spot-window.vala',
-    'parser_text.vala',
+    'parser-text.vala',
+    'dx-spot.vala',
 ]
 
 vala_args = [

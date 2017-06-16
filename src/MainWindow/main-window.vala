@@ -6,7 +6,7 @@
  * Jose Miguel Fonte, 2017
  */
 
-[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/main-window.ui")]
+[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     public Gtk.Button button1;
@@ -29,8 +29,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         UTC
     }
 
-    public MainWindow () {
-        Object (default_width: 720, default_height: 480);
+    public MainWindow (Application app) {
+        Object (application: app, default_width: 720, default_height: 480);
         set_titlebar (headerbar1);
         show_all ();
 

@@ -6,12 +6,10 @@
  * Jose Miguel Fonte, 2017
  */
 
-[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/spot-window.ui")]
+[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/spot-window.ui")]
 public class SpotWindow : Gtk.Window {
     [GtkChild]
     private Gtk.HeaderBar headerbar1;
-    [GtkChild]
-    private Gtk.ListBox listbox;
     [GtkChild]
     private Gtk.Button button_spot;
     [GtkChild]
@@ -42,11 +40,19 @@ public class SpotWindow : Gtk.Window {
             spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ()); 
             this.destroy ();
         });
-
-        listbox.set_header_func ((row, before) => {
-            if (before != null) {
-                row.set_header (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            }
+        
+        input_freq.value_changed.connect (() => {
+            button_spot.set_sensitive (entries_have_data ());
         });
+
+        input_dx.key_release_event.connect ((event) => {
+            button_spot.set_sensitive (entries_have_data ());
+            return false;
+        });
+    }
+
+    private bool entries_have_data () {
+        // Simple data validator, can and should be improved
+        return (input_freq.@value > 0.0 && input_dx.text_length > 1);
     }
 }
