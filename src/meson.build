@@ -6,6 +6,7 @@ vala_sources = [
     'SpotWindow/spot-window.vala',
     'Cluster/parser-text.vala',
     'Cluster/dx-spot.vala',
+    'Cluster/iparsable.vala',
 ]
 
 vala_args = [

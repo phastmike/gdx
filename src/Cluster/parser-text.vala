@@ -6,7 +6,7 @@
  * Copyright (C) 2017 José Miguel Fonte
  */
 
-public class Parser : Object {
+public class Parser : Object, IParsable {
     public enum MsgType{
         UNKNOWN,
         PROMPT,
@@ -19,7 +19,7 @@ public class Parser : Object {
         PC_PROTOCOL
     }
 
-    public signal void rcvd_spot (DxSpot spot);
+    //public signal void rcvd_spot (DxSpot spot);
  
     public static MsgType text_get_type (string text) {
         if (text.has_prefix("PC")) {
