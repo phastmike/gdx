@@ -3,7 +3,7 @@
 /*
  * dx-spot.vala
  *
- * Jose Miguel Fonte, 2017
+ * Copyright (C) 2017 José Miguel Fonte
  */
 
 public class DxSpot : Object {

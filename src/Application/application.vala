@@ -11,10 +11,20 @@ using Gtk;
 public class Application : Gtk.Application {
     private static Parser parser;
     public static MainWindow window;
+    
+    /* Singleton test */
+    /*
+    private static Once<Application> _instance;
+
+    public static unowned Application instance () {
+        return _instance.once (() => {
+            return new Application ();
+        });
+    } 
+    */
 
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
-
     }
 
     protected override void shutdown () {
@@ -24,6 +34,11 @@ public class Application : Gtk.Application {
     protected override void activate () {
         base.activate ();
         parser = new Parser ();
+
+        // CONFIG DIR
+        print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
+        // check existence otherwise create it
+        //
 
         var connector = new DxCluster.Connector ();
         connector.connect_async ("hamradio.isel.ipl.pt", 41112);
@@ -54,6 +69,7 @@ public class Application : Gtk.Application {
 
     protected override void startup () {
         base.startup ();
+        //Gdk.set_show_events (true);
         setup_app_menu ();
     }
 

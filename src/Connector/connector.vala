@@ -1,14 +1,13 @@
 /* -*- Mode: Vala; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 4 -*- */
 /* vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab : */
 /*
- * AtConnector.vala
+ * Connector.vala
  *
- * A-TOUCH Connection handler. 
+ * Connection handler. 
  *
  * Version 0.1
  *
- * ATOUCHINTER
- * Copyright (C) 2015 José Miguel Fonte <miguel@atouch.com.pt>
+ * Copyright (C) 2016 José Miguel Fonte
  * 
  */
 

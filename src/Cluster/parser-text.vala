@@ -3,7 +3,7 @@
 /*
  * parser-text.vala
  *
- * Jose Miguel Fonte, 2017
+ * Copyright (C) 2017 José Miguel Fonte
  */
 
 public class Parser : Object {
@@ -65,7 +65,6 @@ public class Parser : Object {
             index++;
         }
         */
-        
         
         int length = split.length;
 
