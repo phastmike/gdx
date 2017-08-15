@@ -43,7 +43,7 @@ namespace DxCluster {
             connection_failed.connect (()=> {
                 print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "SIGNAL::connection_failed");
                 if (auto_reconnect) {
-                    reconnect ();
+                    Idle.add(reconnect);
                 }
             });
 
@@ -68,7 +68,7 @@ namespace DxCluster {
             last_host_address = host.dup (); 
             last_host_port = port;
 
-            cancellable.reset ();
+            //cancellable.reset ();
             
             try {
                 connection = yield client.connect_to_host_async (host, port, this.cancellable);
@@ -89,7 +89,8 @@ namespace DxCluster {
                 receive_async.begin ();
                 
             } catch (Error e) {
-                stderr.printf ("Error :: connect_async\n");
+                //stderr.printf ("Error :: connect_async\n");
+                connection_failed ();
             }
         }
 
@@ -113,8 +114,9 @@ namespace DxCluster {
             disconnected ();
         }
 
-        public void reconnect () {
+        public bool reconnect () {
             connect_async (last_host_address, last_host_port, cancellable);
+            return false;
         }
         
         private async void receive_async () {

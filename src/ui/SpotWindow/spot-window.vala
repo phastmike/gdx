@@ -25,7 +25,7 @@ public class SpotWindow : Gtk.Window {
     public signal void spot (string freq, string dx_station, string comment);
 
     public SpotWindow () {
-        //Object (default_width: 440, default_height: 340);
+        Object (default_width: 400, default_height: 200);
         set_titlebar (headerbar1);
         setup_callbacks ();
     }

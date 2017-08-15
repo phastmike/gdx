@@ -6,7 +6,7 @@
  * Jose Miguel Fonte, 2017
  */
 
-[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window.ui")]
+[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window2.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     public Gtk.Button button1;
@@ -20,6 +20,12 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.TextView textview_console;
     [GtkChild]
     private Gtk.TextBuffer textbuffer_console;
+    [GtkChild]
+    private Gtk.SearchBar searchbar;
+    [GtkChild]
+    private Gtk.Button searchbutton;
+    [GtkChild]
+    private Gtk.SearchEntry searchentry;
 
     private enum Col{
         SPOTTER,
@@ -29,14 +35,20 @@ public class MainWindow : Gtk.ApplicationWindow {
         UTC
     }
 
-    public MainWindow (Application app) {
-        Object (application: app, default_width: 720, default_height: 480);
+    public MainWindow () {
+        Object (default_width: 720, default_height: 480);
         set_titlebar (headerbar1);
         show_all ();
 
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
+
+        treeview_spots.set_search_entry (searchentry);
+
+        searchbutton.clicked.connect (() => {
+            searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
+        });
 
         button1.clicked.connect (() => {
             var spot_window = new SpotWindow ();

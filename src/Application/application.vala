@@ -46,7 +46,8 @@ public class Application : Gtk.Application {
             print ("Connected!\n");
         });
 
-        window = new MainWindow (this);
+        window = new MainWindow ();
+        window.set_application (this);
         add_window (window);
 
         window.entry_commands.activate.connect (() => {

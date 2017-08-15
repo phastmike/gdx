@@ -7,21 +7,12 @@
  */
 
 public class DxSpot : Object {
-    public string spotter;
-    public string freq;
-    public string dx;
-    public string comment;
-    public string utc;
-    public string qth;
-
-    public DxSpot () {
-        this.spotter = "";
-        this.freq = "";
-        this.dx = "";
-        this.comment = "";
-        this.utc = "";
-        this.qth = ""; 
-    }
+    public string spotter {private set; get; default="";}
+    public string freq {private set; get; default="";}
+    public string dx {private set; get; default="";}
+    public string comment {private set; get; default="";}
+    public string utc {private set; get; default="";}
+    public string qth {private set; get; default="";}
 
     public DxSpot.with_data (string spotter, string freq, string dx, string comment, string utc, string qth) {
         this.spotter = spotter;

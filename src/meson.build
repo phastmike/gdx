@@ -2,11 +2,13 @@ vala_sources = [
     'main.vala',
     'Application/application.vala',
     'Connector/connector.vala',
-    'MainWindow/main-window.vala',
-    'SpotWindow/spot-window.vala',
+    'ui/MainWindow/main-window.vala',
+    'ui/SpotWindow/spot-window.vala',
     'Cluster/parser-text.vala',
     'Cluster/dx-spot.vala',
     'Cluster/iparsable.vala',
+    'Cluster/dx-cluster.vala',
+    'Cluster/dx-clusters.vala',
 ]
 
 vala_args = [
@@ -19,4 +21,4 @@ valagtk = executable('gdx',
                      resources,
                      vala_args: vala_args,
                      install: true,
-                     dependencies : [glib, gobject, gio, gtk, posix])
+                     dependencies : [glib, gobject, gio, gee, gtk, posix])
