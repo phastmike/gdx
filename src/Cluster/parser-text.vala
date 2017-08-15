@@ -52,6 +52,8 @@ public class Parser : Object, IParsable {
         //string s = text.substring (0, text.length - 2); // remove \r\n
         string s = text.substring (0, text.length); // remove \r\n
 
+        if (!text.validate (-1, null)) return;
+
         while (s.contains ("  ")) {
             s = s.replace ("  ", " ");
         } 
