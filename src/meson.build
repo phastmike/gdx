@@ -1,5 +1,6 @@
 vala_sources = [
     'main.vala',
+    'gdx-settings.vala',
     'Application/application.vala',
     'Connector/connector.vala',
     'Cluster/parser-text.vala',

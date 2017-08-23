@@ -1,0 +1,45 @@
+<schemalist>
+	<schema id="org.ampr.ct1enq.gdx" path="/org/ampr/ct1enq/gdx/" gettext-domain="gdx">
+		<key name="user-callsign" type="s">
+			<default>"NOCALL"</default>
+			<summary>Radio Amateur callsign</summary>
+			<description>User's Radio Amateur callsign</description>
+		</key>
+		
+		<key name="default-cluster-name" type="s">
+			<default>"CS5SEL-5"</default>
+			<summary>Default cluster callsign or name</summary>
+			<description>Default PacketCluster callsign or name identifier</description>
+		</key>
+
+		<key name="default-cluster-address" type="s">
+			<default>"hamradio.isel.ipl.pt"</default>
+			<summary>Default cluster IP address or hostname</summary>
+			<description>Default PacketCluster TCP/IP address or hostname</description>
+		</key>
+
+		<key name="default-cluster-port" type="i">
+			<default>41112</default>
+			<summary>Default cluster IP Port</summary>
+			<description>Default PacketCluster TCP/IP port</description>
+		</key>
+		
+		<key name="default-cluster-login-script" type="s">
+			<default>"nocall;nopasswd"</default>
+			<summary>Command script to handle telnet connections (csv)</summary>
+			<description>Commands to send while establishing telnet connection wih the PacketCluster</description>
+		</key>
+
+		<key name="autoconnect-startup" type="b">
+			<default>true</default>
+			<summary>Auto connect on startup</summary>
+			<description>Automatically connect to the default cluster at startup</description>
+		</key>
+
+		<key name="auto-reconnect" type="b">
+			<default>true</default>
+			<summary>Auto reconnect on connection lost or connection failed</summary>
+			<description>Automatically reconnect if the connection is lost or failed to connect</description>
+		</key>
+	</schema>
+</schemalist>
