@@ -93,10 +93,16 @@ public class Application : Gtk.Application {
     }
 
     private void show_preferences () {
+        /*
         var bsett = new Gtk.Builder.from_resource("/org/ampr/ct1enq/gdx/ui/settings.ui");
         var pwindow = bsett.get_object ("window1") as Gtk.Window;
         pwindow.show_all ();
         //add_window (pwindow);
+        */
+        var settings_window = new SettingsWindow ();
+        settings_window.set_transient_for (window);
+        settings_window.show_all ();
+        add_window (settings_window);
     }
 
     private void show_about_dialog () {

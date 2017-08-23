@@ -10,6 +10,7 @@ vala_sources = [
     'Cluster/dx-clusters.vala',
     'ui/MainWindow/main-window.vala',
     'ui/SpotWindow/spot-window.vala',
+    'ui/SettingsWindow/settings-window.vala',
 ]
 
 vala_args = [
