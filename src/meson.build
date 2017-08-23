@@ -2,13 +2,13 @@ vala_sources = [
     'main.vala',
     'Application/application.vala',
     'Connector/connector.vala',
-    'ui/MainWindow/main-window.vala',
-    'ui/SpotWindow/spot-window.vala',
     'Cluster/parser-text.vala',
     'Cluster/dx-spot.vala',
     'Cluster/iparsable.vala',
     'Cluster/dx-cluster.vala',
     'Cluster/dx-clusters.vala',
+    'ui/MainWindow/main-window.vala',
+    'ui/SpotWindow/spot-window.vala',
 ]
 
 vala_args = [

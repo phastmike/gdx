@@ -11,3 +11,12 @@ http://www.g4bki.com/clusters.htm
 **Client Commands (simple?)**
 
 http://www.dxcluster.info/commands.htm
+
+** Application Settings
+- Callsign
+- Default cluster
+	- Connect at startup
+	- Reconnect automatically
+- Connection parameters (telnet login)
+
+

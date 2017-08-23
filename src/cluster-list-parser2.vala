@@ -18,6 +18,7 @@ public class DXClustersParser {
         var clusters = new ArrayList<DXCluster> ();
 
         // A reference to clusters list file
+        // FIX: Add resource | dowloadable? | Options?
         var file = File.new_for_path ("../data/resources/clusters_combined_ve7cc_tested.txt");
 
         if (!file.query_exists ()) {

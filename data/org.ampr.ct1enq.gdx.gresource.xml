@@ -4,5 +4,6 @@
 		<file>ui/app-menu.ui</file>
 		<file>ui/main-window2.ui</file>
 		<file>ui/spot-window.ui</file>
+		<file>ui/settings.ui</file>
   </gresource>
 </gresources>

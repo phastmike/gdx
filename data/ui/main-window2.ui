@@ -16,6 +16,7 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="liststore_wwv"/>
   <object class="GtkTextBuffer" id="textbuffer_console"/>
   <template class="MainWindow" parent="GtkApplicationWindow">
     <property name="width_request">785</property>
@@ -209,6 +210,20 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkTreeView">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="model">liststore_wwv</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
+              </object>
+              <packing>
+                <property name="title" translatable="yes">WWV</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -244,7 +259,7 @@
       <placeholder/>
     </child>
     <child type="title">
-      <object class="GtkStackSwitcher">
+      <object class="GtkStackSwitcher" id="stackswitcher1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="stack">stack1</property>
@@ -260,6 +275,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="icon_name">open-menu-symbolic.symbolic</property>
+            <style>
+              <class name="image-button"/>
+            </style>
           </object>
         </child>
         <style>

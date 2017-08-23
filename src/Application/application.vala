@@ -12,17 +12,6 @@ public class Application : Gtk.Application {
     private static Parser parser;
     public static MainWindow window;
     
-    /* Singleton test */
-    /*
-    private static Once<Application> _instance;
-
-    public static unowned Application instance () {
-        return _instance.once (() => {
-            return new Application ();
-        });
-    } 
-    */
-
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
     }
@@ -33,12 +22,12 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         base.activate ();
+
         parser = new Parser ();
 
         // CONFIG DIR
         print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
         // check existence otherwise create it
-        //
 
         var connector = new DxCluster.Connector ();
         connector.connect_async ("hamradio.isel.ipl.pt", 41112);
@@ -46,8 +35,8 @@ public class Application : Gtk.Application {
             print ("Connected!\n");
         });
 
-        window = new MainWindow ();
-        window.set_application (this);
+        window = new MainWindow (this);
+        //window.set_application (this);
         add_window (window);
 
         window.entry_commands.activate.connect (() => {
@@ -80,6 +69,7 @@ public class Application : Gtk.Application {
         var action = new GLib.SimpleAction ("preferences", null);
         action.activate.connect (() => {
             print ("APP SETTINGS\n");
+            show_preferences ();
         });
         add_action (action);
 
@@ -102,7 +92,14 @@ public class Application : Gtk.Application {
         set_app_menu (app_menu);
     }
 
-    private void show_about_dialog(){
+    private void show_preferences () {
+        var bsett = new Gtk.Builder.from_resource("/org/ampr/ct1enq/gdx/ui/settings.ui");
+        var pwindow = bsett.get_object ("window1") as Gtk.Window;
+        pwindow.show_all ();
+        //add_window (pwindow);
+    }
+
+    private void show_about_dialog () {
         string[] authors = {
             "José Fonte <phastmike@gmail.com>"
         };

@@ -35,8 +35,12 @@ public class MainWindow : Gtk.ApplicationWindow {
         UTC
     }
 
-    public MainWindow () {
-        Object (default_width: 720, default_height: 480);
+    // Main Window needs to have an application set before its shown
+    // otherwise menu-app wont be set!
+    // Thats why we need to set the application at construct!
+
+    public MainWindow (Gtk.Application? app = null) {
+        Object (application: app, default_width: 720, default_height: 480);
         set_titlebar (headerbar1);
         show_all ();
 
