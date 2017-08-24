@@ -26,12 +26,13 @@ public class Application : Gtk.Application {
         parser = new Parser ();
 
         // CONFIG DIR
-        print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
+        //print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
         // check existence otherwise create it
 
         var connector = new DxCluster.Connector ();
-        connector.connect_async ("hamradio.isel.ipl.pt", 41112);
+        connector.connect_async (Gdx.Settings.default_cluster_address, (int16) Gdx.Settings.default_cluster_port);
         connector.connection_established.connect (() => {
+            connector.send ("ct1enq\r\n");
             print ("Connected!\n");
         });
 
@@ -66,6 +67,8 @@ public class Application : Gtk.Application {
     private void setup_app_menu () {
         // Using action named Settings the option becomes not sensitive !?
         // Although it appears as Settings on the menu, internally is preferences.
+
+        new Gdx.Settings ();
         var action = new GLib.SimpleAction ("preferences", null);
         action.activate.connect (() => {
             print ("APP SETTINGS\n");

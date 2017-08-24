@@ -85,7 +85,7 @@ namespace DxCluster {
                 //source.attach (MainContext.default ());
 
                 connection_established ();
-                send ("ct1enq\r\n");
+                //send ("ct1enq\r\n");
                 receive_async.begin ();
                 
             } catch (Error e) {

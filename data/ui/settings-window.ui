@@ -12,6 +12,7 @@
   <template class="SettingsWindow" parent="GtkWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Settings</property>
+    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
@@ -61,7 +62,6 @@
                           <object class="GtkEntry" id="entry_callsign">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">NOCALL</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -142,7 +142,6 @@
                           <object class="GtkEntry" id="entry_cluster_name">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">VE7CC</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -165,7 +164,6 @@
                           <object class="GtkEntry" id="entry_cluster_address">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">dxc.ve7cc.net</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -189,7 +187,6 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="adjustment">adjustment1</property>
-                            <property name="value">7300</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -211,7 +208,6 @@
                           <object class="GtkEntry" id="entry_cluster_login">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">nocall;nopwd</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -226,7 +222,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Default Packet Cluster&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Default Cluster&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>

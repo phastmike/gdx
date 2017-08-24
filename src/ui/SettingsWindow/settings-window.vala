@@ -34,5 +34,17 @@ public class SettingsWindow: Gtk.Window {
         entry_cluster_address.set_text (Gdx.Settings.default_cluster_address);
         spinbutton_cluster_port.set_value ((double) Gdx.Settings.default_cluster_port);
         entry_cluster_login.set_text (Gdx.Settings.default_cluster_login_script);
+        checkbutton_autoconnect.set_active (Gdx.Settings.auto_connect_startup);
+        checkbutton_autoreconnect.set_active (Gdx.Settings.auto_reconnect);
+
+        destroy.connect (() => {
+            Gdx.Settings.user_callsign = entry_callsign.get_text ();
+            Gdx.Settings.default_cluster_name = entry_cluster_name.get_text ();
+            Gdx.Settings.default_cluster_address = entry_cluster_address.get_text ();
+            Gdx.Settings.default_cluster_port = spinbutton_cluster_port.get_value_as_int ();
+            Gdx.Settings.default_cluster_login_script = entry_cluster_login.get_text ();
+            Gdx.Settings.auto_connect_startup = checkbutton_autoconnect.active;
+            Gdx.Settings.auto_reconnect = checkbutton_autoreconnect.active; 
+        });
     }
 }

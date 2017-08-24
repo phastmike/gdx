@@ -15,10 +15,11 @@ namespace Gdx {
         private static string _default_cluster_address;
         private static int _default_cluster_port;
         private static string _default_cluster_login_script;
-        private static bool _autoconnect_startup;
-        private static bool _autoreconnect;
+        private static bool _auto_connect_startup;
+        private static bool _auto_reconnect;
 
         static construct {
+            print ("Settings Static Construct\n");
             settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
 
             _user_callsign = settings.get_string ("user-callsign");
@@ -26,8 +27,8 @@ namespace Gdx {
             _default_cluster_address = settings.get_string ("default-cluster-address");
             _default_cluster_port = settings.get_int ("default-cluster-port");
             _default_cluster_login_script = settings.get_string ("default-cluster-login-script");
-            _autoconnect_startup = settings.get_boolean ("autoconnect-startup");
-            _autoreconnect = settings.get_boolean ("autoreconnect");
+            _auto_connect_startup = settings.get_boolean ("auto-connect-startup");
+            _auto_reconnect = settings.get_boolean ("auto-reconnect");
         }
 
         public static string user_callsign {
@@ -36,8 +37,8 @@ namespace Gdx {
             }
 
             set {
-                user_callsign = value;
-                settings.set_string ("user_callsign", value);
+                _user_callsign = value;
+                settings.set_string ("user-callsign", value);
             }
         }
 
@@ -69,7 +70,7 @@ namespace Gdx {
             }
 
             set {
-                if (value >= 0 && value <= int16.MAX) {
+                if (value >= 0 && value <= uint16.MAX) {
                     _default_cluster_port = value;
                     settings.set_int ("default-cluster-port", value);
                 }
@@ -87,25 +88,25 @@ namespace Gdx {
             }
         }
 
-        public static bool autoconnect_startup {
+        public static bool auto_connect_startup {
             get {
-                return _autoconnect_startup;
+                return _auto_connect_startup;
             }
 
             set {
-                _autoconnect_startup = value;
-                settings.set_boolean ("autoconnect-startup", value);
+                _auto_connect_startup = value;
+                settings.set_boolean ("auto-connect-startup", value);
             }
         }
 
-        public static bool autoreconnect {
+        public static bool auto_reconnect {
             get {
-                return _autoreconnect;
+                return _auto_reconnect;
             }
 
             set {
-                _autoreconnect = value;
-                settings.set_boolean ("autoreconnect", value);
+                _auto_reconnect = value;
+                settings.set_boolean ("auto-reconnect", value);
             }
         }
     }
