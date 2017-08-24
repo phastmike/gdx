@@ -1,4 +1,4 @@
-# Gdx
+#Gdx
 
 [ ] Remake connection (auto reconnect when: cnx lost, pc sleep, etc.)
 [ ] Avoid UTF-8 errors
@@ -12,7 +12,8 @@ http://www.g4bki.com/clusters.htm
 
 http://www.dxcluster.info/commands.htm
 
-** Application Settings
+#Application Settings
+
 - Callsign
 - Default cluster
 	- Connect at startup
