@@ -10,7 +10,7 @@
 
 public class Settings : Object {
     private GLib.Settings settings;
-    private static Settings? _instance;
+    private static Once<Settings> _instance;
 
     private string _user_callsign;
     private string _default_cluster_name;
@@ -48,12 +48,10 @@ public class Settings : Object {
         _auto_reconnect = settings.get_boolean ("auto-reconnect");
     }
 
-    public static Settings instance () {
-        if (_instance == null) {
-            _instance = new Settings ();
-        }
-        
-        return _instance;
+    public static unowned Settings instance () {
+        return _instance.once (() => {
+            return new Settings ();
+        });
     }
 
     public string user_callsign {
