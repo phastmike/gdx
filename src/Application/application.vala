@@ -30,7 +30,7 @@ public class Application : Gtk.Application {
         // check existence otherwise create it
 
         var connector = new DxCluster.Connector ();
-        var settings = Gdx.Settings.instance ();
+        var settings = Settings.instance ();
     
         connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         connector.connection_established.connect (() => {

@@ -29,7 +29,7 @@ public class SettingsWindow: Gtk.Window {
     }
 
     private void setup () {
-        var settings = Gdx.Settings.instance ();
+        var settings = Settings.instance ();
         
         entry_callsign.set_text (settings.user_callsign);
         entry_cluster_name.set_text (settings.default_cluster_name);
