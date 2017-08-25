@@ -2,22 +2,26 @@
 /* vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab : */
 /*
  * gdx-settings.vala
+ * 
+ * Singleton
  *
  * Jose Miguel Fonte, 2017
  */
 
 namespace Gdx {
     public class Settings : Object {
-        private static GLib.Settings settings;
+        private GLib.Settings settings;
+        private static Settings? _instance;
 
-        private static string _user_callsign;
-        private static string _default_cluster_name;
-        private static string _default_cluster_address;
-        private static int _default_cluster_port;
-        private static string _default_cluster_login_script;
-        private static bool _auto_connect_startup;
-        private static bool _auto_reconnect;
+        private string _user_callsign;
+        private string _default_cluster_name;
+        private string _default_cluster_address;
+        private int _default_cluster_port;
+        private string _default_cluster_login_script;
+        private bool _auto_connect_startup;
+        private bool _auto_reconnect;
 
+        /*
         static construct {
             print ("Settings Static Construct\n");
             settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
@@ -30,8 +34,30 @@ namespace Gdx {
             _auto_connect_startup = settings.get_boolean ("auto-connect-startup");
             _auto_reconnect = settings.get_boolean ("auto-reconnect");
         }
+        */
 
-        public static string user_callsign {
+        private Settings () {
+            print ("Settings Static Construct\n");
+            settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
+
+            _user_callsign = settings.get_string ("user-callsign");
+            _default_cluster_name = settings.get_string ("default-cluster-name");
+            _default_cluster_address = settings.get_string ("default-cluster-address");
+            _default_cluster_port = settings.get_int ("default-cluster-port");
+            _default_cluster_login_script = settings.get_string ("default-cluster-login-script");
+            _auto_connect_startup = settings.get_boolean ("auto-connect-startup");
+            _auto_reconnect = settings.get_boolean ("auto-reconnect");
+        }
+
+        public static Settings instance () {
+            if (_instance == null) {
+                _instance = new Settings ();
+            }
+            
+            return _instance;
+        }
+
+        public string user_callsign {
             get {
                 return _user_callsign;
             }
@@ -42,7 +68,7 @@ namespace Gdx {
             }
         }
 
-        public static string default_cluster_name {
+        public string default_cluster_name {
             get {
                 return _default_cluster_name;
             }
@@ -53,7 +79,7 @@ namespace Gdx {
             }
         }
 
-        public static string default_cluster_address {
+        public string default_cluster_address {
             get {
                 return _default_cluster_address;
             }
@@ -64,7 +90,7 @@ namespace Gdx {
             }
         }
 
-        public static int default_cluster_port {
+        public int default_cluster_port {
             get {
                 return _default_cluster_port;
             }
@@ -77,7 +103,7 @@ namespace Gdx {
             }
         }
 
-        public static string default_cluster_login_script {
+        public string default_cluster_login_script {
             get {
                 return _default_cluster_login_script;
             }
@@ -88,7 +114,7 @@ namespace Gdx {
             }
         }
 
-        public static bool auto_connect_startup {
+        public bool auto_connect_startup {
             get {
                 return _auto_connect_startup;
             }
@@ -99,7 +125,7 @@ namespace Gdx {
             }
         }
 
-        public static bool auto_reconnect {
+        public bool auto_reconnect {
             get {
                 return _auto_reconnect;
             }
