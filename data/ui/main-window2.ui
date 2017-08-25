@@ -16,6 +16,9 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkTreeModelFilter" id="liststore_spots_with_filter">
+    <property name="child_model">liststore_spots</property>
+  </object>
   <object class="GtkTextBuffer" id="textbuffer_console"/>
   <template class="MainWindow" parent="GtkApplicationWindow">
     <property name="width_request">785</property>
@@ -64,7 +67,7 @@
                   <object class="GtkTreeView" id="treeview_spots">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="model">liststore_spots</property>
+                    <property name="model">liststore_spots_with_filter</property>
                     <property name="rules_hint">True</property>
                     <property name="search_column">2</property>
                     <property name="enable_grid_lines">both</property>

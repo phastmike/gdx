@@ -26,6 +26,11 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button searchbutton;
     [GtkChild]
     private Gtk.SearchEntry searchentry;
+    [GtkChild]
+    private Gtk.ListStore liststore_spots;
+    [GtkChild]
+    private Gtk.TreeModelFilter liststore_spots_with_filter;
+
 
     private enum Col{
         SPOTTER,
@@ -48,10 +53,14 @@ public class MainWindow : Gtk.ApplicationWindow {
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
 
-        treeview_spots.set_search_entry (searchentry);
+        //treeview_spots.set_search_entry (searchentry);
 
         searchbutton.clicked.connect (() => {
             searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
+        });
+        
+        searchentry.search_changed.connect (() => {
+            liststore_spots_with_filter.refilter ();
         });
 
         button1.clicked.connect (() => {
@@ -63,13 +72,29 @@ public class MainWindow : Gtk.ApplicationWindow {
                 print ("%s : %s : %s\n", f,dx,c);
             });
         });
+
+        liststore_spots_with_filter.set_visible_func ((model, iter) => {
+            string dx;
+
+            if (searchentry.get_text () == "") {
+                return true;
+            }
+
+            model.get (iter, Col.DX, out dx);
+
+            if (dx.up ().contains (searchentry.get_text ().up())) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 
     public void add_spot_to_view (string spotter, string freq, string dx, string comment, string utc) {
         Gtk.TreeIter iter;
         Gtk.ListStore store;
 
-        store = (Gtk.ListStore) treeview_spots.get_model ();
+        store = (Gtk.ListStore) (treeview_spots.get_model () as Gtk.TreeModelFilter).get_model ();
         store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
         treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
