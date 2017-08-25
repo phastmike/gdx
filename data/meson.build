@@ -6,4 +6,4 @@ resources = gnome_module.compile_resources('org.ampr.ct1enq.gdx',
                                            c_name: 'resources')
 
 # Settings Schema
-#install_data('org.ampr.ct1enq.gdx.gschema.xml', install_dir : '../data/')
+install_data('org.ampr.ct1enq.gdx.gschema.xml', install_dir : join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))

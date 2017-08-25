@@ -12,3 +12,5 @@ posix = meson.get_compiler('vala').find_library('posix')
 
 subdir('data')
 subdir('src')
+
+meson.add_install_script('meson-post-install.sh')
