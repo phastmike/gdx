@@ -4,7 +4,7 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Settings</attribute>
-        <attribute name="action">app.preferences</attribute>
+        <attribute name="action">app.settings</attribute>
       </item>
     </section>
     <section>

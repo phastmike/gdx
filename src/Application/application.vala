@@ -34,8 +34,9 @@ public class Application : Gtk.Application {
     
         connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         connector.connection_established.connect (() => {
-            connector.send ("ct1enq\r\n");
-            print ("Connected!\n");
+            connector.send (settings.user_callsign + "\r\n");
+            //connector.send ("ct1enq\r\n");
+            //print ("Connected!\n");
         });
 
         window = new MainWindow (this);
@@ -62,20 +63,15 @@ public class Application : Gtk.Application {
 
     protected override void startup () {
         base.startup ();
+        //Debug events
         //Gdk.set_show_events (true);
         setup_app_menu ();
     }
 
     private void setup_app_menu () {
-        // Using action named Settings the option becomes not sensitive !?
-        // Although it appears as Settings on the menu, internally is preferences.
-
-        //new Gdx.Settings ();
-
-        var action = new GLib.SimpleAction ("preferences", null);
+        var action = new GLib.SimpleAction ("settings", null);
         action.activate.connect (() => {
-            print ("APP SETTINGS\n");
-            show_preferences ();
+            show_settings ();
         });
         add_action (action);
 
@@ -87,7 +83,6 @@ public class Application : Gtk.Application {
 
         action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => {
-            print ("APP QUIT\n");
             base.quit ();
         });
         add_action (action);
@@ -98,7 +93,7 @@ public class Application : Gtk.Application {
         set_app_menu (app_menu);
     }
 
-    private void show_preferences () {
+    private void show_settings () {
         var settings_window = new SettingsWindow ();
         settings_window.set_transient_for (window);
         settings_window.show_all ();

@@ -26,7 +26,7 @@
 		</key>
 		
 		<key name="default-cluster-login-script" type="s">
-			<default>"nocall;nopasswd"</default>
+			<default>""</default>
 			<summary>Command script to handle telnet connections (csv)</summary>
 			<description>Commands to send while establishing telnet connection wih the PacketCluster</description>
 		</key>

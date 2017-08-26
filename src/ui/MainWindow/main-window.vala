@@ -11,6 +11,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     public Gtk.Button button1;
     [GtkChild]
+    private Gtk.Stack stack_main;
+    [GtkChild]
     public Gtk.Entry entry_commands;
     [GtkChild]
     private Gtk.HeaderBar headerbar1;
@@ -20,6 +22,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.TextView textview_console;
     [GtkChild]
     private Gtk.TextBuffer textbuffer_console;
+    [GtkChild]
+    private Gtk.ScrolledWindow scrolled_spots;
     [GtkChild]
     private Gtk.SearchBar searchbar;
     [GtkChild]
@@ -57,10 +61,16 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         searchbutton.clicked.connect (() => {
             searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
+            /*
+            if (searchbar.search_mode_enabled) {
+                stack_main.set_visible_child (scrolled_spots);
+            }
+            */
         });
         
         searchentry.search_changed.connect (() => {
             liststore_spots_with_filter.refilter ();
+            stack_main.set_visible_child (scrolled_spots);
         });
 
         button1.clicked.connect (() => {
@@ -69,14 +79,14 @@ public class MainWindow : Gtk.ApplicationWindow {
             spot_window.show_all ();
 
             spot_window.spot.connect ((f, dx, c) => {
-                print ("%s : %s : %s\n", f,dx,c);
+                print ("dx %s %s %s\n", f,dx,c);
             });
         });
 
         liststore_spots_with_filter.set_visible_func ((model, iter) => {
             string dx;
 
-            if (searchentry.get_text () == "") {
+            if (searchentry.get_text () == "" || searchentry.get_text == null) {
                 return true;
             }
 
@@ -94,10 +104,14 @@ public class MainWindow : Gtk.ApplicationWindow {
         Gtk.TreeIter iter;
         Gtk.ListStore store;
 
-        store = (Gtk.ListStore) (treeview_spots.get_model () as Gtk.TreeModelFilter).get_model ();
+        //store = (Gtk.ListStore) (treeview_spots.get_model () as Gtk.TreeModelFilter).get_model ();
+        store = liststore_spots;
         store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
-        treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
+        // HOUSTON WE HAVE A PROBLEM!
+        if (!searchbar.search_mode_enabled) {
+            treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
+        }
     }
 
     public void add_text_to_console (string text) {

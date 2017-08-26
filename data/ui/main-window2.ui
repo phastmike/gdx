@@ -55,7 +55,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkStack" id="stack1">
+          <object class="GtkStack" id="stack_main">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -187,6 +187,8 @@
                       <object class="GtkTextView" id="textview_console">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="editable">False</property>
+                        <property name="cursor_visible">False</property>
                         <property name="buffer">textbuffer_console</property>
                         <property name="monospace">True</property>
                       </object>
@@ -241,7 +243,7 @@
       <object class="GtkStackSwitcher" id="stackswitcher1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="stack">stack1</property>
+        <property name="stack">stack_main</property>
       </object>
     </child>
     <child>
