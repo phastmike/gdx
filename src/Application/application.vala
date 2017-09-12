@@ -112,7 +112,7 @@ public class Application : Gtk.Application {
             "program-name", "GDx",
             //"title", _("About GDx"),
             "title", "About GDx",
-            "license-type", Gtk.License.GPL_3_0,
+            "license-type", Gtk.License.MIT_X11,
             "logo-icon-name", "de.haeckerfelix.gradio",
             //"version", VERSION,
             "version", "0.1",
