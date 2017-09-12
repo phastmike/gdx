@@ -92,6 +92,8 @@ public class MainWindow : Gtk.ApplicationWindow {
 
             model.get (iter, Col.DX, out dx);
 
+            if (dx == null) return false;
+
             if (dx.up ().contains (searchentry.get_text ().up())) {
                 return true;
             } else {

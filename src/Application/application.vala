@@ -25,9 +25,9 @@ public class Application : Gtk.Application {
 
         parser = new Parser ();
 
-        // CONFIG DIR
+        //CONFIG DIR
         //print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
-        // check existence otherwise create it
+        //check existence otherwise create it
 
         var connector = new DxCluster.Connector ();
         var settings = Settings.instance ();
@@ -35,8 +35,6 @@ public class Application : Gtk.Application {
         connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         connector.connection_established.connect (() => {
             connector.send (settings.user_callsign + "\r\n");
-            //connector.send ("ct1enq\r\n");
-            //print ("Connected!\n");
         });
 
         window = new MainWindow (this);
