@@ -51,6 +51,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     public MainWindow (Gtk.Application? app = null) {
         Object (application: app, default_width: 720, default_height: 480);
         set_titlebar (headerbar1);
+        set_send_spot_button_visible (false);
         show_all ();
 
         Gtk.TextIter iter;
@@ -133,5 +134,9 @@ public class MainWindow : Gtk.ApplicationWindow {
             textview_console.scroll_mark_onscreen (mark);
             return false;
         });
+    }
+
+    public void set_send_spot_button_visible (bool sensitive) {
+        button1.sensitive = sensitive;
     }
 }

@@ -1,0 +1,6 @@
+src/Application/application
+src/Settings/settings.vala
+data/ui/app-menu.ui
+data/ui/main-window2.ui
+data/ui/spot-window.ui
+data/ui/preferences.ui

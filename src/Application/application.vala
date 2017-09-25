@@ -26,20 +26,21 @@ public class Application : Gtk.Application {
         parser = new Parser ();
 
         //CONFIG DIR
-        //print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
         //check existence otherwise create it
+        //print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
 
         var connector = new DxCluster.Connector ();
         var settings = Settings.instance ();
-    
-        connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
-        connector.connection_established.connect (() => {
-            connector.send (settings.user_callsign + "\r\n");
-        });
 
         window = new MainWindow (this);
         //window.set_application (this);
         add_window (window);
+    
+        connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        connector.connection_established.connect (() => {
+            connector.send (settings.user_callsign + "\r\n");
+            window.button1.sensitive = true;
+        });
 
         window.entry_commands.activate.connect (() => {
             connector.send (window.entry_commands.get_text () + "\r\n");

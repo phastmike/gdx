@@ -1,6 +1,5 @@
 vala_sources = [
     'main.vala',
-    'settings.vala',
     'Application/application.vala',
     'Connector/connector.vala',
     'Cluster/parser-text.vala',
@@ -11,6 +10,7 @@ vala_sources = [
     'ui/MainWindow/main-window.vala',
     'ui/SpotWindow/spot-window.vala',
     'ui/SettingsWindow/settings-window.vala',
+    'Settings/settings.vala',
 ]
 
 vala_args = [

@@ -4,10 +4,10 @@
 # Packagers set DESTDIR so we don't want to try writing to root
 if [ -z $DESTDIR ]; then
 
-	PREFIX=${MESON_INSTALL_PREFIX:-/usr}
+	PREFIX=${MESON_INSTALL_PREFIX:-/usr/share}
 
 	echo 'Compiling GSchema'
-	glib-compile-schemas "$PREFIX/share/glib-2.0/schemas"
+	glib-compile-schemas "$PREFIX/glib-2.0/schemas"
 	#echo 'Updating desktop database'
 	#update-desktop-database -q
 	#echo 'Updating icon cache'

@@ -1,6 +1,8 @@
-project('GDx', ['vala', 'c'],
+project('gdx', ['vala', 'c'],
         version: '1.0.0',
         meson_version: '>=0.29')
+
+i18n = import('i18n')
 
 gio = dependency('gio-2.0', version: '>=2.32')
 gtk = dependency('gtk+-3.0', version: '>=3.18')
@@ -11,6 +13,7 @@ posix = meson.get_compiler('vala').find_library('posix')
 
 
 subdir('data')
+subdir('po')
 subdir('src')
 
 meson.add_install_script('meson-post-install.sh')

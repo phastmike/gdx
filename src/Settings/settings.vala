@@ -1,7 +1,7 @@
 /* -*- Mode: Vala; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 4 -*- */
 /* vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab : */
 /*
- * gdx-settings.vala
+ * settings.vala
  * 
  * Singleton
  *
@@ -19,21 +19,6 @@ public class Settings : Object {
     private string _default_cluster_login_script;
     private bool _auto_connect_startup;
     private bool _auto_reconnect;
-
-    /*
-    static construct {
-        print ("Settings Static Construct\n");
-        settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
-
-        _user_callsign = settings.get_string ("user-callsign");
-        _default_cluster_name = settings.get_string ("default-cluster-name");
-        _default_cluster_address = settings.get_string ("default-cluster-address");
-        _default_cluster_port = settings.get_int ("default-cluster-port");
-        _default_cluster_login_script = settings.get_string ("default-cluster-login-script");
-        _auto_connect_startup = settings.get_boolean ("auto-connect-startup");
-        _auto_reconnect = settings.get_boolean ("auto-reconnect");
-    }
-    */
 
     private Settings () {
         print ("Settings Static Construct\n");
