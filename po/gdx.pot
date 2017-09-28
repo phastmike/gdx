@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gdx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gdx\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-28 23:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/ui/app-menu.ui:6
+msgid "Settings"
+msgstr ""
+
+#: data/ui/app-menu.ui:12
+msgid "About"
+msgstr ""
+
+#: data/ui/app-menu.ui:16
+msgid "Quit"
+msgstr ""
+
+#: data/ui/main-window2.ui:27
+msgid "Gdx"
+msgstr ""
+
+#: data/ui/main-window2.ui:47
+msgid "Search DX station"
+msgstr ""
+
+#: data/ui/main-window2.ui:79
+msgid "Spotter"
+msgstr ""
+
+#: data/ui/main-window2.ui:92
+msgid "Freq. (kHz)"
+msgstr ""
+
+#: data/ui/main-window2.ui:105
+msgid "DX"
+msgstr ""
+
+#: data/ui/main-window2.ui:120 data/ui/spot-window.ui:83
+msgid "Comments"
+msgstr ""
+
+#: data/ui/main-window2.ui:133
+msgid "UTC"
+msgstr ""
+
+#: data/ui/main-window2.ui:149
+msgid "DX Spots"
+msgstr ""
+
+#: data/ui/main-window2.ui:170
+msgid "Type commands here..."
+msgstr ""
+
+#: data/ui/main-window2.ui:204
+msgid "Console"
+msgstr ""
+
+#: data/ui/spot-window.ui:31
+msgid "Frequency (kHz)"
+msgstr ""
+
+#: data/ui/spot-window.ui:44
+msgid "0"
+msgstr ""
+
+#: data/ui/spot-window.ui:61
+msgid "DX Station"
+msgstr ""
+
+#: data/ui/spot-window.ui:118
+msgid "Share"
+msgstr ""
+
+#: data/ui/spot-window.ui:123
+msgid "Send DX spot"
+msgstr ""
+
+#: data/ui/preferences.ui:30
+msgid "<b>Callsign</b>"
+msgstr ""
+
+#: data/ui/preferences.ui:42
+msgid "NOCALL"
+msgstr ""
+
+#: data/ui/preferences.ui:54 data/ui/preferences.ui:374
+msgid "Name *"
+msgstr ""
+
+#: data/ui/preferences.ui:65
+msgid "Your name"
+msgstr ""
+
+#: data/ui/preferences.ui:77 data/ui/preferences.ui:443
+#: data/ui/preferences.ui:765
+msgid "Location *"
+msgstr ""
+
+#: data/ui/preferences.ui:88
+msgid "Your location (eg: City)"
+msgstr ""
+
+#: data/ui/preferences.ui:99
+msgid "Qth Locator *"
+msgstr ""
+
+#: data/ui/preferences.ui:110
+msgid "Your Qth Locator"
+msgstr ""
+
+#: data/ui/preferences.ui:131 data/ui/preferences.ui:560
+msgid "* Optional"
+msgstr ""
+
+#: data/ui/preferences.ui:145 data/ui/preferences.ui:577
+msgid "Personal"
+msgstr ""
+
+#: data/ui/preferences.ui:177
+msgid "Auto connect on startup"
+msgstr ""
+
+#: data/ui/preferences.ui:192
+msgid "Auto reconnect if connection lost"
+msgstr ""
+
+#: data/ui/preferences.ui:206
+msgid "What else?"
+msgstr ""
+
+#: data/ui/preferences.ui:227
+msgid "<b>Connection</b>"
+msgstr ""
+
+#: data/ui/preferences.ui:253
+msgid "Application"
+msgstr ""
+
+#: data/ui/preferences.ui:305
+msgid "Callsign"
+msgstr ""
+
+#: data/ui/preferences.ui:316
+msgid "Radio amateur callsign"
+msgstr ""
+
+#: data/ui/preferences.ui:385
+msgid "Radio operator name or handle"
+msgstr ""
+
+#: data/ui/preferences.ui:454 data/ui/preferences.ui:776
+msgid "nearest location (City, Village)"
+msgstr ""
+
+#: data/ui/preferences.ui:512 data/ui/preferences.ui:834
+msgid "Locator *"
+msgstr ""
+
+#: data/ui/preferences.ui:523 data/ui/preferences.ui:845
+msgid "Station QTH Locator"
+msgstr ""
+
+#: data/ui/preferences.ui:613
+msgid "Connect on startup"
+msgstr ""
+
+#: data/ui/preferences.ui:624
+msgid "Connect automatically on startup to default DX Cluster"
+msgstr ""
+
+#: data/ui/preferences.ui:684
+msgid "Auto reconnect"
+msgstr ""
+
+#: data/ui/preferences.ui:695
+msgid "Reconnect automatically if connection lost"
+msgstr ""
+
+#: data/ui/preferences.ui:889
+msgid "Title"
+msgstr ""
+
+#: data/ui/preferences.ui:901
+msgid "Subtitle"
+msgstr ""
+
+#: data/ui/preferences.ui:947
+msgid "Connection"
+msgstr ""

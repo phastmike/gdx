@@ -21,6 +21,7 @@ vala_args = [
 valagtk = executable('gdx',
                      vala_sources,
                      resources,
+                     c_args: c_args,
                      vala_args: vala_args,
                      install: true,
                      dependencies : [glib, gobject, gio, gee, gtk, posix])
