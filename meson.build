@@ -1,6 +1,7 @@
 project('gdx', ['vala', 'c'],
-        version: '1.0.0',
-        meson_version: '>=0.29')
+	version: '1.0.0',
+	license: 'MIT',	
+   meson_version: '>=0.29')
 
 i18n = import('i18n')
 
@@ -26,4 +27,4 @@ subdir('data')
 subdir('po')
 subdir('src')
 
-meson.add_install_script('meson-post-install.sh')
+meson.add_install_script('meson-post-install.py')

@@ -18,7 +18,7 @@ vala_args = [
     '--gresources=../data/org.ampr.ct1enq.gdx.gresource.xml',
 ]
 
-valagtk = executable('gdx',
+executable('gdx',
                      vala_sources,
                      resources,
                      c_args: c_args,

@@ -24,16 +24,10 @@ public class Application : Gtk.Application {
         base.activate ();
 
         parser = new Parser ();
-
-        //CONFIG DIR
-        //check existence otherwise create it
-        //print("Config_dir: %s\n", Environment.get_user_config_dir () + Path.DIR_SEPARATOR_S + "gdx");
-
         var connector = new DxCluster.Connector ();
         var settings = Settings.instance ();
 
         window = new MainWindow (this);
-        //window.set_application (this);
         add_window (window);
     
         connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
@@ -103,19 +97,18 @@ public class Application : Gtk.Application {
             "José Fonte <phastmike@gmail.com>"
         };
         string[] artists = {
-            "José Fonte <phastmike@gmail.com>"
+            "José Fonte <phastmike@gmail.com>",
+            "Icons by icons8.com"
+            
         };
         Gtk.show_about_dialog (window,
             "artists", artists,
             "authors", authors,
             "translator-credits", _("translator-credits"),
-            //"translator-credits", "translator-credits",
-            "program-name", "GDx",
-            "title", _("About GDx"),
-            //"title", "About GDx",
+            "program-name", "Gdx",
+            "title", _("About Gdx"),
             "license-type", Gtk.License.MIT_X11,
-            "logo-icon-name", "de.haeckerfelix.gradio",
-            //"version", VERSION,
+            "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", "0.1",
             "comments", "Database: www.radio-browser.info",
             "website", "https://github.com/phastmike/gdx",

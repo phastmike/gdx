@@ -26,4 +26,7 @@ http://www.dxcluster.info/commands.htm
 	- Reconnect automatically
 - Connection parameters (telnet login)
 
+#Parser errors
+- DX de <CALLSIGN>: if call too big : can be supressed!
+
 
