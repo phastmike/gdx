@@ -5,6 +5,26 @@ resources = gnome_module.compile_resources('org.ampr.ct1enq.gdx',
                                            source_dir: '.',
                                            c_name: 'resources')
 
+# Translate and install appdata and desktop file #
+i18n.merge_file(
+	input:  'org.ampr.ct1enq.gdx.desktop.in',
+	output: 'org.ampr.ct1enq.gdx.desktop',
+	po_dir: '../po/',
+	type:   'desktop',
+	install: true,
+	install_dir: join_paths(get_option('datadir'), 'applications')
+)
+
+
+i18n.merge_file(
+  input:  'org.ampr.ct1enq.gdx.appdata.xml.in',
+  output: 'org.ampr.ct1enq.gdx.appdata.xml',
+  po_dir: '../po/',
+  type:   'xml',
+  install: true,
+  install_dir: join_paths(get_option('datadir'), 'appdata')
+)
+
 # Settings Schema
 install_data('org.ampr.ct1enq.gdx.gschema.xml', install_dir : join_paths(get_option('datadir'), 'glib-2.0', 'schemas'))
 

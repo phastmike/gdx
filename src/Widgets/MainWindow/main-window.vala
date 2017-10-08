@@ -52,21 +52,20 @@ public class MainWindow : Gtk.ApplicationWindow {
         Object (application: app, default_width: 720, default_height: 480);
         set_titlebar (headerbar1);
         set_send_spot_button_visible (false);
+
         show_all ();
 
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
 
-        //treeview_spots.set_search_entry (searchentry);
+        treeview_spots.key_press_event.connect ((event) => {
+            searchbar.set_search_mode (true);
+            return searchentry.handle_event (event);
+        }); 
 
         searchbutton.clicked.connect (() => {
             searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
-            /*
-            if (searchbar.search_mode_enabled) {
-                stack_main.set_visible_child (scrolled_spots);
-            }
-            */
         });
         
         searchentry.search_changed.connect (() => {
@@ -75,11 +74,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         button1.clicked.connect (() => {
-            var spot_window = new SpotWindow ();
-            spot_window.set_transient_for (this);
-            spot_window.show_all ();
+            var share_window = new ShareWindow ();
+            share_window.set_transient_for (this);
+            share_window.show_all ();
 
-            spot_window.spot.connect ((f, dx, c) => {
+            share_window.spot.connect ((f, dx, c) => {
                 print ("dx %s %s %s\n", f,dx,c);
             });
         });
@@ -107,7 +106,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         Gtk.TreeIter iter;
         Gtk.ListStore store;
 
-        //store = (Gtk.ListStore) (treeview_spots.get_model () as Gtk.TreeModelFilter).get_model ();
         store = liststore_spots;
         store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);

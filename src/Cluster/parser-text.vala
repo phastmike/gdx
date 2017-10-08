@@ -49,7 +49,6 @@ public class Parser : Object, IParsable {
         string utc = "";
         string qth = "";
         string comment = "";
-        //string s = text.substring (0, text.length - 2); // remove \r\n
         string s = text.substring (0, text.length); // remove \r\n
 
         if (!text.validate (-1, null)) return;
@@ -60,14 +59,6 @@ public class Parser : Object, IParsable {
 
         var split = s.split_set (" :");
 
-        int index = 0; 
-        /*
-        foreach (string c in split) {
-            print ("component[%d]: %s\n", index, c);
-            index++;
-        }
-        */
-        
         int length = split.length;
 
         if (length < 6) return;
@@ -89,11 +80,14 @@ public class Parser : Object, IParsable {
         
         comment = comment.strip ().compress ();
 
+        if (!comment.validate ()) {
+            comment = "<invalid utf8 data in comment>";
+        }
+
         var spotter = split[2];
         var freq = split[4];
         var dx = split[5];
 
-        //print ("DX Station = %s @ %s by %s [OBS: %s]  [UTC: %s] [QTH: %s]\n", dx,freq,spotter, comment, utc, qth);
         rcvd_spot (new DxSpot.with_data (spotter, freq, dx, comment, utc, qth));
     }
 } 

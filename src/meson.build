@@ -7,9 +7,10 @@ vala_sources = [
     'Cluster/iparsable.vala',
     'Cluster/dx-cluster.vala',
     'Cluster/dx-clusters.vala',
-    'ui/MainWindow/main-window.vala',
-    'ui/SpotWindow/spot-window.vala',
-    'ui/SettingsWindow/settings-window.vala',
+    'Widgets/MainWindow/main-window.vala',
+    'Widgets/SpotWindow/spot-window.vala',
+    'Widgets/ShareWindow/share-window.vala',
+    'Widgets/SettingsWindow/settings-window.vala',
     'Settings/settings.vala',
 ]
 

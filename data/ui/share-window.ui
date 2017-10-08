@@ -7,7 +7,7 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <template class="SpotWindow" parent="GtkWindow">
+  <template class="ShareWindow" parent="GtkWindow">
     <property name="can_focus">False</property>
     <property name="border_width">18</property>
     <property name="resizable">False</property>
@@ -19,6 +19,7 @@
       <object class="GtkStack" id="stack1">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="transition_type">crossfade</property>
         <child>
           <object class="GtkGrid">
             <property name="visible">True</property>
@@ -166,6 +167,24 @@
                 <property name="top_attach">0</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="can_focus">False</property>
+                <property name="no_show_all">True</property>
+                <property name="label" translatable="yes">Announce to everyone should be used carefuly to avoid spamming the network</property>
+                <property name="wrap">True</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
           </object>
           <packing>
             <property name="name">page1</property>
@@ -196,7 +215,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkButton" id="button_spot">
+      <object class="GtkButton" id="button_share">
         <property name="label" translatable="yes">Share</property>
         <property name="visible">True</property>
         <property name="sensitive">False</property>

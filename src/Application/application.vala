@@ -98,7 +98,7 @@ public class Application : Gtk.Application {
         };
         string[] artists = {
             "José Fonte <phastmike@gmail.com>",
-            "Icons by icons8.com"
+            "App Icon by icons8.com <http://icons8.com>"
             
         };
         Gtk.show_about_dialog (window,
@@ -110,7 +110,7 @@ public class Application : Gtk.Application {
             "license-type", Gtk.License.MIT_X11,
             "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", "0.1",
-            "comments", "Database: www.radio-browser.info",
+            "comments", "Access the Radio Amateur DX Clusters Network",
             "website", "https://github.com/phastmike/gdx",
             "wrap-license", true);
     }

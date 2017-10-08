@@ -1,4 +1,8 @@
 #Gdx
+A Gnome DxCluster client for Radio amateurs.
+It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available but could be implemented.
+
+## What is the a DXCluster network
 
 
 ###To Do
@@ -29,4 +33,5 @@ http://www.dxcluster.info/commands.htm
 #Parser errors
 - DX de <CALLSIGN>: if call too big : can be supressed!
 
-
+#Application icon
+<https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33

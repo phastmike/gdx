@@ -6,12 +6,12 @@
  * Jose Miguel Fonte, 2017
  */
 
-[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/spot-window.ui")]
-public class SpotWindow : Gtk.Window {
+[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/share-window.ui")]
+public class ShareWindow : Gtk.Window {
     [GtkChild]
     private Gtk.HeaderBar headerbar1;
     [GtkChild]
-    private Gtk.Button button_spot;
+    private Gtk.Button button_share;
     [GtkChild]
     private Gtk.Button button_cancel;
     [GtkChild]
@@ -24,7 +24,7 @@ public class SpotWindow : Gtk.Window {
     public signal void cancelled ();
     public signal void spot (string freq, string dx_station, string comment);
 
-    public SpotWindow () {
+    public ShareWindow () {
         Object (default_width: 400, default_height: 200);
         set_titlebar (headerbar1);
         setup_callbacks ();
@@ -36,23 +36,22 @@ public class SpotWindow : Gtk.Window {
             this.destroy ();
         });
 
-        button_spot.clicked.connect (() => {
-            spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ()); 
+        button_share.clicked.connect (() => {
+            spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ());
             this.destroy ();
         });
-        
+
         input_freq.value_changed.connect (() => {
-            button_spot.set_sensitive (entries_have_data ());
+            button_share.set_sensitive (entries_have_data ());
         });
 
         input_dx.key_release_event.connect ((event) => {
-            button_spot.set_sensitive (entries_have_data ());
+            button_share.set_sensitive (entries_have_data ());
             return false;
         });
     }
 
     private bool entries_have_data () {
-        // Simple data validator, can and should be improved
         return (input_freq.@value > 0.0 && input_dx.text_length > 1);
     }
 }

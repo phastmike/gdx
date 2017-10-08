@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=0.1
+Name=Gdx
+GenericName=A DXCluster Client
+Comment=Connect to Hamradio DX Clusters
+Exec=gdx
+Icon=org.ampr.ct1enq.gdx
+Terminal=false
+Categories=Network;HamRadio;Other;GNOME;
+Keywords=gdx;ham;radio;dx;
+StartupNotify=true
+

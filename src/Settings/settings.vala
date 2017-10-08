@@ -21,7 +21,6 @@ public class Settings : Object {
     private bool _auto_reconnect;
 
     private Settings () {
-        print ("Settings Static Construct\n");
         settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
 
         _user_callsign = settings.get_string ("user-callsign");
