@@ -29,11 +29,15 @@ public class Application : Gtk.Application {
 
         window = new MainWindow (this);
         add_window (window);
+
+        window.button_share.sensitive = true;
     
-        connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        if (settings.auto_connect_startup) {
+            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        }
         connector.connection_established.connect (() => {
             connector.send (settings.user_callsign + "\r\n");
-            window.button1.sensitive = true;
+            window.button_share.sensitive = true;
         });
 
         window.entry_commands.activate.connect (() => {
@@ -43,7 +47,6 @@ public class Application : Gtk.Application {
 
         connector.received_message.connect ((text) => {
             window.add_text_to_console (text);
-            //print ("%s\n", Parser.text_get_type (text).to_string ());
             if (Parser.text_get_type (text) == Parser.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
             } 

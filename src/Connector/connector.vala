@@ -37,18 +37,23 @@ namespace DxCluster {
             cancellable = new Cancellable ();
 
             client.event.connect ((e, c, ios) => {
-                print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), e.to_string ());
+                string dmsg;
+
+                dmsg = "[%s]: ".printf (new DateTime.now_local ().format ("%F %T").to_string ());
+                dmsg += e.to_string ();
+                
+                debug (dmsg);
             });
 
             connection_failed.connect (()=> {
-                print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "SIGNAL::connection_failed");
+                debug ("signal::connection_failed");
                 if (auto_reconnect) {
                     Idle.add(reconnect);
                 }
             });
 
             connection_lost.connect (()=> {
-                print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "SIGNAL::connection_lost");
+                debug ("signal::connection_lost");
                 disconnect_async ();
                 if (auto_reconnect) {
                     reconnect ();
@@ -56,7 +61,7 @@ namespace DxCluster {
             });
 
             connection_established.connect (() => {
-                print ("CONNECTED\n");
+                debug ("signal::connection_established");
             });
         }
         
@@ -77,38 +82,29 @@ namespace DxCluster {
                 socket.set_keepalive (true);
                 stream_input = new DataInputStream (connection.get_input_stream ());
                 stream_output = new DataOutputStream (connection.get_output_stream ()); 
-                //stream_input.set_buffer_size (8192);
                 stream_input.set_newline_type (DataStreamNewlineType.CR_LF);
                 
-                //source = (SocketSource) (socket as Socket).create_source (IOCondition.IN, this.cancellable);
-                //source.set_callback (receive_callback);
-                //source.attach (MainContext.default ());
-
                 connection_established ();
-                //send ("ct1enq\r\n");
                 receive_async.begin ();
                 
             } catch (Error e) {
-                //stderr.printf ("Error :: connect_async\n");
                 connection_failed ();
             }
         }
 
         public void disconnect_async () requires (connection != null) {
-            print ("[%s]:[EVENT] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), "Disconnect async\n");
-            //source.destroy ();
+            debug ("signal::disconnect_async");
             cancellable.cancel ();
-            //Source.remove (timeout_id);
             try {
                 connection.close ();
             } catch (IOError e) {
-                print ("iostream close error::%s\n",e.message);
+                debug ("iostream close error::%s\n",e.message);
             }
 
             try {
                 socket.close ();
             } catch (Error e) {
-                print ("iostream close error::%s\n",e.message);
+                debug ("iostream close error::%s\n",e.message);
             }
             connection = null;
             disconnected ();
@@ -129,10 +125,8 @@ namespace DxCluster {
                     } else {
                         connection_lost ();
                     }
-                    //connection_lost ();
                 } catch (IOError e) {
                     stderr.printf ("%s\n", e.message);
-                    //connection_lost ();
                 }
             }
         }

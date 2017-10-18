@@ -1,4 +1,4 @@
-#Gdx
+# Gdx
 A Gnome DxCluster client for Radio amateurs.
 It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available but could be implemented.
 

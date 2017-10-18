@@ -6,10 +6,10 @@
  * Jose Miguel Fonte, 2017
  */
 
-[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window2.ui")]
+[GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
-    public Gtk.Button button1;
+    public Gtk.Button button_share;
     [GtkChild]
     private Gtk.Stack stack_main;
     [GtkChild]
@@ -73,7 +73,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             stack_main.set_visible_child (scrolled_spots);
         });
 
-        button1.clicked.connect (() => {
+        button_share.clicked.connect (() => {
             var share_window = new ShareWindow ();
             share_window.set_transient_for (this);
             share_window.show_all ();
@@ -135,6 +135,6 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
 
     public void set_send_spot_button_visible (bool sensitive) {
-        button1.sensitive = sensitive;
+        button_share.sensitive = sensitive;
     }
 }
