@@ -8,6 +8,7 @@
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/share-window.ui")]
 public class ShareWindow : Gtk.Window {
+    View view = View.SPOT; 
     [GtkChild]
     private Gtk.HeaderBar headerbar1;
     [GtkChild]
@@ -40,7 +41,6 @@ public class ShareWindow : Gtk.Window {
         ANNOUNCE
     }
 
-    View view = View.SPOT; 
 
     enum AnnounceRange {
         LOCAL,
@@ -64,6 +64,24 @@ public class ShareWindow : Gtk.Window {
     }
 
     private void setup_callbacks () {
+        input_dx.icon_press.connect ((position, event) => {
+            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
+                input_dx.text = ""; 
+            }
+        });
+
+        input_comment.icon_press.connect ((position, event) => {
+            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
+                input_comment.text = ""; 
+            }
+        });
+
+        entry_message.icon_press.connect ((position, event) => {
+            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
+                entry_message.text = ""; 
+            }
+        });
+
         range_selection.changed.connect (() => {
             if (range_selection.get_active () == AnnounceRange.GLOBAL) {
                 warning_icon.set_visible (true);
@@ -76,12 +94,12 @@ public class ShareWindow : Gtk.Window {
 
         stack1.set_focus_child.connect ((widget) => {
             if (widget == announce_grid) {
-                print ("SET FOCUS CHILD ANNOUNCE\n");
                 view = View.ANNOUNCE; 
             } else if (widget == spot_grid) {
-                print ("SET FOCUS CHILD SPOT\n");
                 view = View.SPOT;
             }
+
+            check_enable_share ();
         });
 
         button_cancel.clicked.connect (() => {
@@ -90,9 +108,9 @@ public class ShareWindow : Gtk.Window {
         });
 
         button_share.clicked.connect (() => {
-            if (get_page_id () == SharePage.SPOT) {
+            if (view == View.SPOT) {
                 spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ());
-            } else if (get_page_id () == SharePage.ANNOUNCE) {
+            } else if (view == View.ANNOUNCE) {
                 bool global = false;
 
                 if (range_selection.get_active () == AnnounceRange.GLOBAL) {
@@ -100,34 +118,36 @@ public class ShareWindow : Gtk.Window {
                 }
 
                 announcement (global, entry_message.get_text ());
-                print ("ANNOUNCEMENT GLOBAL: %s | MSG: %s\n", global.to_string (), entry_message.get_text ());
             }
 
             this.destroy ();
             
         });
 
-        input_freq.value_changed.connect (() => {
-            button_share.set_sensitive (entries_have_data ());
+        entry_message.changed.connect (() => {
+            check_enable_share ();
         });
 
-        input_dx.key_release_event.connect ((event) => {
-            button_share.set_sensitive (entries_have_data ());
-            return false;
+        input_freq.value_changed.connect (() => {
+            check_enable_share ();
         });
+
+        input_dx.changed.connect (() => {
+            check_enable_share ();
+        });
+    }
+
+    private void check_enable_share () {
+        button_share.set_sensitive (entries_have_data ());
     }
 
     private bool entries_have_data () {
-        return (input_freq.@value > 0.0 && input_dx.text_length > 1);
-    }
-
-    private SharePage get_page_id () {
-        if (stack1.visible_child == spot_grid) {
-            return SharePage.SPOT;
-        } else if (stack1.visible_child == announce_grid) {
-            return SharePage.ANNOUNCE;
+        if (view == View.SPOT) {
+            return (input_freq.@value > 0.0 && input_dx.text_length > 1);
+        } else if (view == View.ANNOUNCE) {
+            return entry_message.text_length >= 1;
         }
 
-        return SharePage.UNKNOWN;
-    } 
+        return false;
+    }
 }

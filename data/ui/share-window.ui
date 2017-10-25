@@ -51,7 +51,6 @@
                 <property name="adjustment">adjustment1</property>
                 <property name="digits">2</property>
                 <property name="numeric">True</property>
-                <property name="value">14000</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -74,6 +73,7 @@
               <object class="GtkEntry" id="input_dx">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -96,6 +96,7 @@
               <object class="GtkEntry" id="input_comment">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -144,6 +145,7 @@
               <object class="GtkEntry" id="entry_message">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>

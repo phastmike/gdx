@@ -12,7 +12,9 @@ It allows hamradio operators to connect to the Packet Radio DX Clusters network 
 
 [ ] Improve parser 
 
-###Notes
+[ ] Persistent user defined column position
+
+##Notes
 
 **List of Telnet DX Clusters**
 
@@ -34,4 +36,6 @@ http://www.dxcluster.info/commands.htm
 - DX de <CALLSIGN>: if call too big : can be supressed!
 
 #Application icon
-<https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33
+![Img](
+https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
+

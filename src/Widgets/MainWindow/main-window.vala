@@ -25,6 +25,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.ScrolledWindow scrolled_spots;
     [GtkChild]
+    private Gtk.ScrolledWindow scrolled_console;
+    [GtkChild]
     private Gtk.SearchBar searchbar;
     [GtkChild]
     private Gtk.Button searchbutton;
@@ -34,6 +36,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.ListStore liststore_spots;
     [GtkChild]
     private Gtk.TreeModelFilter liststore_spots_with_filter;
+    private bool scrolled_spots_moved = false;
+    private bool scrolled_console_moved = false;
 
 
     private enum Col{
@@ -58,6 +62,31 @@ public class MainWindow : Gtk.ApplicationWindow {
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
+
+        var vscrollbar = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
+
+        vscrollbar.value_changed.connect ( () => {
+            var val = vscrollbar.adjustment.@value;
+            var upper = vscrollbar.adjustment.upper - vscrollbar.adjustment.page_size;
+            if (val != upper) {
+                scrolled_spots_moved = true;
+            } else {
+                scrolled_spots_moved = false;
+            }
+        });
+
+        var vscrollbar2 = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
+
+        vscrollbar2.value_changed.connect ( () => {
+            var val = vscrollbar2.adjustment.@value;
+            var upper = vscrollbar2.adjustment.upper - vscrollbar2.adjustment.page_size;
+            print ("upper: %f value: %f\n", upper, val);
+            if (val != upper) {
+                scrolled_console_moved = true;
+            } else {
+                scrolled_console_moved = false;
+            }
+        });
 
         treeview_spots.key_press_event.connect ((event) => {
             searchbar.set_search_mode (true);
@@ -110,7 +139,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
         // HOUSTON WE HAVE A PROBLEM!
-        if (!searchbar.search_mode_enabled) {
+        if (!searchbar.search_mode_enabled && !scrolled_spots_moved) {
             treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
         }
     }
@@ -124,12 +153,15 @@ public class MainWindow : Gtk.ApplicationWindow {
 
 
         // Must add on Idle or Timeout otherwise won't move if a lot of text :/
+        
         Idle.add (() => {
             textbuffer_console.get_end_iter (out iter);
             iter.set_line_index (0);
             var mark = textbuffer_console.get_mark ("scroll");
             textbuffer_console.move_mark (mark, iter);
-            textview_console.scroll_mark_onscreen (mark);
+            //if (!scrolled_console_moved) {
+                textview_console.scroll_mark_onscreen (mark);
+            //}
             return false;
         });
     }
