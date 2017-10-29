@@ -35,27 +35,23 @@ public class ShareWindow : Gtk.Window {
     private Gtk.Label label_info_range;
     [GtkChild]
     private Gtk.Image warning_icon;
+    [GtkChild]
+    private Gtk.Entry entry_node;
 
     private enum View {
         SPOT,
         ANNOUNCE
     }
 
-
-    enum AnnounceRange {
+    public enum AnnounceRange {
         LOCAL,
+        NODE,
         GLOBAL
-    }
-
-    enum SharePage {
-        UNKNOWN = -1,
-        SPOT,
-        ANNOUNCE
     }
 
     public signal void cancelled ();
     public signal void spot (string freq, string dx_station, string comment);
-    public signal void announcement (bool global, string message);
+    public signal void announcement (AnnounceRange range, string? node, string message);
 
     public ShareWindow () {
         Object (default_width: 400, default_height: 200);
@@ -83,12 +79,19 @@ public class ShareWindow : Gtk.Window {
         });
 
         range_selection.changed.connect (() => {
+            check_enable_share ();
             if (range_selection.get_active () == AnnounceRange.GLOBAL) {
                 warning_icon.set_visible (true);
                 label_info_range.set_visible (true);
+                entry_node.set_visible (false);
             } else {
                 warning_icon.set_visible (false);
                 label_info_range.set_visible (false);
+                if (range_selection.get_active () == AnnounceRange.NODE) {
+                    entry_node.set_visible (true);
+                } else {
+                    entry_node.set_visible (false);
+                }
             }
         });
 
@@ -111,13 +114,16 @@ public class ShareWindow : Gtk.Window {
             if (view == View.SPOT) {
                 spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ());
             } else if (view == View.ANNOUNCE) {
-                bool global = false;
+                string? node = null;
+                AnnounceRange range;
 
-                if (range_selection.get_active () == AnnounceRange.GLOBAL) {
-                    global = true;
-                }
+                range = (AnnounceRange) range_selection.get_active (); 
+                
+                if (range == AnnounceRange.NODE) {
+                    node = entry_node.text;
+                } 
 
-                announcement (global, entry_message.get_text ());
+                announcement (range, node, entry_message.get_text ());
             }
 
             this.destroy ();
@@ -125,6 +131,10 @@ public class ShareWindow : Gtk.Window {
         });
 
         entry_message.changed.connect (() => {
+            check_enable_share ();
+        });
+
+        entry_node.changed.connect (() => {
             check_enable_share ();
         });
 
@@ -145,7 +155,15 @@ public class ShareWindow : Gtk.Window {
         if (view == View.SPOT) {
             return (input_freq.@value > 0.0 && input_dx.text_length > 1);
         } else if (view == View.ANNOUNCE) {
-            return entry_message.text_length >= 1;
+            if (range_selection.get_active () == AnnounceRange.NODE) {
+                if (entry_node.text.length > 3) {
+                    return entry_message.text_length >= 1;
+                } else {
+                    return false;
+                }
+            } else {
+                return entry_message.text_length >= 1;
+            }
         }
 
         return false;

@@ -17,7 +17,7 @@ public class DXClusters {
         var file = File.new_for_path ("../data/resources/clusters_combined_ve7cc_tested.txt");
 
         if (!file.query_exists ()) {
-            stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
+            stderr.printf ("DXClusters file '%s' not found!\n", file.get_path ());
             return clusters;
         }
 

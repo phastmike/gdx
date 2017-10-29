@@ -24,7 +24,7 @@ public class Application : Gtk.Application {
         base.activate ();
 
         parser = new Parser ();
-        var connector = new DxCluster.Connector ();
+        var connector = new Connector ();
         var settings = Settings.instance ();
 
         window = new MainWindow (this);
@@ -113,7 +113,7 @@ public class Application : Gtk.Application {
             "license-type", Gtk.License.MIT_X11,
             "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", "0.1",
-            "comments", "Access the Radio Amateur DX Clusters Network",
+            "comments", "Access the Radio Amateur DX Cluster Network",
             "website", "https://github.com/phastmike/gdx",
             "wrap-license", true);
     }

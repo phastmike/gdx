@@ -110,6 +110,10 @@ public class MainWindow : Gtk.ApplicationWindow {
             share_window.spot.connect ((f, dx, c) => {
                 print ("dx %s %s %s\n", f,dx,c);
             });
+
+            share_window.announcement.connect ((range, node, msg) => {
+                print ("Announcement %s %s msg: %s\n", range.to_string (), node != null ? node : "", msg);
+            });
         });
 
         liststore_spots_with_filter.set_visible_func ((model, iter) => {
