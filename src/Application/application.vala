@@ -45,10 +45,12 @@ public class Application : Gtk.Application {
         });
 
         connector.received_message.connect ((text) => {
-            window.add_text_to_console (text);
+            //window.add_text_to_console (text);
             if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
-            } 
+            } else {
+                window.add_text_to_console (text);
+            }
         });
 
         parser.rcvd_spot.connect ((s) => {

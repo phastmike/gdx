@@ -42,6 +42,8 @@ http://www.g4bki.com/clusters.htm
 
 http://www.dxcluster.info/commands.htm
 
+http://www.febo.com/packet/clx/clx-7.html
+
 #Application Settings
 
 - Callsign
