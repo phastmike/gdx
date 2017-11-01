@@ -3,7 +3,6 @@
 /*
  * dx-cluster.vala
  *
- * Copyright (C) 2017 José Miguel Fonte
  */
 
 public class DXCluster : Object {

@@ -1,13 +1,12 @@
 /* -*- Mode: Vala; indent-tabs-mode: nil; c-basic-offset: 4; tab-width: 4 -*- */
 /* vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab : */
 /*
- * parser-text.vala
+ * parser-console.vala
  *
- * Copyright (C) 2017 José Miguel Fonte
  */
 
-public class Parser : Object, IParsable {
-    public enum MsgType{
+public class ParserConsole : Object, IParsable {
+    public enum MsgType {
         UNKNOWN,
         PROMPT,
         NORMAL_TEXT,
@@ -40,10 +39,6 @@ public class Parser : Object, IParsable {
 
         return MsgType.UNKNOWN;
     } 
-
-    public Parser () {
-
-    }
 
     public void parse_spot (string text) {
         string utc = "";

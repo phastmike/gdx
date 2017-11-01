@@ -3,7 +3,6 @@
 /*
  * settings-window.vala
  *
- * Jose Miguel Fonte, 2017
  */
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/settings-window.ui")]

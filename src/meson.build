@@ -2,7 +2,7 @@ vala_sources = [
     'main.vala',
     'Application/application.vala',
     'Connector/connector.vala',
-    'Cluster/parser-text.vala',
+    'Cluster/parser-console.vala',
     'Cluster/dx-spot.vala',
     'Cluster/iparsable.vala',
     'Cluster/dx-cluster.vala',

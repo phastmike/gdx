@@ -3,7 +3,6 @@
 /*
  * main.vala
  *
- * Jose Miguel Fonte, 2017
  */
 
 int main (string[] args) {

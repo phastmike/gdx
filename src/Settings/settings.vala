@@ -5,7 +5,6 @@
  * 
  * Singleton
  *
- * Jose Miguel Fonte, 2017
  */
 
 public class Settings : Object {

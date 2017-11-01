@@ -3,14 +3,13 @@
 /*
  * application.vala
  *
- * Jose Miguel Fonte, 2017
  */
 
 using Gtk;
 
 public class Application : Gtk.Application {
-    private static Parser parser;
     public static MainWindow window;
+    private static ParserConsole parser;
     
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
@@ -23,7 +22,7 @@ public class Application : Gtk.Application {
     protected override void activate () {
         base.activate ();
 
-        parser = new Parser ();
+        parser = new ParserConsole ();
         var connector = new Connector ();
         var settings = Settings.instance ();
 
@@ -47,7 +46,7 @@ public class Application : Gtk.Application {
 
         connector.received_message.connect ((text) => {
             window.add_text_to_console (text);
-            if (Parser.text_get_type (text) == Parser.MsgType.DX_REAL_SPOT) {
+            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
             } 
         });

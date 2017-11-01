@@ -2,15 +2,16 @@
 /* vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab : */
 /*
  * frequency.vala
+ * 
+ * Frequency as kHz.
  *
- * Jose Miguel Fonte, 2017
  */
 
 public class Frequency : Object {
     double kHz;
 
-    public Frequency () {
-        kHz = 0.0;
+    public Frequency (double frequency = 0.0) {
+        kHz = frequency;
     }
 
     public Frequency.from_string (string frequency) {

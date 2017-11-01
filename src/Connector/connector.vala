@@ -5,10 +5,6 @@
  *
  * Connection handler. 
  *
- * Version 0.1
- *
- * Copyright (C) 2016 José Miguel Fonte
- * 
  */
 
 public class Connector : Object {
@@ -64,7 +60,8 @@ public class Connector : Object {
         });
     }
     
-    public async void connect_async (string host, uint16 port, Cancellable? cancellable = null) {
+    //public async void connect_async (string host, uint16 port, Cancellable? cancellable = null) {
+    public async void connect_async (string host, uint16 port) {
         if (connection != null) {
             disconnect_async ();
         }
@@ -110,7 +107,7 @@ public class Connector : Object {
     }
 
     public bool reconnect () {
-        connect_async (last_host_address, last_host_port, cancellable);
+        connect_async (last_host_address, last_host_port);
         return false;
     }
     
