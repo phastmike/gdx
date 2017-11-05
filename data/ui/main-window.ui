@@ -131,10 +131,12 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="col_utc1">
                         <property name="title" translatable="yes">UTC</property>
-                        <property name="expand">True</property>
                         <property name="reorderable">True</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cellrenderertext10"/>
+                          <object class="GtkCellRendererText" id="cellrenderertext10">
+                            <property name="width_chars">6</property>
+                            <property name="max_width_chars">6</property>
+                          </object>
                           <attributes>
                             <attribute name="text">4</attribute>
                           </attributes>

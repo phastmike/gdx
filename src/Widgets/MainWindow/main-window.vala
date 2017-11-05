@@ -89,7 +89,22 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         treeview_spots.key_press_event.connect ((event) => {
-            searchbar.set_search_mode (true);
+            //print ("Key: %u\n", event.keyval);
+            print ("Key: %u\n", event.hardware_keycode);
+            if ((event.keyval >= 47 && event.keyval <= 57) ||
+                (event.keyval >= 65 && event.keyval <= 90) ||
+                (event.keyval >= 97 && event.keyval <= 122)) { 
+                 
+                searchbar.set_search_mode (true);
+            }
+
+            /*
+            if ((event.hardware_keycode >= Gdk.Key.@0 && event.hardware_keycode <= Gdk.Key.@9) ||
+                (event.hardware_keycode >= Gdk.Key.A && event.hardware_keycode <= Gdk.Key.Z)) {
+                searchbar.set_search_mode (true);
+            }
+            */
+
             return searchentry.handle_event (event);
         }); 
 

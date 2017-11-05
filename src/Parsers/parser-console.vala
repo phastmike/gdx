@@ -18,8 +18,6 @@ public class ParserConsole : Object, IParsable {
         PC_PROTOCOL
     }
 
-    //public signal void rcvd_spot (DxSpot spot);
- 
     public static MsgType text_get_type (string text) {
         if (text.has_prefix("PC")) {
             return MsgType.PC_PROTOCOL;
@@ -55,6 +53,11 @@ public class ParserConsole : Object, IParsable {
         var split = s.split_set (" :");
 
         int length = split.length;
+
+        foreach (string token in split) {
+            print ("[%s]  ", token);
+        }
+        print ("\n");
 
         if (length < 6) return;
 

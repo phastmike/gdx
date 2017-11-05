@@ -32,6 +32,8 @@ To simplify, service specific commands will be left out.
 
 [ ] Handle treeview key events to respond solely to alpha numeric keys.
 
+[ ] Filter DX Spots from console as Setting/Preference
+
 ##Notes
 
 **List of Telnet DX Clusters**
