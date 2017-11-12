@@ -4,7 +4,7 @@
   <requires lib="gtk+" version="3.18"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">24000000</property>
-    <property name="step_increment">1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">10</property>
   </object>
   <template class="ShareWindow" parent="GtkWindow">
@@ -49,7 +49,7 @@
                 <property name="text" translatable="yes">0</property>
                 <property name="input_purpose">digits</property>
                 <property name="adjustment">adjustment1</property>
-                <property name="digits">2</property>
+                <property name="digits">1</property>
                 <property name="numeric">True</property>
               </object>
               <packing>
@@ -210,41 +210,16 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox">
+              <object class="GtkComboBoxText" id="range_selection">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkComboBoxText" id="range_selection">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="active">0</property>
-                    <property name="active_id">0</property>
-                    <items>
-                      <item id="0" translatable="yes">Local</item>
-                      <item id="1" translatable="yes">Node</item>
-                      <item id="2" translatable="yes">Everyone</item>
-                    </items>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="entry_node">
-                    <property name="can_focus">True</property>
-                    <property name="no_show_all">True</property>
-                    <property name="placeholder_text" translatable="yes">Callsign</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="hexpand">True</property>
+                <property name="active">0</property>
+                <property name="active_id">0</property>
+                <items>
+                  <item id="0" translatable="yes">Local</item>
+                  <item id="1" translatable="yes">Everyone</item>
+                </items>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -261,7 +236,7 @@
       </object>
     </child>
   </template>
-  <object class="GtkHeaderBar" id="headerbar1">
+  <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
@@ -287,7 +262,6 @@
         <property name="sensitive">False</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Send DX spot</property>
         <style>
           <class name="suggested-action"/>
         </style>

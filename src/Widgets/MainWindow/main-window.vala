@@ -36,6 +36,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.ListStore liststore_spots;
     [GtkChild]
     private Gtk.TreeModelFilter liststore_spots_with_filter;
+
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
 
@@ -54,20 +55,29 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     public MainWindow (Gtk.Application? app = null) {
         Object (application: app, default_width: 720, default_height: 480);
+
         set_titlebar (headerbar1);
         set_send_spot_button_visible (false);
 
         show_all ();
 
+        set_textbuffer ();
+        set_callbacks ();
+
+    }
+
+    private void set_textbuffer () {
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
         textbuffer_console.create_mark ("scroll", iter, false); 
+    }
 
-        var vscrollbar = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
+    private void set_callbacks () {
+        var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
 
-        vscrollbar.value_changed.connect ( () => {
-            var val = vscrollbar.adjustment.@value;
-            var upper = vscrollbar.adjustment.upper - vscrollbar.adjustment.page_size;
+        vscrollbar_spots.value_changed.connect ( () => {
+            var val = vscrollbar_spots.adjustment.@value;
+            var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
             if (val != upper) {
                 scrolled_spots_moved = true;
             } else {
@@ -75,11 +85,11 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        var vscrollbar2 = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
+        var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
 
-        vscrollbar2.value_changed.connect ( () => {
-            var val = vscrollbar2.adjustment.@value;
-            var upper = vscrollbar2.adjustment.upper - vscrollbar2.adjustment.page_size;
+        vscrollbar_console.value_changed.connect ( () => {
+            var val = vscrollbar_console.adjustment.@value;
+            var upper = vscrollbar_console.adjustment.upper - vscrollbar_console.adjustment.page_size;
             print ("upper: %f value: %f\n", upper, val);
             if (val != upper) {
                 scrolled_console_moved = true;
@@ -90,7 +100,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         treeview_spots.key_press_event.connect ((event) => {
             //print ("Key: %u\n", event.keyval);
-            print ("Key: %u\n", event.hardware_keycode);
+            //print ("Key: %u\n", event.hardware_keycode);
             if ((event.keyval >= 47 && event.keyval <= 57) ||
                 (event.keyval >= 65 && event.keyval <= 90) ||
                 (event.keyval >= 97 && event.keyval <= 122)) { 
@@ -126,8 +136,8 @@ public class MainWindow : Gtk.ApplicationWindow {
                 print ("dx %s %s %s\n", f,dx,c);
             });
 
-            share_window.announcement.connect ((range, node, msg) => {
-                print ("Announcement %s %s msg: %s\n", range.to_string (), node != null ? node : "", msg);
+            share_window.announcement.connect ((range, msg) => {
+                print ("Announcement %s msg: %s\n", range.to_string (), msg);
             });
         });
 
@@ -157,9 +167,10 @@ public class MainWindow : Gtk.ApplicationWindow {
         store = liststore_spots;
         store.append (out iter);
         store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
-        // HOUSTON WE HAVE A PROBLEM!
+
         if (!searchbar.search_mode_enabled && !scrolled_spots_moved) {
-            treeview_spots.scroll_to_cell (new Gtk.TreePath.from_string (store.get_string_from_iter(iter)), null, true, 0, 0);
+            var path = new Gtk.TreePath.from_string (store.get_string_from_iter(iter));
+            treeview_spots.scroll_to_cell (path, null, true, 0, 0);
         }
     }
 

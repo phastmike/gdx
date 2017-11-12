@@ -34,6 +34,7 @@ public class Application : Gtk.Application {
         if (settings.auto_connect_startup) {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
+
         connector.connection_established.connect (() => {
             connector.send (settings.user_callsign + "\r\n");
             window.button_share.sensitive = true;
@@ -100,11 +101,12 @@ public class Application : Gtk.Application {
         string[] authors = {
             "José Fonte <phastmike@gmail.com>"
         };
+
         string[] artists = {
             "José Fonte <phastmike@gmail.com>",
             "App Icon by icons8.com <http://icons8.com>"
-            
         };
+
         Gtk.show_about_dialog (window,
             "artists", artists,
             "authors", authors,

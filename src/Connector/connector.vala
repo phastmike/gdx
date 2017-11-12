@@ -9,10 +9,7 @@
 
 public class Connector : Object {
     private Socket socket;
-    private uint source_id;
-    private uint timeout_id;
     private SocketClient client;
-    private SocketSource source;
     private SocketConnection? connection = null;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
@@ -60,7 +57,6 @@ public class Connector : Object {
         });
     }
     
-    //public async void connect_async (string host, uint16 port, Cancellable? cancellable = null) {
     public async void connect_async (string host, uint16 port) {
         if (connection != null) {
             disconnect_async ();
@@ -110,9 +106,10 @@ public class Connector : Object {
         connect_async (last_host_address, last_host_port);
         return false;
     }
-    
+
     private async void receive_async () {
         string? message = null;
+
         while (cancellable.is_cancelled () == false && connection.is_connected () == true) {
             try {
                 message = yield stream_input.read_line_async (Priority.DEFAULT, cancellable, null);

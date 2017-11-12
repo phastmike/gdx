@@ -16,7 +16,7 @@ vala_sources = [
 
 vala_args = [
     '--target-glib=2.38',
-    '--gresources=../data/org.ampr.ct1enq.gdx.gresource.xml',
+    #'--gresources=../data/org.ampr.ct1enq.gdx.gresource.xml',
 ]
 
 executable('gdx',
