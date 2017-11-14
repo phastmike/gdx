@@ -46,12 +46,15 @@ public class Application : Gtk.Application {
         });
 
         connector.received_message.connect ((text) => {
-            //window.add_text_to_console (text);
+            window.add_text_to_console (text);
             if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
-            } else {
+            }
+            /*
+            else {
                 window.add_text_to_console (text);
             }
+            */
         });
 
         parser.rcvd_spot.connect ((s) => {
@@ -104,7 +107,7 @@ public class Application : Gtk.Application {
 
         string[] artists = {
             "José Fonte <phastmike@gmail.com>",
-            "App Icon by icons8.com <http://icons8.com>"
+            "App Icon by flaticon.com <http://flaticon.com>"
         };
 
         Gtk.show_about_dialog (window,
