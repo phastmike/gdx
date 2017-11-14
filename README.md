@@ -21,11 +21,11 @@ These software applications provide a console based user interface (session) and
 
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
 
-#Application Development
+# Application Development
 
 Just some references and relevant data
 
-##To Do
+## To Do
 
 - [ ] Remake connection (auto reconnect when: cnx lost, pc sleep, etc.)
 
@@ -39,7 +39,7 @@ Just some references and relevant data
 
 - [ ] Filter DX Spots from console as Setting/Preference
 
-##Resources
+## Resources
 
 **List of Telnet DX Clusters**
 
@@ -52,33 +52,33 @@ Just some references and relevant data
 * [http://www.febo.com/packet/clx/clx-7.html](http://www.dxcluster.info/commands.htm)
 
 
-##Parser errors
+## Parser errors
 - DX de <CALLSIGN>: if call too big : can be supressed!
 
-#Application icon
+# Application icon
 Icon from [Flaticon](www.flaticon.com):
 
 ![Img](
 https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
 
-##Debug
+## Debug
 
 To enable debug messages, set:
 
     export G__MESSAGES_DEBUG=all
 
-##User Stories
+## User Stories
 
-##Startup
+## Startup
 
 * User may set the application to connect automatically to a pre-configured node
 * If application fails to connect, it will retry a number of times (Settings*) until warning the user and stop retrying
 
-##First use
+## First use
 
 * User must set its callsign (default NOCALL) before connecting to any node
 
-##Info on Frames
+## Info on Frames
 
 	00000000011111111112222222222333333333344444444445555555555666666666677777777778
 	12345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -92,7 +92,4 @@ To enable debug messages, set:
 
 	Date        Hour   SFI   A   K Exp.K   R SA    GMF   Aurora   Logger
 	19-May-2010   21    69  12   3     0   0 qui   qui       no <DK0WCY>
-
-
-
 
