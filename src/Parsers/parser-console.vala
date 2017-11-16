@@ -86,6 +86,10 @@ public class ParserConsole : Object, IParsable {
         var freq = split[4];
         var dx = split[5];
 
+        if (utc.length == 5) {
+            utc = "%c%c:%c%c".printf (utc[0], utc[1], utc[2], utc[3]);
+        }
+
         rcvd_spot (new DxSpot.with_data (spotter, freq, dx, comment, utc, qth));
     }
 } 
