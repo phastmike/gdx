@@ -46,8 +46,7 @@ public class ShareWindow : Gtk.Window {
     }
 
     public signal void cancelled ();
-    public signal void spot (string freq, string dx_station, string comment);
-    public signal void announcement (AnnounceRange range, string message);
+    public signal void share_action (ShareAction action);
 
     public ShareWindow () {
         Object (default_width: 400, default_height: 200);
@@ -102,11 +101,16 @@ public class ShareWindow : Gtk.Window {
 
         button_share.clicked.connect (() => {
             if (view == View.SPOT) {
-                spot (input_freq.get_value ().to_string (), input_dx.get_text (), input_comment.get_text ());
+                var freq = input_freq.get_value ().to_string ();
+                var dx_station = input_dx.get_text ();
+                var comment = input_comment.get_text ();
+                var share_spot = new ShareActionSpot.with_data (freq, dx_station, comment);
+                share_action (share_spot);
             } else if (view == View.ANNOUNCE) {
-                AnnounceRange range;
-                range = (AnnounceRange) range_selection.get_active (); 
-                announcement (range, entry_message.get_text ());
+                var range = (ShareActionAnnouncement.Range) range_selection.get_active ();
+                var message = entry_message.get_text ();
+                var share_announcement = new ShareActionAnnouncement.with_data (range, message);
+                share_action (share_announcement);
             }
             
             this.destroy ();

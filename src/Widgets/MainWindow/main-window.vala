@@ -132,12 +132,20 @@ public class MainWindow : Gtk.ApplicationWindow {
             share_window.set_transient_for (this);
             share_window.show_all ();
 
-            share_window.spot.connect ((f, dx, c) => {
-                print ("dx %s %s %s\n", f,dx,c);
-            });
-
-            share_window.announcement.connect ((range, msg) => {
-                print ("Announcement %s msg: %s\n", range.to_string (), msg);
+            share_window.share_action.connect ((action) => {
+                switch (action.get_action_type ()) {
+                    case ShareAction.Type.SPOT:
+                        var spot = action as ShareActionSpot;
+                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
+                        break;
+                    case ShareAction.Type.ANNOUNCEMENT:
+                        var ann = action as ShareActionAnnouncement;
+                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
+                        break;
+                    default:
+                        print ("Unknown ShareAction\n");
+                        break;
+                }
             });
         });
 
