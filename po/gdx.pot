@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 23:14+0100\n"
+"POT-Creation-Date: 2017-11-17 22:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,64 +29,57 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: data/ui/main-window2.ui:27
-msgid "Gdx"
-msgstr ""
-
-#: data/ui/main-window2.ui:47
-msgid "Search DX station"
-msgstr ""
-
-#: data/ui/main-window2.ui:79
-msgid "Spotter"
-msgstr ""
-
-#: data/ui/main-window2.ui:92
-msgid "Freq. (kHz)"
-msgstr ""
-
-#: data/ui/main-window2.ui:105
-msgid "DX"
-msgstr ""
-
-#: data/ui/main-window2.ui:120 data/ui/spot-window.ui:83
-msgid "Comments"
-msgstr ""
-
-#: data/ui/main-window2.ui:133
-msgid "UTC"
-msgstr ""
-
-#: data/ui/main-window2.ui:149
-msgid "DX Spots"
-msgstr ""
-
-#: data/ui/main-window2.ui:170
-msgid "Type commands here..."
-msgstr ""
-
-#: data/ui/main-window2.ui:204
-msgid "Console"
-msgstr ""
-
-#: data/ui/spot-window.ui:31
+#: data/ui/share-window.ui:36
 msgid "Frequency (kHz)"
 msgstr ""
 
-#: data/ui/spot-window.ui:44
+#: data/ui/share-window.ui:49
 msgid "0"
 msgstr ""
 
-#: data/ui/spot-window.ui:61
+#: data/ui/share-window.ui:65
 msgid "DX Station"
 msgstr ""
 
-#: data/ui/spot-window.ui:118
-msgid "Share"
+#: data/ui/share-window.ui:88 data/ui/main-window.ui:120
+msgid "Comments"
 msgstr ""
 
-#: data/ui/spot-window.ui:123
-msgid "Send DX spot"
+#: data/ui/share-window.ui:109
+msgid "DX Spot"
+msgstr ""
+
+#: data/ui/share-window.ui:125
+msgid "Range"
+msgstr ""
+
+#: data/ui/share-window.ui:137
+msgid "Message"
+msgstr ""
+
+#: data/ui/share-window.ui:180
+msgid ""
+"Announce to everyone should be used carefuly to avoid spamming the network"
+msgstr ""
+
+#: data/ui/share-window.ui:204
+msgid " \n"
+msgstr ""
+
+#: data/ui/share-window.ui:220
+msgid "Local"
+msgstr ""
+
+#: data/ui/share-window.ui:221
+msgid "Everyone"
+msgstr ""
+
+#: data/ui/share-window.ui:232
+msgid "Announce"
+msgstr ""
+
+#: data/ui/share-window.ui:260
+msgid "Share"
 msgstr ""
 
 #: data/ui/preferences.ui:30
@@ -200,4 +193,44 @@ msgstr ""
 
 #: data/ui/preferences.ui:947
 msgid "Connection"
+msgstr ""
+
+#: data/ui/main-window.ui:47
+msgid "Search DX station"
+msgstr ""
+
+#: data/ui/main-window.ui:79
+msgid "Spotter"
+msgstr ""
+
+#: data/ui/main-window.ui:92
+msgid "Freq. (kHz)"
+msgstr ""
+
+#: data/ui/main-window.ui:105
+msgid "DX"
+msgstr ""
+
+#: data/ui/main-window.ui:133
+msgid "UTC"
+msgstr ""
+
+#: data/ui/main-window.ui:151
+msgid "DX Spots"
+msgstr ""
+
+#: data/ui/main-window.ui:172
+msgid "Type commands here..."
+msgstr ""
+
+#: data/ui/main-window.ui:206
+msgid "Console"
+msgstr ""
+
+#: src/Application/application.vala:116
+msgid "translator-credits"
+msgstr ""
+
+#: src/Application/application.vala:118
+msgid "About Gdx"
 msgstr ""
