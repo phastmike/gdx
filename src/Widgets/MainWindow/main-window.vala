@@ -36,6 +36,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.ListStore liststore_spots;
     [GtkChild]
     private Gtk.TreeModelFilter liststore_spots_with_filter;
+    [GtkChild]
+    private Gtk.MenuButton menu_button;
 
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
@@ -59,11 +61,37 @@ public class MainWindow : Gtk.ApplicationWindow {
         set_titlebar (headerbar1);
         set_send_spot_button_visible (false);
 
-        show_all ();
-
         set_textbuffer ();
         set_callbacks ();
+        set_main_menu ();
 
+        show_all ();
+
+    }
+
+    private void set_main_menu() {
+        var connect_action = new GLib.SimpleAction ("connect", null);
+        connect_action.activate.connect (() => {
+            print ("CONNECT\n");
+        });
+        add_action (connect_action);
+
+        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
+        connect_to_action.activate.connect (() => {
+            print ("CONNECT\n");
+        });
+        add_action (connect_to_action);
+
+        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
+        disconnect_action.activate.connect (() => {
+            print ("CONNECT\n");
+        });
+        add_action (disconnect_action);
+
+        add_action (connect_action);
+        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
+        var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
+        menu_button.set_menu_model (menu_model);
     }
 
     private void set_textbuffer () {

@@ -66,6 +66,7 @@ public class Application : Gtk.Application {
         base.startup ();
         //Debug events
         //Gdk.set_show_events (true);
+
         setup_app_menu ();
     }
 

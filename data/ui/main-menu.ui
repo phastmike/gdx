@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.16"/>
+  <menu id="main-menu">
+    <section>
+      <attribute name="label" translatable="yes">Connection</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Connect</attribute>
+        <attribute name="action">win.connect</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Connect to...</attribute>
+        <attribute name="action">win.connect_to</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Disconnect</attribute>
+        <attribute name="action">win.disconnect</attribute>
+      </item>
+      <submenu>
+        <attribute name="label" translatable="yes">Filter Orders</attribute>
+          <section>
+          <item>
+            <attribute name="label" translatable="yes">Hide Finished</attribute>
+            <attribute name="action">app.hide_finished</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Hide In-Progress</attribute>
+            <attribute name="action">app.hide_in_progress</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Hide Changed</attribute>
+            <attribute name="action">app.hide_changed</attribute>
+          </item>
+          <item>
+            <attribute name="label" translatable="yes">Hide New</attribute>
+            <attribute name="action">app.hide_new</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">About...</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

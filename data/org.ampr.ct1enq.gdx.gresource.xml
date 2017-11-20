@@ -2,6 +2,7 @@
 <gresources>
 	<gresource prefix="/org/ampr/ct1enq/gdx">
 		<file>ui/app-menu.ui</file>
+		<file>ui/main-menu.ui</file>
 		<file>ui/main-window.ui</file>
 		<file>ui/spot-window.ui</file>
 		<file>ui/share-window.ui</file>
