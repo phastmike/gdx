@@ -21,6 +21,8 @@ public class SettingsWindow: Gtk.Window {
     private Gtk.CheckButton checkbutton_autoconnect;
     [GtkChild]
     private Gtk.CheckButton checkbutton_autoreconnect;
+    [GtkChild]
+    private Gtk.CheckButton checkbutton_filterspots;
 
     
     public SettingsWindow () {
@@ -37,6 +39,7 @@ public class SettingsWindow: Gtk.Window {
         entry_cluster_login.set_text (settings.default_cluster_login_script);
         checkbutton_autoconnect.set_active (settings.auto_connect_startup);
         checkbutton_autoreconnect.set_active (settings.auto_reconnect);
+        checkbutton_filterspots.set_active (settings.filter_spots_from_console);
 
         destroy.connect (() => {
             settings.user_callsign = entry_callsign.get_text ();
@@ -46,6 +49,7 @@ public class SettingsWindow: Gtk.Window {
             settings.default_cluster_login_script = entry_cluster_login.get_text ();
             settings.auto_connect_startup = checkbutton_autoconnect.active;
             settings.auto_reconnect = checkbutton_autoreconnect.active; 
+            settings.filter_spots_from_console = checkbutton_filterspots.active;
         });
     }
 }

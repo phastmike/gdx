@@ -6,15 +6,15 @@
       <attribute name="label" translatable="yes">Connection</attribute>
       <item>
         <attribute name="label" translatable="yes">Connect</attribute>
-        <attribute name="action">win.connect</attribute>
+        <attribute name="action">app.connect</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Connect to...</attribute>
-        <attribute name="action">win.connect_to</attribute>
+        <attribute name="action">app.connect_to</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Disconnect</attribute>
-        <attribute name="action">win.disconnect</attribute>
+        <attribute name="action">app.disconnect</attribute>
       </item>
       <submenu>
         <attribute name="label" translatable="yes">Filter Orders</attribute>

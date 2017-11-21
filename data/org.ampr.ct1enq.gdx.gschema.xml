@@ -42,5 +42,10 @@
 			<summary>Auto reconnect on connection lost or connection failed</summary>
 			<description>Automatically reconnect if the connection is lost or failed to connect</description>
 		</key>
+		<key name="filter-spots-from-console" type="b">
+			<default>true</default>
+			<summary>Filter DX Spots from console</summary>
+			<description>Automatically filter DX Spots from console</description>
+		</key>
 	</schema>
 </schemalist>

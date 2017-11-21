@@ -18,6 +18,7 @@ public class Settings : Object {
     private string _default_cluster_login_script;
     private bool _auto_connect_startup;
     private bool _auto_reconnect;
+    private bool _filter_spots_from_console;
 
     private Settings () {
         settings = new GLib.Settings ("org.ampr.ct1enq.gdx");
@@ -29,6 +30,7 @@ public class Settings : Object {
         _default_cluster_login_script = settings.get_string ("default-cluster-login-script");
         _auto_connect_startup = settings.get_boolean ("auto-connect-startup");
         _auto_reconnect = settings.get_boolean ("auto-reconnect");
+        _filter_spots_from_console = settings.get_boolean ("filter-spots-from-console");
     }
 
     public static unowned Settings instance () {
@@ -113,6 +115,17 @@ public class Settings : Object {
         set {
             _auto_reconnect = value;
             settings.set_boolean ("auto-reconnect", value);
+        }
+    }
+
+    public bool filter_spots_from_console {
+        get {
+            return _filter_spots_from_console;
+        }
+
+        set {
+            _filter_spots_from_console = value;
+            settings.set_boolean ("filter-spots-from-console", value);
         }
     }
 }

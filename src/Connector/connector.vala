@@ -13,9 +13,9 @@ public class Connector : Object {
     private SocketConnection? connection = null;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
-    private string? last_host_address=null;
-    private uint16 last_host_port=0;
-    public bool auto_reconnect  {set;get;default=true;}
+    private string? last_host_address = null;
+    private uint16 last_host_port = 0;
+    public bool auto_reconnect  {set; get; default = true;}
     public Cancellable? cancellable;
      
     public signal void disconnected ();
@@ -65,7 +65,7 @@ public class Connector : Object {
         last_host_address = host.dup (); 
         last_host_port = port;
 
-        //cancellable.reset ();
+        cancellable.reset ();
         
         try {
             connection = yield client.connect_to_host_async (host, port, this.cancellable);

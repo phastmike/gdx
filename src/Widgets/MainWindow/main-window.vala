@@ -42,7 +42,6 @@ public class MainWindow : Gtk.ApplicationWindow {
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
 
-
     private enum Col{
         SPOTTER,
         FREQ,
@@ -66,10 +65,10 @@ public class MainWindow : Gtk.ApplicationWindow {
         set_main_menu ();
 
         show_all ();
-
     }
 
     private void set_main_menu() {
+        /*
         var connect_action = new GLib.SimpleAction ("connect", null);
         connect_action.activate.connect (() => {
             print ("CONNECT\n");
@@ -87,8 +86,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             print ("CONNECT\n");
         });
         add_action (disconnect_action);
+        */
 
-        add_action (connect_action);
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
         menu_button.set_menu_model (menu_model);
