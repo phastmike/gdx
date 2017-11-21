@@ -9,6 +9,8 @@
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/main-window.ui")]
 public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
+    private Gtk.Grid grid1;
+    [GtkChild]
     public Gtk.Button button_share;
     [GtkChild]
     private Gtk.Stack stack_main;
@@ -216,6 +218,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         textbuffer_console.insert (ref iter, "\n", 1);
         textbuffer_console.insert (ref iter, text, text.length);
 
+        var val = Value (typeof(bool));
+        val.set_boolean (true);
+        stack_main.child_set_property (grid1, "needs-attention", val);
 
         // Must add on Idle or Timeout otherwise won't move if a lot of text :/
         
