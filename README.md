@@ -58,9 +58,9 @@ Just some references and relevant data
 # Application icon
 Icon from [Flaticon](http://www.flaticon.com):
 
-![Img](/data/icons/hicolor/256x256/apps/org.ampr.ct1enq.gdx.png)
+![AppIcon](/data/icons/hicolor/48x48/apps/org.ampr.ct1enq.gdx.png "Application icon")
 
-`https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33`
+[https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
 
 ## Debug
 
