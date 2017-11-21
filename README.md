@@ -56,10 +56,9 @@ Just some references and relevant data
 - DX de <CALLSIGN>: if call too big : can be supressed!
 
 # Application icon
-Icon from [Flaticon](www.flaticon.com):
+Icon from [Flaticon](http://www.flaticon.com):
 
-![Img](
-https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
+![Img](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
 
 ## Debug
 
