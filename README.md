@@ -58,7 +58,9 @@ Just some references and relevant data
 # Application icon
 Icon from [Flaticon](http://www.flaticon.com):
 
-![Img](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
+![Img](data/icons/hicolor/256x256/org.ampr.ct1enq.gdx.png)
+
+`https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33`
 
 ## Debug
 
@@ -75,7 +77,7 @@ To enable debug messages, set:
 
 ## First use
 
-* User must set its callsign (default NOCALL) before connecting to any node
+* User must set their callsign (default NOCALL) before connecting to any node
 
 ## Info on Frames
 
