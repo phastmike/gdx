@@ -41,8 +41,14 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.MenuButton menu_button;
 
+    View view = View.SPOTS;
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
+
+    private enum View {
+        SPOTS,
+        CONSOLE
+    }
 
     private enum Col{
         SPOTTER,
@@ -193,6 +199,18 @@ public class MainWindow : Gtk.ApplicationWindow {
                 return true;
             } else {
                 return false;
+            }
+        });
+
+
+        stack_main.set_focus_child.connect ((widget) => {
+            if (widget == scrolled_spots) {
+                view = View.SPOTS;
+                var val = Value (typeof(bool));
+                val.set_boolean (false);
+                stack_main.child_set_property (grid1, "needs-attention", val);
+            } else if (widget == grid1) {
+                view = View.CONSOLE;
             }
         });
     }

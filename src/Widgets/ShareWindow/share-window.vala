@@ -7,7 +7,6 @@
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/share-window.ui")]
 public class ShareWindow : Gtk.Window {
-    View view = View.SPOT; 
     [GtkChild]
     private Gtk.HeaderBar headerbar;
     [GtkChild]
@@ -34,6 +33,8 @@ public class ShareWindow : Gtk.Window {
     private Gtk.Label label_info_range;
     [GtkChild]
     private Gtk.Image warning_icon;
+
+    View view = View.SPOT;
 
     private enum View {
         SPOT,
