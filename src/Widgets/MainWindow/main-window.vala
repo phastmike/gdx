@@ -206,9 +206,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         stack_main.set_focus_child.connect ((widget) => {
             if (widget == scrolled_spots) {
                 view = View.SPOTS;
-                var val = Value (typeof(bool));
-                val.set_boolean (false);
-                stack_main.child_set_property (grid1, "needs-attention", val);
+                set_console_need_attention (false);
             } else if (widget == grid1) {
                 view = View.CONSOLE;
             }
@@ -236,12 +234,10 @@ public class MainWindow : Gtk.ApplicationWindow {
         textbuffer_console.insert (ref iter, "\n", 1);
         textbuffer_console.insert (ref iter, text, text.length);
 
-        var val = Value (typeof(bool));
-        val.set_boolean (true);
-        stack_main.child_set_property (grid1, "needs-attention", val);
+        set_console_need_attention (true);
 
         // Must add on Idle or Timeout otherwise won't move if a lot of text :/
-        
+
         Idle.add (() => {
             textbuffer_console.get_end_iter (out iter);
             iter.set_line_index (0);
@@ -256,5 +252,11 @@ public class MainWindow : Gtk.ApplicationWindow {
 
     public void set_send_spot_button_visible (bool sensitive) {
         button_share.sensitive = sensitive;
+    }
+
+    private void set_console_need_attention (bool need) {
+        var val = Value (typeof(bool));
+        val.set_boolean (need);
+        stack_main.child_set_property (grid1, "needs-attention", val);
     }
 }
