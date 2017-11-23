@@ -133,7 +133,7 @@ public class Application : Gtk.Application {
 
         string[] artists = {
             "José Fonte <phastmike@gmail.com>",
-            "App Icon by flaticon.com <http://flaticon.com>"
+            "App Icon by Smashicons from flaticon.com <http://flaticon.com>"
         };
 
         Gtk.show_about_dialog (window,
