@@ -12,8 +12,7 @@ public class Application : Gtk.Application {
     private static ParserConsole parser;
     private Settings settings;
     private Connector connector;
-    private SimpleAction disconnect_action;
-    
+
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
     }
@@ -32,8 +31,6 @@ public class Application : Gtk.Application {
         window = new MainWindow (this);
         add_window (window);
 
-        //window.button_share.sensitive = true;
-    
         if (settings.auto_connect_startup) {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
@@ -45,6 +42,7 @@ public class Application : Gtk.Application {
 
         connector.disconnected.connect (() => {
             window.button_share.sensitive = false;
+            var disconnect_action = (SimpleAction) lookup_action ("disconnect");
             disconnect_action.set_enabled (false);
             //remove_action ("disconnect");
         });
@@ -114,7 +112,7 @@ public class Application : Gtk.Application {
         });
         //add_action (connect_to_action);
 
-        disconnect_action = new GLib.SimpleAction ("disconnect", null);
+        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
         disconnect_action.activate.connect (() => {
             print ("disconnect\n");
             connector.disconnect_async ();
