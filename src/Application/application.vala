@@ -128,12 +128,12 @@ public class Application : Gtk.Application {
 
     private void show_about_dialog () {
         string[] authors = {
-            "José Fonte <phastmike@gmail.com>"
+            "Miguel, CT1ENQ"
         };
 
         string[] artists = {
-            "José Fonte <phastmike@gmail.com>",
-            "App Icon by Smashicons from flaticon.com <http://flaticon.com>"
+            "Miguel, CT1ENQ",
+            "App Icon by Smashicons from flaticon.com"
         };
 
         Gtk.show_about_dialog (window,
@@ -146,7 +146,7 @@ public class Application : Gtk.Application {
             "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", "0.1",
             "comments", "Access the Radio Amateur DX Cluster Network",
-            "website", "https://github.com/phastmike/gdx",
+            "Website", "https://github.com/phastmike/gdx",
             "wrap-license", true);
     }
 }
