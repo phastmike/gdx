@@ -15,6 +15,18 @@ public class ShareActionAnnouncement : ShareAction {
         GLOBAL
     }
 
+    public override string to_string () {
+        string message;
+
+        if (range == Range.LOCAL) {
+            message = "announce " + this.message;
+        } else {
+            message = "announce full " + this.message;
+        }
+
+        return message;
+    }
+
     public override ShareAction.Type get_action_type () {
         return @type;
     }

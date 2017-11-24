@@ -45,6 +45,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
 
+    public signal void share_clicked ();
+
     private enum View {
         SPOTS,
         CONSOLE
@@ -134,8 +136,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         treeview_spots.key_press_event.connect ((event) => {
-            //print ("Key: %u\n", event.keyval);
-            //print ("Key: %u\n", event.hardware_keycode);
             if ((event.keyval >= 47 && event.keyval <= 57) ||
                 (event.keyval >= 65 && event.keyval <= 90) ||
                 (event.keyval >= 97 && event.keyval <= 122)) { 
@@ -143,45 +143,20 @@ public class MainWindow : Gtk.ApplicationWindow {
                 searchbar.set_search_mode (true);
             }
 
-            /*
-            if ((event.hardware_keycode >= Gdk.Key.@0 && event.hardware_keycode <= Gdk.Key.@9) ||
-                (event.hardware_keycode >= Gdk.Key.A && event.hardware_keycode <= Gdk.Key.Z)) {
-                searchbar.set_search_mode (true);
-            }
-            */
-
             return searchentry.handle_event (event);
-        }); 
+        });
 
         searchbutton.clicked.connect (() => {
             searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
         });
-        
+
         searchentry.search_changed.connect (() => {
             liststore_spots_with_filter.refilter ();
             stack_main.set_visible_child (scrolled_spots);
         });
 
         button_share.clicked.connect (() => {
-            var share_window = new ShareWindow ();
-            share_window.set_transient_for (this);
-            share_window.show_all ();
-
-            share_window.share_action.connect ((action) => {
-                switch (action.get_action_type ()) {
-                    case ShareAction.Type.SPOT:
-                        var spot = action as ShareActionSpot;
-                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
-                        break;
-                    case ShareAction.Type.ANNOUNCEMENT:
-                        var ann = action as ShareActionAnnouncement;
-                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
-                        break;
-                    default:
-                        print ("Unknown ShareAction\n");
-                        break;
-                }
-            });
+            share_clicked ();
         });
 
         liststore_spots_with_filter.set_visible_func ((model, iter) => {

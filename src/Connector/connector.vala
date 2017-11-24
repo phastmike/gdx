@@ -130,7 +130,7 @@ public class Connector : Object {
         print ("[%s]>[TX] %s", new DateTime.now_local ().format ("%F %T").to_string (), message);
 
         try {
-            stream_output.put_string (message, null);
+            stream_output.put_string (message + "\r\n", null);
         } catch (IOError e) {
             connection_lost ();
         }

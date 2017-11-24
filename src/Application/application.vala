@@ -36,7 +36,7 @@ public class Application : Gtk.Application {
         }
 
         connector.connection_established.connect (() => {
-            connector.send (settings.user_callsign + "\r\n");
+            connector.send (settings.user_callsign);
             window.button_share.sensitive = true;
         });
 
@@ -44,12 +44,35 @@ public class Application : Gtk.Application {
             window.button_share.sensitive = false;
             var disconnect_action = (SimpleAction) lookup_action ("disconnect");
             disconnect_action.set_enabled (false);
-            //remove_action ("disconnect");
         });
 
         window.entry_commands.activate.connect (() => {
-            connector.send (window.entry_commands.get_text () + "\r\n");
+            connector.send (window.entry_commands.get_text ());
             window.entry_commands.set_text ("");
+        });
+
+        window.share_clicked.connect (() => {
+            var share_window = new ShareWindow ();
+            share_window.set_transient_for (window);
+            share_window.show_all ();
+
+            share_window.share_action.connect ((action) => {
+                switch (action.get_action_type ()) {
+                    case ShareAction.Type.SPOT:
+                        var spot = action as ShareActionSpot;
+                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
+                        connector.send (spot.to_string ());
+                        break;
+                    case ShareAction.Type.ANNOUNCEMENT:
+                        var ann = action as ShareActionAnnouncement;
+                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
+                        connector.send (ann.to_string ());
+                        break;
+                    default:
+                        print ("Unknown ShareAction\n");
+                        break;
+                }
+            });
         });
 
         connector.received_message.connect ((text) => {

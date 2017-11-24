@@ -11,5 +11,6 @@ public abstract class ShareAction : Object {
         ANNOUNCEMENT
     }
 
+    public abstract string to_string ();
     public abstract Type get_action_type ();
 }
