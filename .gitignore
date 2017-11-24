@@ -5,3 +5,5 @@
 build/*
 .vscode/*
 .anjuta/*
+*.autosave
+.buildconfig

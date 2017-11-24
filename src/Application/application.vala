@@ -21,16 +21,24 @@ public class Application : Gtk.Application {
         base.shutdown ();
     }
 
+    protected override void startup () {
+        base.startup ();
+        setup_app_menu ();
+    }
+
     protected override void activate () {
         base.activate ();
 
+        /*
         parser = new ParserConsole ();
         connector = new Connector ();
+        */
         settings = Settings.instance ();
 
-        window = new MainWindow (this);
-        add_window (window);
+        // Handle error if fail to setup main window!
+        setup_main_window ();
 
+        /*
         if (settings.auto_connect_startup) {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
@@ -45,6 +53,75 @@ public class Application : Gtk.Application {
             var disconnect_action = (SimpleAction) lookup_action ("disconnect");
             disconnect_action.set_enabled (false);
         });
+
+        connector.received_message.connect ((text) => {
+            //window.add_text_to_console (text);
+            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
+                parser.parse_spot (text);
+                if (!settings.filter_spots_from_console) {
+                    window.add_text_to_console (text);
+                }
+            } else {
+                window.add_text_to_console (text);
+            }
+        });
+
+        parser.rcvd_spot.connect ((s) => {
+            window.add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
+        });
+        */
+    }
+
+
+    private void setup_app_menu () {
+        var action = new GLib.SimpleAction ("settings", null);
+        action.activate.connect (() => {
+            show_settings ();
+        });
+        add_action (action);
+
+        action = new GLib.SimpleAction ("about", null);
+        action.activate.connect (() => {
+            show_about_dialog (); 
+        });
+        add_action (action);
+
+        action = new GLib.SimpleAction ("quit", null);
+        action.activate.connect (() => {
+            base.quit ();
+        });
+        add_action (action);
+
+        // For main menu
+
+        /*
+        var connect_action = new GLib.SimpleAction ("connect", null);
+        connect_action.activate.connect (() => {
+            settings = Settings.instance ();
+            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        });
+        add_action (connect_action);
+
+        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
+        connect_to_action.activate.connect (() => {
+        });
+        //add_action (connect_to_action);
+
+        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
+        disconnect_action.activate.connect (() => {
+            connector.disconnect_async ();
+        });
+        add_action (disconnect_action);
+
+        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
+        var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
+        */
+        set_app_menu (app_menu);
+    }
+
+    private void setup_main_window () {
+        window = new MainWindow (this);
+        add_window (window);
 
         window.entry_commands.activate.connect (() => {
             connector.send (window.entry_commands.get_text ());
@@ -75,77 +152,6 @@ public class Application : Gtk.Application {
             });
         });
 
-        connector.received_message.connect ((text) => {
-            //window.add_text_to_console (text);
-            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
-                parser.parse_spot (text);
-                if (!settings.filter_spots_from_console) {
-                    window.add_text_to_console (text);
-                }
-            } else {
-                window.add_text_to_console (text);
-            }
-        });
-
-        parser.rcvd_spot.connect ((s) => {
-            window.add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
-        });
-    }
-
-    protected override void startup () {
-        base.startup ();
-        //Debug events
-        //Gdk.set_show_events (true);
-
-        setup_app_menu ();
-    }
-
-    private void setup_app_menu () {
-        var action = new GLib.SimpleAction ("settings", null);
-        action.activate.connect (() => {
-            show_settings ();
-        });
-        add_action (action);
-
-        action = new GLib.SimpleAction ("about", null);
-        action.activate.connect (() => {
-            show_about_dialog (); 
-        });
-        add_action (action);
-
-        action = new GLib.SimpleAction ("quit", null);
-        action.activate.connect (() => {
-            base.quit ();
-        });
-        add_action (action);
-
-        // For main menu
-
-        var connect_action = new GLib.SimpleAction ("connect", null);
-        connect_action.activate.connect (() => {
-            settings = Settings.instance ();
-            print ("CONNECT\n");
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
-        });
-        add_action (connect_action);
-
-        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
-        connect_to_action.activate.connect (() => {
-            print ("CONNECT\n");
-        });
-        //add_action (connect_to_action);
-
-        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
-        disconnect_action.activate.connect (() => {
-            print ("disconnect\n");
-            connector.disconnect_async ();
-        });
-        add_action (disconnect_action);
-
-        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
-        var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
-        
-        set_app_menu (app_menu);
     }
 
     private void show_settings () {

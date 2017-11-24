@@ -42,6 +42,10 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.MenuButton menu_button;
 
     View view = View.SPOTS;
+
+    private Connector connector;
+    private ParserConsole parser;
+
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
 
@@ -74,30 +78,45 @@ public class MainWindow : Gtk.ApplicationWindow {
         set_callbacks ();
         set_main_menu ();
 
+        var settings = Settings.instance ();
+        parser = new ParserConsole ();
+        connector = new Connector ();
+
+        if (settings.auto_connect_startup) {
+            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        }
+
+        connector.connection_established.connect (() => {
+            connector.send (settings.user_callsign);
+            button_share.sensitive = true;
+        });
+
+        connector.disconnected.connect (() => {
+            button_share.sensitive = false;
+            var disconnect_action = (SimpleAction) lookup_action ("disconnect");
+            //disconnect_action.set_enabled (false);
+        });
+
+        connector.received_message.connect ((text) => {
+            //window.add_text_to_console (text);
+            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
+                parser.parse_spot (text);
+                if (!settings.filter_spots_from_console) {
+                    add_text_to_console (text);
+                }
+            } else {
+                add_text_to_console (text);
+            }
+        });
+
+        parser.rcvd_spot.connect ((s) => {
+            add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
+        });
+
         show_all ();
     }
 
     private void set_main_menu() {
-        /*
-        var connect_action = new GLib.SimpleAction ("connect", null);
-        connect_action.activate.connect (() => {
-            print ("CONNECT\n");
-        });
-        add_action (connect_action);
-
-        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
-        connect_to_action.activate.connect (() => {
-            print ("CONNECT\n");
-        });
-        add_action (connect_to_action);
-
-        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
-        disconnect_action.activate.connect (() => {
-            print ("CONNECT\n");
-        });
-        add_action (disconnect_action);
-        */
-
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
         menu_button.set_menu_model (menu_model);
@@ -106,40 +125,17 @@ public class MainWindow : Gtk.ApplicationWindow {
     private void set_textbuffer () {
         Gtk.TextIter iter;
         textbuffer_console.get_end_iter (out iter);
-        textbuffer_console.create_mark ("scroll", iter, false); 
+        textbuffer_console.create_mark ("scroll", iter, false);
     }
 
     private void set_callbacks () {
-        var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
-
-        vscrollbar_spots.value_changed.connect ( () => {
-            var val = vscrollbar_spots.adjustment.@value;
-            var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
-            if (val != upper) {
-                scrolled_spots_moved = true;
-            } else {
-                scrolled_spots_moved = false;
-            }
-        });
-
-        var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
-
-        vscrollbar_console.value_changed.connect ( () => {
-            var val = vscrollbar_console.adjustment.@value;
-            var upper = vscrollbar_console.adjustment.upper - vscrollbar_console.adjustment.page_size;
-            print ("upper: %f value: %f\n", upper, val);
-            if (val != upper) {
-                scrolled_console_moved = true;
-            } else {
-                scrolled_console_moved = false;
-            }
-        });
+        setup_auto_scroll_callbacks ();
 
         treeview_spots.key_press_event.connect ((event) => {
-            if ((event.keyval >= 47 && event.keyval <= 57) ||
-                (event.keyval >= 65 && event.keyval <= 90) ||
-                (event.keyval >= 97 && event.keyval <= 122)) { 
-                 
+            if ((event.keyval >= Gdk.Key.@0 && event.keyval <= Gdk.Key.@9) ||
+                (event.keyval >= Gdk.Key.a && event.keyval <= Gdk.Key.z) ||
+                (event.keyval >= Gdk.Key.A && event.keyval <= Gdk.Key.Z)) {
+
                 searchbar.set_search_mode (true);
             }
 
@@ -177,13 +173,39 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-
         stack_main.set_focus_child.connect ((widget) => {
             if (widget == scrolled_spots) {
                 view = View.SPOTS;
                 set_console_need_attention (false);
             } else if (widget == grid1) {
                 view = View.CONSOLE;
+            }
+        });
+    }
+
+    private void setup_auto_scroll_callbacks () {
+        var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
+
+        vscrollbar_spots.value_changed.connect ( () => {
+            var val = vscrollbar_spots.adjustment.@value;
+            var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
+            if (val != upper) {
+                scrolled_spots_moved = true;
+            } else {
+                scrolled_spots_moved = false;
+            }
+        });
+
+        var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
+
+        vscrollbar_console.value_changed.connect ( () => {
+            var val = vscrollbar_console.adjustment.@value;
+            var upper = vscrollbar_console.adjustment.upper - vscrollbar_console.adjustment.page_size;
+            print ("upper: %f value: %f\n", upper, val);
+            if (val != upper) {
+                scrolled_console_moved = true;
+            } else {
+                scrolled_console_moved = false;
             }
         });
     }
@@ -211,7 +233,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         set_console_need_attention (true);
 
-        // Must add on Idle or Timeout otherwise won't move if a lot of text :/
+        // Must add on Idle otherwise won't move if a lot of text :/
 
         Idle.add (() => {
             textbuffer_console.get_end_iter (out iter);
