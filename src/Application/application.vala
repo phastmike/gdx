@@ -8,10 +8,6 @@
 using Gtk;
 
 public class Application : Gtk.Application {
-    public static MainWindow window;
-    private static ParserConsole parser;
-    private Settings settings;
-    private Connector connector;
 
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
@@ -23,57 +19,22 @@ public class Application : Gtk.Application {
 
     protected override void startup () {
         base.startup ();
+
+        setup_app_actions ();
         setup_app_menu ();
     }
 
     protected override void activate () {
         base.activate ();
 
-        /*
-        parser = new ParserConsole ();
-        connector = new Connector ();
-        */
-        settings = Settings.instance ();
-
-        // Handle error if fail to setup main window!
-        setup_main_window ();
-
-        /*
-        if (settings.auto_connect_startup) {
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
-        }
-
-        connector.connection_established.connect (() => {
-            connector.send (settings.user_callsign);
-            window.button_share.sensitive = true;
-        });
-
-        connector.disconnected.connect (() => {
-            window.button_share.sensitive = false;
-            var disconnect_action = (SimpleAction) lookup_action ("disconnect");
-            disconnect_action.set_enabled (false);
-        });
-
-        connector.received_message.connect ((text) => {
-            //window.add_text_to_console (text);
-            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
-                parser.parse_spot (text);
-                if (!settings.filter_spots_from_console) {
-                    window.add_text_to_console (text);
-                }
-            } else {
-                window.add_text_to_console (text);
-            }
-        });
-
-        parser.rcvd_spot.connect ((s) => {
-            window.add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
-        });
-        */
+        setup_main_window (); // Handle error if fail to setup main window!
     }
 
+    private void setup_main_window () {
+        add_window (new MainWindow (this));
+    }
 
-    private void setup_app_menu () {
+    private void setup_app_actions () {
         var action = new GLib.SimpleAction ("settings", null);
         action.activate.connect (() => {
             show_settings ();
@@ -82,7 +43,7 @@ public class Application : Gtk.Application {
 
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
-            show_about_dialog (); 
+            show_about_dialog ();
         });
         add_action (action);
 
@@ -91,72 +52,18 @@ public class Application : Gtk.Application {
             base.quit ();
         });
         add_action (action);
-
-        // For main menu
-
-        /*
-        var connect_action = new GLib.SimpleAction ("connect", null);
-        connect_action.activate.connect (() => {
-            settings = Settings.instance ();
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
-        });
-        add_action (connect_action);
-
-        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
-        connect_to_action.activate.connect (() => {
-        });
-        //add_action (connect_to_action);
-
-        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
-        disconnect_action.activate.connect (() => {
-            connector.disconnect_async ();
-        });
-        add_action (disconnect_action);
-
-        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
-        var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
-        */
-        set_app_menu (app_menu);
     }
 
-    private void setup_main_window () {
-        window = new MainWindow (this);
-        add_window (window);
+    private void setup_app_menu () {
+        var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
+        var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
 
-        window.entry_commands.activate.connect (() => {
-            connector.send (window.entry_commands.get_text ());
-            window.entry_commands.set_text ("");
-        });
-
-        window.share_clicked.connect (() => {
-            var share_window = new ShareWindow ();
-            share_window.set_transient_for (window);
-            share_window.show_all ();
-
-            share_window.share_action.connect ((action) => {
-                switch (action.get_action_type ()) {
-                    case ShareAction.Type.SPOT:
-                        var spot = action as ShareActionSpot;
-                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
-                        connector.send (spot.to_string ());
-                        break;
-                    case ShareAction.Type.ANNOUNCEMENT:
-                        var ann = action as ShareActionAnnouncement;
-                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
-                        connector.send (ann.to_string ());
-                        break;
-                    default:
-                        print ("Unknown ShareAction\n");
-                        break;
-                }
-            });
-        });
-
+        set_app_menu (app_menu);
     }
 
     private void show_settings () {
         var settings_window = new SettingsWindow ();
-        settings_window.set_transient_for (window);
+        settings_window.set_transient_for (get_active_window ());
         settings_window.show_all ();
     }
 
@@ -170,7 +77,7 @@ public class Application : Gtk.Application {
             "App Icon by Smashicons from flaticon.com"
         };
 
-        Gtk.show_about_dialog (window,
+        Gtk.show_about_dialog (get_active_window (),
             "artists", artists,
             "authors", authors,
             "translator-credits", _("translator-credits"),

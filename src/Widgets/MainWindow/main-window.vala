@@ -89,12 +89,18 @@ public class MainWindow : Gtk.ApplicationWindow {
         connector.connection_established.connect (() => {
             connector.send (settings.user_callsign);
             button_share.sensitive = true;
+            var action = (SimpleAction) lookup_action ("disconnect");
+            action.set_enabled (true);
+            action = (SimpleAction) lookup_action ("connect");
+            action.set_enabled (false);
         });
 
         connector.disconnected.connect (() => {
             button_share.sensitive = false;
-            var disconnect_action = (SimpleAction) lookup_action ("disconnect");
-            //disconnect_action.set_enabled (false);
+            var action = (SimpleAction) lookup_action ("disconnect");
+            action.set_enabled (false);
+            action = (SimpleAction) lookup_action ("connect");
+            action.set_enabled (true);
         });
 
         connector.received_message.connect ((text) => {
@@ -109,6 +115,36 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
+
+        entry_commands.activate.connect (() => {
+            connector.send (entry_commands.get_text ());
+            entry_commands.set_text ("");
+        });
+
+        share_clicked.connect (() => {
+            var share_window = new ShareWindow ();
+            share_window.set_transient_for (this);
+            share_window.show_all ();
+
+            share_window.share_action.connect ((action) => {
+                switch (action.get_action_type ()) {
+                    case ShareAction.Type.SPOT:
+                        var spot = action as ShareActionSpot;
+                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
+                        connector.send (spot.to_string ());
+                        break;
+                    case ShareAction.Type.ANNOUNCEMENT:
+                        var ann = action as ShareActionAnnouncement;
+                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
+                        connector.send (ann.to_string ());
+                        break;
+                    default:
+                        print ("Unknown ShareAction\n");
+                        break;
+                }
+            });
+        });
+
         parser.rcvd_spot.connect ((s) => {
             add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
         });
@@ -117,6 +153,24 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
 
     private void set_main_menu() {
+        var connect_action = new GLib.SimpleAction ("connect", null);
+        connect_action.activate.connect (() => {
+            var settings = Settings.instance ();
+            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        });
+        add_action (connect_action);
+
+        var connect_to_action = new GLib.SimpleAction ("connect_to", null);
+        connect_to_action.activate.connect (() => {
+        });
+        //add_action (connect_to_action);
+
+        var disconnect_action = new GLib.SimpleAction ("disconnect", null);
+        disconnect_action.activate.connect (() => {
+            connector.disconnect_async ();
+        });
+        add_action (disconnect_action);
+
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
         menu_button.set_menu_model (menu_model);

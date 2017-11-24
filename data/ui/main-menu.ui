@@ -6,26 +6,26 @@
       <attribute name="label" translatable="yes">Connection</attribute>
       <item>
         <attribute name="label" translatable="yes">Connect</attribute>
-        <attribute name="action">app.connect</attribute>
+        <attribute name="action">win.connect</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Connect to...</attribute>
-        <attribute name="action">app.connect_to</attribute>
+        <attribute name="action">win.connect_to</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Disconnect</attribute>
-        <attribute name="action">app.disconnect</attribute>
+        <attribute name="action">win.disconnect</attribute>
       </item>
       <submenu>
         <attribute name="label" translatable="yes">Filter Orders</attribute>
           <section>
           <item>
             <attribute name="label" translatable="yes">Hide Finished</attribute>
-            <attribute name="action">app.hide_finished</attribute>
+            <attribute name="action">win.hide_finished</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">Hide In-Progress</attribute>
-            <attribute name="action">app.hide_in_progress</attribute>
+            <attribute name="action">win.hide_in_progress</attribute>
           </item>
           <item>
             <attribute name="label" translatable="yes">Hide Changed</attribute>
@@ -33,7 +33,7 @@
           </item>
           <item>
             <attribute name="label" translatable="yes">Hide New</attribute>
-            <attribute name="action">app.hide_new</attribute>
+            <attribute name="action">win.hide_new</attribute>
           </item>
         </section>
       </submenu>
