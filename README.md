@@ -1,14 +1,12 @@
 # gdx
 
-A Gnome DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
+A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
 
 ## What is the a DX Cluster network
 
-The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast dx information.
+The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast dx information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
 
-Developed, initially, to use RF network links (AX25), it has migrated, mostly,  to the Internet.
-
-## Service software
+### DX Cluster node software
 There are a few software packages that implement this kind of service and due to the legacy they all provide a ASCII based interface to the user leaving the [AK1A PC protocol](http://www.dxcluster.org/tech/pcprot.html) to the cluster nodes. Well, this is not exactly true because some developers added additional commands to force the reception of dx spots with the [PC protocol](http://www.dxcluster.org/tech/pcprot.html) semantic. Of course this depends on the cluster node software to support it. Nevertheless, support for different methods is necessary (standard and enhanced).
 
 [More information](https://en.wikipedia.org/wiki/DX_cluster) available on Wikipedia
@@ -21,13 +19,11 @@ These software applications provide a console based user interface (session) and
 
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
 
-# Application Development
+# Development
 
 Just some references and relevant data
 
 ## To Do
-
-- [ ] Remake connection (auto reconnect when: cnx lost, pc sleep, etc.)
 
 - [ ] Avoid UTF-8 errors
 
@@ -37,7 +33,7 @@ Just some references and relevant data
 
 - [x] ~~Handle treeview key events to respond solely to alpha numeric keys.~~
 
-- [ ] Filter DX Spots from console as Setting/Preference
+- [ ] Filter DX Spots from console (Client side)
 
 ## Resources
 
@@ -58,17 +54,13 @@ Just some references and relevant data
 # Application icon
 Icon from [Flaticon](http://www.flaticon.com):
 
-![AppIcon](/data/icons/hicolor/48x48/apps/org.ampr.ct1enq.gdx.png "Application icon")
-
-[https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
+[![AppIcon](/data/icons/hicolor/48x48/apps/org.ampr.ct1enq.gdx.png "Application icon")](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
 
 ## Debug
 
 To enable debug messages, set:
 
     export G__MESSAGES_DEBUG=all
-
-## User Stories
 
 ## Startup
 
