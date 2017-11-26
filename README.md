@@ -19,10 +19,6 @@ These software applications provide a console based user interface (session) and
 
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
 
-## Screenshot
-
-![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
-
 # Building and running
 
 Start by cloning this repository:
@@ -40,6 +36,10 @@ Then run it with:
 If you wish to install gdx then run
 
 	$ sudo ninja install
+
+## Screenshot
+
+![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
 
 ## Dependencies
 
