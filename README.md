@@ -2,6 +2,8 @@
 
 A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
 
+## Screenshot
+
 ![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
 
 ## What is the a DX Cluster network
