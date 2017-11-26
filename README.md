@@ -2,16 +2,18 @@
 
 A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
 
+![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
+
 ## What is the a DX Cluster network
 
 The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast dx information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
 
-### DX Cluster node software
+## DX Cluster node software
 There are a few software packages that implement this kind of service and due to the legacy they all provide a ASCII based interface to the user leaving the [AK1A PC protocol](http://www.dxcluster.org/tech/pcprot.html) to the cluster nodes. Well, this is not exactly true because some developers added additional commands to force the reception of dx spots with the [PC protocol](http://www.dxcluster.org/tech/pcprot.html) semantic. Of course this depends on the cluster node software to support it. Nevertheless, support for different methods is necessary (standard and enhanced).
 
 [More information](https://en.wikipedia.org/wiki/DX_cluster) available on Wikipedia
 
-### Limitations
+## Limitations
 
 For many years, the service was provided solely by AK1A Packet Cluster software. This was a paid software and in the late 90's some alternatives started to emerge. Nowadays most nodes use [DXSpider](http://www.dxcluster.org/main/) or AR-Cluster.
 
@@ -73,7 +75,7 @@ Probably will work with some previous versions but has not been tested.
 
 * [http://www.febo.com/packet/clx/clx-7.html](http://www.dxcluster.info/commands.htm)
 
-# Application icon
+## Application icon
 Icon from [Flaticon](http://www.flaticon.com):
 
 [![AppIcon](/data/icons/hicolor/48x48/apps/org.ampr.ct1enq.gdx.png "Application icon")](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
