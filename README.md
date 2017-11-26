@@ -2,10 +2,6 @@
 
 A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
 
-## Screenshot
-
-![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
-
 ## What is the a DX Cluster network
 
 The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast dx information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
@@ -22,6 +18,10 @@ For many years, the service was provided solely by AK1A Packet Cluster software.
 These software applications provide a console based user interface (session) and they tried to implement the same, or almost similar, experience but each application has it's own minor variations. This means that some commands specific to the service software being used.
 
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
+
+## Screenshot
+
+![Screenshot](/data/screenshots/screenshot1dark.png "Screenshot")
 
 # Building and running
 
