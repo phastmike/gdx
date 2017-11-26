@@ -27,7 +27,7 @@ public class Application : Gtk.Application {
     protected override void activate () {
         base.activate ();
 
-        setup_main_window (); // Handle error if fail to setup main window!
+        setup_main_window ();
     }
 
     private void setup_main_window () {

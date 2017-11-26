@@ -171,6 +171,14 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
         add_action (disconnect_action);
 
+        var filter_action = new GLib.SimpleAction ("spot_filter", null);
+        filter_action.activate.connect (() => {
+            var filter_window = new FilterWindow ();
+            filter_window.set_transient_for (this);
+            filter_window.show_all ();
+        });
+        add_action (filter_action);
+
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
         menu_button.set_menu_model (menu_model);
@@ -230,10 +238,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         stack_main.set_focus_child.connect ((widget) => {
             if (widget == scrolled_spots) {
                 view = View.SPOTS;
-                set_console_need_attention (false);
             } else if (widget == grid1) {
                 view = View.CONSOLE;
             }
+
+            set_console_need_attention (false);
         });
     }
 

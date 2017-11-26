@@ -11,6 +11,7 @@ vala_sources = [
     'ShareAction/share-action-spot.vala',
     'ShareAction/share-action-announcement.vala',
     'Widgets/MainWindow/main-window.vala',
+    'Widgets/FilterWindow/filter-window.vala',
     'Widgets/SpotWindow/spot-window.vala',
     'Widgets/ShareWindow/share-window.vala',
     'Widgets/SettingsWindow/settings-window.vala',

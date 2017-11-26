@@ -6,6 +6,7 @@
 		<file>ui/main-window.ui</file>
 		<file>ui/spot-window.ui</file>
 		<file>ui/share-window.ui</file>
+		<file>ui/filter-window.ui</file>
 		<file>ui/settings-window.ui</file>
   </gresource>
 </gresources>
