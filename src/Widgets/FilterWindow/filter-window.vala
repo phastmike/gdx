@@ -3,9 +3,6 @@
 /*
  * filter-window.vala
  *
- * FIXME: Change class name to be more precise about the filter
- * BandFilterWindow (what abt an filter interface...)
- *
  * Jose Miguel Fonte, 2017
  */
 
