@@ -19,11 +19,35 @@ These software applications provide a console based user interface (session) and
 
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
 
-# Development
+# Building and running
 
-Just some references and relevant data
+Start by cloning this repository:
 
-## To Do
+	$ git clone https://github.com/phastmike/gdx
+
+To build it, `cd` into it and run:
+
+	$ meson build && cd build && ninja
+
+Then run it with:
+
+	$ ./src/gdx
+
+If you wish to install gdx then run
+
+	$ sudo ninja install
+
+## Dependencies
+
+* meson (>= 0.40.0)
+* ninja (>= 1.8.2)
+* valac (>= 0.38.3)
+* Gtk+ (>= 3.22)
+
+Probably will work with some previous versions but has not been tested.
+
+
+# To Do
 
 - [ ] Avoid UTF-8 errors
 
@@ -35,7 +59,9 @@ Just some references and relevant data
 
 - [ ] Filter DX Spots from console (Client side)
 
-## Resources
+- [ ] Fix `DX de <CALLSIGN>` when call is to big and strips colon delimiter
+
+# Resources
 
 **List of Telnet DX Clusters**
 
@@ -47,10 +73,6 @@ Just some references and relevant data
 
 * [http://www.febo.com/packet/clx/clx-7.html](http://www.dxcluster.info/commands.htm)
 
-
-## Parser errors
-- DX de <CALLSIGN>: if call too big : can be supressed!
-
 # Application icon
 Icon from [Flaticon](http://www.flaticon.com):
 
@@ -61,11 +83,6 @@ Icon from [Flaticon](http://www.flaticon.com):
 To enable debug messages, set:
 
     export G__MESSAGES_DEBUG=all
-
-## Startup
-
-* User may set the application to connect automatically to a pre-configured node
-* If application fails to connect, it will retry a number of times (Settings*) until warning the user and stop retrying
 
 ## First use
 
