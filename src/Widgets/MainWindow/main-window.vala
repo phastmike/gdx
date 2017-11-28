@@ -88,22 +88,6 @@ public class MainWindow : Gtk.ApplicationWindow {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
 
-        stackswitcher1.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK |
-                                   Gdk.EventMask.KEY_PRESS_MASK |
-                                   Gdk.EventMask.TOUCH_MASK);
-
-        stackswitcher1.button_release_event.connect ((event) => {
-            handle_stack_view_change ();
-            return false;
-        });
-
-        stackswitcher1.key_press_event.connect ((event) => {
-            if (event.keyval == Gdk.Key.space || event.keyval == Gdk.Key.Return || event.keyval == Gdk.Key.KP_Enter) {
-                handle_stack_view_change ();
-            }
-            return false;
-        });
-
         connector.connection_established.connect (() => {
             connector.send (settings.user_callsign);
             button_share.sensitive = true;
@@ -167,17 +151,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         show_all ();
-    }
-
-    private void handle_stack_view_change () {
-        var widget = stack_main.get_visible_child ();
-
-        if (widget == scrolled_spots) {
-            view = View.SPOTS;
-            set_console_need_attention (false);
-        } else if (widget == grid1) {
-            view = View.CONSOLE;
-        }
     }
 
     private void set_main_menu() {
@@ -263,19 +236,15 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        /*
-        stack_main.set_focus_child.connect ((widget) => {
+        stack_main.notify["visible-child"].connect ((sender, property) => {
+            var widget = stack_main.visible_child;
             if (widget == scrolled_spots) {
                 view = View.SPOTS;
-                print ("View SPOTS\n");
             } else if (widget == grid1) {
                 view = View.CONSOLE;
-                print ("View CONSOLE\n");
+                set_console_need_attention (false);
             }
-
-            set_console_need_attention (false);
         });
-        */
     }
 
     private void setup_auto_scroll_callbacks () {
