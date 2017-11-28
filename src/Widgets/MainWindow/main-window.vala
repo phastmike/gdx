@@ -236,8 +236,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        stack_main.notify["visible-child"].connect ((sender, property) => {
-            var widget = stack_main.visible_child;
+        stack_main.notify["visible-child"].connect ((s, p) => {
+            var widget = stack_main.get_visible_child ();
             if (widget == scrolled_spots) {
                 view = View.SPOTS;
             } else if (widget == grid1) {
