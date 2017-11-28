@@ -131,12 +131,10 @@ public class MainWindow : Gtk.ApplicationWindow {
                 switch (action.get_action_type ()) {
                     case ShareAction.Type.SPOT:
                         var spot = action as ShareActionSpot;
-                        print ("dx %s %s %s\n", spot.frequency, spot.dx_station, spot.comment);
                         connector.send (spot.to_string ());
                         break;
                     case ShareAction.Type.ANNOUNCEMENT:
                         var ann = action as ShareActionAnnouncement;
-                        print ("Announcement %s msg: %s\n", ann.range.to_string (), ann.message);
                         connector.send (ann.to_string ());
                         break;
                     default:
@@ -265,7 +263,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         vscrollbar_console.value_changed.connect ( () => {
             var val = vscrollbar_console.adjustment.@value;
             var upper = vscrollbar_console.adjustment.upper - vscrollbar_console.adjustment.page_size;
-            print ("upper: %f value: %f\n", upper, val);
             if (val != upper) {
                 scrolled_console_moved = true;
             } else {
