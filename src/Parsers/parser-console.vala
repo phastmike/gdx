@@ -50,7 +50,7 @@ public class ParserConsole : Object, IParsable {
             s = s.replace ("  ", " ");
         } 
 
-        var split = s.split_set (" :");
+        var split = s.split_set (" ");
 
         int length = split.length;
 
@@ -82,9 +82,9 @@ public class ParserConsole : Object, IParsable {
             comment = "<invalid utf8 data in comment>";
         }
 
-        var spotter = split[2];
-        var freq = split[4];
-        var dx = split[5];
+        var spotter = split[2].replace (":", "");
+        var freq = split[3];
+        var dx = split[4];
 
         if (utc.length == 5) {
             utc = "%c%c:%c%c".printf (utc[0], utc[1], utc[2], utc[3]);
