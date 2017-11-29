@@ -192,15 +192,19 @@ public class MainWindow : Gtk.ApplicationWindow {
     private void set_callbacks () {
         setup_auto_scroll_callbacks ();
 
-        treeview_spots.key_press_event.connect ((event) => {
-            if ((event.keyval >= Gdk.Key.@0 && event.keyval <= Gdk.Key.@9) ||
-                (event.keyval >= Gdk.Key.a && event.keyval <= Gdk.Key.z) ||
-                (event.keyval >= Gdk.Key.A && event.keyval <= Gdk.Key.Z)) {
+        this.key_press_event.connect ((event) => {
+            if (view == View.SPOTS) {
+                if ((event.keyval >= Gdk.Key.@0 && event.keyval <= Gdk.Key.@9) ||
+                    (event.keyval >= Gdk.Key.a && event.keyval <= Gdk.Key.z) ||
+                    (event.keyval >= Gdk.Key.A && event.keyval <= Gdk.Key.Z)) {
 
-                searchbar.set_search_mode (true);
+                    searchbar.set_search_mode (true);
+                }
+
+                return searchentry.handle_event (event);
+            } else {
+                return false;
             }
-
-            return searchentry.handle_event (event);
         });
 
         searchbutton.clicked.connect (() => {
