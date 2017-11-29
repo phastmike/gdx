@@ -15,7 +15,7 @@ public class Connector : Object {
     private DataOutputStream? stream_output;
     private string? last_host_address = null;
     private uint16 last_host_port = 0;
-    public bool auto_reconnect  {set; get; default = true;}
+    public bool auto_reconnect  {set; get; default = false;}
     public Cancellable? cancellable;
      
     public signal void disconnected ();
@@ -76,6 +76,12 @@ public class Connector : Object {
             stream_output = new DataOutputStream (connection.get_output_stream ()); 
             stream_input.set_newline_type (DataStreamNewlineType.CR_LF);
             
+            /*
+            connection.notify["closed"].connect ((s,p) => {
+                print ("client closed = %d\n", (int) connection.closed);
+            });
+            */
+
             connection_established ();
             receive_async.begin ();
             
@@ -110,7 +116,7 @@ public class Connector : Object {
     private async void receive_async () {
         string? message = null;
 
-        while (cancellable.is_cancelled () == false && connection.is_connected () == true) {
+        while (cancellable.is_cancelled () == false && connection != null) {
             try {
                 message = yield stream_input.read_line_async (Priority.DEFAULT, cancellable, null);
                 if (message != null) {
@@ -118,8 +124,13 @@ public class Connector : Object {
                 } else {
                     connection_lost ();
                 }
+                if (connection == null) {
+                    cancellable.cancel ();
+                    //reconnect loop
+                }
             } catch (IOError e) {
                 stderr.printf ("%s\n", e.message);
+                //connection_lost ();
             }
         }
     }
@@ -127,7 +138,7 @@ public class Connector : Object {
     public void send (string msg) requires (connection != null) {
         string message = msg;
 
-        print ("[%s]>[TX] %s", new DateTime.now_local ().format ("%F %T").to_string (), message);
+        print ("[%s]>[TX] %s\n", new DateTime.now_local ().format ("%F %T").to_string (), message);
 
         try {
             stream_output.put_string (message + "\r\n", null);
