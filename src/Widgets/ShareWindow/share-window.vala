@@ -85,11 +85,14 @@ public class ShareWindow : Gtk.Window {
             }
         });
 
-        stack1.set_focus_child.connect ((widget) => {
+        stack1.notify["visible-child"].connect ((s, p) => {
+            var widget = stack1.get_visible_child ();
             if (widget == announce_grid) {
                 view = View.ANNOUNCE; 
+                print ("ANNOUNCE\n");
             } else if (widget == spot_grid) {
                 view = View.SPOT;
+                print ("SPOTS\n");
             }
 
             check_enable_share ();
