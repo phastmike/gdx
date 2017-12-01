@@ -50,21 +50,6 @@ If you wish to install gdx then run
 
 Probably will work with some previous versions but has not been tested.
 
-
-# To Do
-
-- [ ] Avoid UTF-8 errors
-
-- [ ] Improve parser
-
-- [ ] Persistent user defined column position
-
-- [x] ~~Handle treeview key events to respond solely to alpha numeric keys.~~
-
-- [ ] Filter DX Spots from console (Client side)
-
-- [ ] Fix `DX de <CALLSIGN>` when call is to big and strips colon delimiter
-
 # Resources
 
 **List of Telnet DX Clusters**
