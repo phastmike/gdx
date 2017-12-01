@@ -71,7 +71,7 @@ Icon from [Flaticon](http://www.flaticon.com):
 
 To enable debug messages, set:
 
-    export G__MESSAGES_DEBUG=all
+    export G_MESSAGES_DEBUG=all
 
 ## First use
 
