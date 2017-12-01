@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.20.1 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
-  <object class="GtkAdjustment" id="adjustment1">
-    <property name="upper">24000000</property>
-    <property name="step_increment">0.10000000000000001</property>
-    <property name="page_increment">10</property>
-  </object>
   <template class="ShareWindow" parent="GtkWindow">
     <property name="can_focus">False</property>
     <property name="border_width">18</property>
@@ -41,23 +36,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSpinButton" id="input_freq">
-                <property name="width_request">150</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="text" translatable="yes">0</property>
-                <property name="input_purpose">digits</property>
-                <property name="adjustment">adjustment1</property>
-                <property name="digits">1</property>
-                <property name="numeric">True</property>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="label_dx">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -73,7 +51,6 @@
               <object class="GtkEntry" id="input_dx">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -96,11 +73,21 @@
               <object class="GtkEntry" id="input_comment">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="input_freq">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
               </packing>
             </child>
           </object>
@@ -145,7 +132,6 @@
               <object class="GtkEntry" id="entry_message">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="secondary_icon_name">window-close-symbolic</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -235,6 +221,9 @@
         </child>
       </object>
     </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
   </template>
   <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
@@ -271,5 +260,10 @@
         <property name="position">1</property>
       </packing>
     </child>
+  </object>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">24000000</property>
+    <property name="step_increment">0.10000000000000001</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>

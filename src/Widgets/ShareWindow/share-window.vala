@@ -20,7 +20,7 @@ public class ShareWindow : Gtk.Window {
     [GtkChild]
     private Gtk.Button button_cancel;
     [GtkChild]
-    private Gtk.SpinButton input_freq;
+    private Gtk.Entry input_freq;
     [GtkChild]
     private Gtk.Entry input_dx;
     [GtkChild]
@@ -55,23 +55,27 @@ public class ShareWindow : Gtk.Window {
         setup_callbacks ();
     }
 
+    private void on_entry_button_press (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
+        if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
+            entry.set_text ("");
+        }
+    }
+
     private void setup_callbacks () {
+        input_freq.icon_press.connect ((position, event) => {
+            on_entry_button_press (input_freq, position, event);
+        });
+
         input_dx.icon_press.connect ((position, event) => {
-            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
-                input_dx.text = ""; 
-            }
+            on_entry_button_press (input_dx, position, event);
         });
 
         input_comment.icon_press.connect ((position, event) => {
-            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
-                input_comment.text = ""; 
-            }
+            on_entry_button_press (input_comment, position, event);
         });
 
         entry_message.icon_press.connect ((position, event) => {
-            if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
-                entry_message.text = ""; 
-            }
+            on_entry_button_press (entry_message, position, event);
         });
 
         range_selection.changed.connect (() => {
@@ -105,7 +109,7 @@ public class ShareWindow : Gtk.Window {
 
         button_share.clicked.connect (() => {
             if (view == View.SPOT) {
-                var freq = input_freq.get_value ().to_string ();
+                var freq = input_freq.get_text ();
                 var dx_station = input_dx.get_text ();
                 var comment = input_comment.get_text ();
                 var share_spot = new ShareActionSpot.with_data (freq, dx_station, comment);
@@ -122,15 +126,38 @@ public class ShareWindow : Gtk.Window {
 
         entry_message.changed.connect (() => {
             check_enable_share ();
+            handle_entry_delete_icon (entry_message);
+
         });
 
-        input_freq.value_changed.connect (() => {
+        input_freq.changed.connect (() => {
             check_enable_share ();
+            handle_entry_delete_icon (input_freq);
         });
 
         input_dx.changed.connect (() => {
             check_enable_share ();
+            handle_entry_delete_icon (input_dx);
         });
+
+        input_comment.changed.connect (() => {
+            handle_entry_delete_icon (input_comment);
+        });
+    }
+
+    private void handle_entry_delete_icon (Gtk.Entry entry) {
+        var text_length = entry.get_text ().length;
+
+        switch (text_length) {
+            case 0:
+                entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY, "");
+                break;
+            case 1:
+                entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY, "edit-clear-symbolic");
+                break;
+            default:
+                break;
+        }
     }
 
     private void check_enable_share () {
@@ -139,7 +166,7 @@ public class ShareWindow : Gtk.Window {
 
     private bool entries_have_data () {
         if (view == View.SPOT) {
-            return (input_freq.@value > 0.0 && input_dx.text_length > 1);
+            return (double.parse (input_freq.get_text ()) > 0.0 && input_dx.text_length > 1);
         } else if (view == View.ANNOUNCE) {
             return entry_message.text_length >= 1;
         }
