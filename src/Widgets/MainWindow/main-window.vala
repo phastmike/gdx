@@ -195,6 +195,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         this.key_press_event.connect ((event) => {
             if (view == View.SPOTS) {
                 if ((event.keyval >= Gdk.Key.@0 && event.keyval <= Gdk.Key.@9) ||
+                    (event.keyval >= Gdk.Key.@KP_0 && event.keyval <= Gdk.Key.@KP_9) ||
                     (event.keyval >= Gdk.Key.a && event.keyval <= Gdk.Key.z) ||
                     (event.keyval >= Gdk.Key.A && event.keyval <= Gdk.Key.Z)) {
 
