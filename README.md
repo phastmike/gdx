@@ -50,23 +50,6 @@ If you wish to install gdx then run
 
 Probably will work with some previous versions but has not been tested.
 
-# Resources
-
-**List of Telnet DX Clusters**
-
-[http://www.g4bki.com/clusters.htm](http://www.g4bki.com/clusters.htm)
-
-**Client Commands**
-
-* [http://www.dxcluster.info/commands.htm](http://www.dxcluster.info/commands.htm)
-
-* [http://www.febo.com/packet/clx/clx-7.html](http://www.dxcluster.info/commands.htm)
-
-## Application icon
-Icon from [Flaticon](http://www.flaticon.com):
-
-[![AppIcon](/data/icons/hicolor/48x48/apps/org.ampr.ct1enq.gdx.png "Application icon")](https://www.flaticon.com/free-icon/network_148800#term=network&page=1&position=33)
-
 ## Debug
 
 To enable debug messages, set:
@@ -76,19 +59,3 @@ To enable debug messages, set:
 ## First use
 
 * User must set their callsign (default NOCALL) before connecting to any node
-
-## Info on Frames
-
-	00000000011111111112222222222333333333344444444445555555555666666666677777777778
-	12345678901234567890123456789012345678901234567890123456789012345678901234567890
-	 14233.0  SV9OFS      19-May-2010 2215Z  tnx kontantinos 73          <YV5HNJ>    # Show Dx result
-	DX de PY3CEJ:     1826.0  9U4M         559 Good signal live my site   2253Z GG40 # Real spot
-
-    WWV data
-
-	Date        Hour   SFI   A   K Forecast                               Logger
-	19-May-2010   21    69   6   1 No Storms -> No Storms                <VE7CC>
-
-	Date        Hour   SFI   A   K Exp.K   R SA    GMF   Aurora   Logger
-	19-May-2010   21    69  12   3     0   0 qui   qui       no <DK0WCY>
-
