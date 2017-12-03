@@ -58,4 +58,4 @@ To enable debug messages, set:
 
 ## First use
 
-* User must set their callsign (default NOCALL) before connecting to any node
+* User must set its callsign (default NOCALL) before connecting to any node
