@@ -15,6 +15,7 @@
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="border_width">6</property>
         <property name="row_spacing">12</property>
         <property name="column_spacing">12</property>
         <property name="column_homogeneous">True</property>
@@ -224,6 +225,20 @@
           <packing>
             <property name="left_attach">3</property>
             <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">This is a, client side, acceptance filter. &lt;b&gt;Tick&lt;/b&gt; which bands
+ you want receive spots from.</property>
+            <property name="use_markup">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">4</property>
+            <property name="width">4</property>
           </packing>
         </child>
       </object>
