@@ -297,7 +297,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         textbuffer_console.insert (ref iter, "\n", 1);
         textbuffer_console.insert (ref iter, text, text.length);
 
-        set_console_need_attention (true);
+        if (view == View.SPOTS) {
+            set_console_need_attention (true);
+        }
 
         // Must add on Idle otherwise won't move if a lot of text :/
 
