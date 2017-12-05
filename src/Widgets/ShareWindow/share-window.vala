@@ -66,6 +66,23 @@ public class ShareWindow : Gtk.Window {
             on_entry_button_press (input_freq, position, event);
         });
 
+        input_freq.key_press_event.connect ((event) => {
+            var event_key = (Gdk.EventKey) event;
+            var key = event_key.keyval;
+
+            if ((key >= Gdk.Key.@0 && key <= Gdk.Key.@9) ||
+                (key >= Gdk.Key.KP_0 && key <= Gdk.Key.KP_9) ||
+                (key == Gdk.Key.KP_Decimal) || (key == Gdk.Key.period) ||
+                (key == Gdk.Key.BackSpace || key == Gdk.Key.Delete || key == Gdk.Key.KP_Delete) ||
+                (key == Gdk.Key.Return) || (key == Gdk.Key.KP_Enter) ||
+                (key == Gdk.Key.Left || key == Gdk.Key.Right || key == Gdk.Key.Home || key == Gdk.Key.End) ||
+                (key == Gdk.Key.KP_Left || key == Gdk.Key.KP_Right || key == Gdk.Key.KP_Home || key == Gdk.Key.KP_End)) {
+                return false;
+            }
+
+            return true;
+        });
+
         input_dx.icon_press.connect ((position, event) => {
             on_entry_button_press (input_dx, position, event);
         });
