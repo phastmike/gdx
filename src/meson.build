@@ -15,6 +15,7 @@ vala_sources = [
     'Widgets/SpotWindow/spot-window.vala',
     'Widgets/ShareWindow/share-window.vala',
     'Widgets/SettingsWindow/settings-window.vala',
+    'Widgets/AppNotification/app-notification.vala',
     'Settings/settings.vala',
 ]
 

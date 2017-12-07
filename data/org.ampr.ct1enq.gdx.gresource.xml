@@ -8,5 +8,6 @@
 		<file>ui/share-window.ui</file>
 		<file>ui/filter-window.ui</file>
 		<file>ui/settings-window.ui</file>
+		<file>ui/app-notification.ui</file>
   </gresource>
 </gresources>

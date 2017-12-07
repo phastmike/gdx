@@ -42,11 +42,14 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.MenuButton menu_button;
     [GtkChild]
     private Gtk.StackSwitcher stackswitcher1;
+    [GtkChild]
+    private Gtk.Overlay main_overlay;
 
     View view = View.SPOTS;
 
     private Connector connector;
     private ParserConsole parser;
+    private AppNotification app_notification;
 
     private bool scrolled_spots_moved = false;
     private bool scrolled_console_moved = false;
@@ -84,6 +87,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         parser = new ParserConsole ();
         connector = new Connector ();
 
+        app_notification = new AppNotification ();
+        main_overlay.add_overlay (app_notification);
+
         if (settings.auto_connect_startup) {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
@@ -95,6 +101,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (true);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (false);
+            app_notification.set_message ("You are now connected");
+            app_notification.set_reveal_child (true);
         });
 
         connector.disconnected.connect (() => {
@@ -103,6 +111,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
+            app_notification.set_message ("You are now disconnected");
+            app_notification.set_reveal_child (true);
         });
 
         connector.received_message.connect ((text) => {
