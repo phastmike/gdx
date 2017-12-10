@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.20.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
+  <requires lib="gtk+" version="3.18"/>
   <template class="FilterWindow" parent="GtkWindow">
     <property name="can_focus">False</property>
     <property name="resizable">False</property>
@@ -234,6 +234,9 @@
             <property name="label" translatable="yes">This is a, client side, acceptance filter. &lt;b&gt;Tick&lt;/b&gt; which bands
  you want receive spots from.</property>
             <property name="use_markup">True</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
           <packing>
             <property name="left_attach">0</property>

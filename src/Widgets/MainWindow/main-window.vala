@@ -41,8 +41,6 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.MenuButton menu_button;
     [GtkChild]
-    private Gtk.StackSwitcher stackswitcher1;
-    [GtkChild]
     private Gtk.Overlay main_overlay;
 
     View view = View.SPOTS;

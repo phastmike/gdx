@@ -46,7 +46,7 @@ If you wish to install gdx then run
 * meson (>= 0.40.0)
 * ninja (>= 1.8.2)
 * valac (>= 0.38.3)
-* Gtk+ (>= 3.22)
+* Gtk+ (>= 3.18)
 
 Probably will work with some previous versions but has not been tested.
 
