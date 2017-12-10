@@ -177,6 +177,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             connector.disconnect_async ();
         });
         add_action (disconnect_action);
+        disconnect_action.set_enabled (false);
 
         var filter_action = new GLib.SimpleAction ("spot_filter", null);
         filter_action.activate.connect (() => {
