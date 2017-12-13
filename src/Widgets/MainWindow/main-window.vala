@@ -114,7 +114,6 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         connector.received_message.connect ((text) => {
-            //window.add_text_to_console (text);
             if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
                 if (!settings.filter_spots_from_console) {
