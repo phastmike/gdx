@@ -42,6 +42,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Gtk.MenuButton menu_button;
     [GtkChild]
     private Gtk.Overlay main_overlay;
+    [GtkChild]
+    private Gtk.Entry nodecall;
 
     View view = View.SPOTS;
 
@@ -119,6 +121,13 @@ public class MainWindow : Gtk.ApplicationWindow {
                 if (!settings.filter_spots_from_console) {
                     add_text_to_console (text);
                 }
+            } else if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.PROMPT) {
+                //entry_commands.set_text (text);
+                var split = text.split_set (" ");
+                if (split.length > 2) {
+                    nodecall.set_text (split[2]);
+                }
+                add_text_to_console (text);
             } else {
                 add_text_to_console (text);
             }

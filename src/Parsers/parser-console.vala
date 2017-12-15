@@ -15,7 +15,7 @@ public class ParserConsole : Object, IParsable {
         WCY,
         ANN,
         MESSAGE,
-        PC_PROTOCOL
+        PC_PROTOCOL,
     }
 
     public static MsgType text_get_type (string text) {
@@ -34,6 +34,10 @@ public class ParserConsole : Object, IParsable {
         if (text.has_prefix ("To ")) {
             return MsgType.ANN;
         } 
+        if (text.has_prefix (Settings.instance ().user_callsign + " de ") &&
+            text.has_suffix (" >")) {
+            return MsgType.PROMPT;
+        }
 
         return MsgType.UNKNOWN;
     } 

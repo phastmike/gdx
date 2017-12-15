@@ -253,20 +253,47 @@
       </object>
     </child>
     <child>
-      <object class="GtkMenuButton">
+      <object class="GtkGrid">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
         <property name="valign">center</property>
         <child>
-          <object class="GtkImage">
+          <object class="GtkMenuButton">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">network-server-symbolic</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">network-server-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="image-button"/>
+            </style>
           </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="nodecall">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">True</property>
+            <property name="editable">False</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <style>
-          <class name="image-button"/>
+          <class name="linked"/>
         </style>
       </object>
       <packing>

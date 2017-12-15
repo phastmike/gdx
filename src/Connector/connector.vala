@@ -130,7 +130,9 @@ public class Connector : Object {
 
     public void send (string message) requires (connection != null) {
         try {
-            stream_output.put_string (message + "\r\n", null);
+            if (!stream_output.put_string (message + "\r\n", null)) {
+                connection_lost ();
+            } 
         } catch (IOError e) {
             connection_lost ();
         }
