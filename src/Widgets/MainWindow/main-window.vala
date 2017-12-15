@@ -144,19 +144,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             share_window.show_all ();
 
             share_window.share_action.connect ((action) => {
-                switch (action.get_action_type ()) {
-                    case ShareAction.Type.SPOT:
-                        var spot = action as ShareActionSpot;
-                        connector.send (spot.to_string ());
-                        break;
-                    case ShareAction.Type.ANNOUNCEMENT:
-                        var ann = action as ShareActionAnnouncement;
-                        connector.send (ann.to_string ());
-                        break;
-                    default:
-                        print ("Unknown ShareAction\n");
-                        break;
-                }
+                connector.send (action.to_string ());
             });
         });
 
