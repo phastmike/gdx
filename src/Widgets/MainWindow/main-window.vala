@@ -31,7 +31,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.SearchBar searchbar;
     [GtkChild]
-    private Gtk.Button searchbutton;
+    private Gtk.ToggleButton searchbutton;
     [GtkChild]
     private Gtk.SearchEntry searchentry;
     [GtkChild]
@@ -89,6 +89,8 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         app_notification = new AppNotification ();
         main_overlay.add_overlay (app_notification);
+
+        searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
         if (settings.auto_connect_startup) {
             connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
@@ -211,10 +213,6 @@ public class MainWindow : Gtk.ApplicationWindow {
             } else {
                 return false;
             }
-        });
-
-        searchbutton.clicked.connect (() => {
-            searchbar.search_mode_enabled = !searchbar.search_mode_enabled;
         });
 
         searchentry.search_changed.connect (() => {

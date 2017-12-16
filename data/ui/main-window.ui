@@ -361,11 +361,10 @@
       </packing>
     </child>
     <child>
-      <object class="GtkButton" id="searchbutton">
+      <object class="GtkToggleButton" id="searchbutton">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="valign">center</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
