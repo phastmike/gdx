@@ -245,6 +245,7 @@
             <property name="sensitive">False</property>
             <property name="can_focus">False</property>
             <property name="icon_name">list-add-symbolic.symbolic</property>
+            <property name="use_fallback">True</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -265,10 +266,36 @@
             <property name="receives_default">True</property>
             <property name="valign">center</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">network-server-symbolic</property>
+                <property name="margin_left">3</property>
+                <property name="margin_right">3</property>
+                <property name="column_spacing">3</property>
+                <property name="row_homogeneous">True</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">network-server-symbolic</property>
+                    <property name="use_fallback">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">pan-down-symbolic</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
               </object>
             </child>
             <style>
@@ -318,6 +345,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="icon_name">open-menu-symbolic.symbolic</property>
+            <property name="use_fallback">True</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -343,6 +371,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="icon_name">edit-find-symbolic.symbolic</property>
+            <property name="use_fallback">True</property>
           </object>
         </child>
         <style>
