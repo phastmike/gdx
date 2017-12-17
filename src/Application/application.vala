@@ -87,7 +87,8 @@ public class Application : Gtk.Application {
             "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", "0.1",
             "comments", "Access the Radio Amateur DX Cluster Network",
-            "Website", "https://github.com/phastmike/gdx",
+            "website", "https://github.com/phastmike/gdx",
+            "website-label", "https://github.com/phastmike/gdx",
             "wrap-license", true);
     }
 }
