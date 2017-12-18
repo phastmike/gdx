@@ -22,14 +22,14 @@ public class ShareActionSpot : ShareAction {
     public ShareActionSpot () {
     }
 
-    public override string to_string () {
-        return "dx " + dx_station + " " + frequency + " " + comment;
-    }
-
     public ShareActionSpot.with_data (string frequency, string dx_station, string comment) {
         this.frequency = frequency;
         this.dx_station = dx_station;
         this.comment = comment;
+    }
+
+    public override string to_string () {
+        return "dx " + dx_station + " " + frequency + " " + comment;
     }
 }
 
