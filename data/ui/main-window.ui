@@ -2,6 +2,105 @@
 <!-- Generated with glade 3.20.1 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
+  <object class="GtkPopover" id="connection_popover">
+    <property name="width_request">175</property>
+    <property name="height_request">150</property>
+    <property name="can_focus">False</property>
+    <property name="position">right</property>
+    <child>
+      <object class="GtkGrid">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="border_width">3</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">VE7CC-1</property>
+            <attributes>
+              <attribute name="font-desc" value="&lt;Enter Value&gt; 12"/>
+              <attribute name="weight" value="medium"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Connected</property>
+            <attributes>
+              <attribute name="font-desc" value="&lt;Enter Value&gt; 8"/>
+            </attributes>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="width">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+            <property name="width">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Connect</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">3</property>
+            <property name="width">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="label" translatable="yes">Disconnect</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">4</property>
+            <property name="width">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">starred-symbolic</property>
+          </object>
+          <packing>
+            <property name="left_attach">4</property>
+            <property name="top_attach">0</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkListStore" id="liststore_spots">
     <columns>
       <!-- column-name spotter -->
@@ -254,73 +353,44 @@
       </object>
     </child>
     <child>
-      <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="halign">center</property>
+      <object class="GtkMenuButton" id="connection_menu_button">
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="no_show_all">True</property>
         <property name="valign">center</property>
         <child>
-          <object class="GtkMenuButton">
+          <object class="GtkGrid">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="valign">center</property>
+            <property name="can_focus">False</property>
+            <property name="column_spacing">3</property>
+            <property name="row_homogeneous">True</property>
             <child>
-              <object class="GtkGrid">
+              <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">3</property>
-                <property name="margin_right">3</property>
-                <property name="column_spacing">3</property>
-                <property name="row_homogeneous">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">network-server-symbolic</property>
-                    <property name="use_fallback">True</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">pan-down-symbolic</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="top_attach">0</property>
-                  </packing>
-                </child>
+                <property name="icon_name">network-server-symbolic</property>
+                <property name="use_fallback">True</property>
               </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
             </child>
-            <style>
-              <class name="image-button"/>
-            </style>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">pan-down-symbolic</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
           </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="nodecall">
-            <property name="visible">True</property>
-            <property name="sensitive">False</property>
-            <property name="can_focus">True</property>
-            <property name="editable">False</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">0</property>
-          </packing>
         </child>
         <style>
-          <class name="linked"/>
+          <class name="image-button"/>
         </style>
       </object>
       <packing>
@@ -365,6 +435,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="valign">center</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>

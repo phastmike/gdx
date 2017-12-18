@@ -43,7 +43,9 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.Overlay main_overlay;
     [GtkChild]
-    private Gtk.Entry nodecall;
+    private Gtk.Popover connection_popover;
+    [GtkChild]
+    private Gtk.MenuButton connection_menu_button;
 
     View view = View.SPOTS;
 
@@ -90,6 +92,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         app_notification = new AppNotification ();
         main_overlay.add_overlay (app_notification);
 
+        connection_menu_button.set_popover (connection_popover);
+        connection_popover.set_relative_to (connection_menu_button);
         searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
         if (settings.auto_connect_startup) {
@@ -127,7 +131,7 @@ public class MainWindow : Gtk.ApplicationWindow {
                 //entry_commands.set_text (text);
                 var split = text.split_set (" ");
                 if (split.length > 2) {
-                    nodecall.set_text (split[2]);
+                    // got node call
                 }
                 add_text_to_console (text);
             } else {
