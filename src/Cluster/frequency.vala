@@ -10,6 +10,14 @@
 public class Frequency : Object {
     double kHz;
 
+    enum Multiples {
+        Hz  = 0,
+        kHz = 3,
+        MHz = 6,
+        GHz = 9,
+        THz = 12
+    }
+
     public Frequency (double frequency = 0.0) {
         kHz = frequency;
     }
