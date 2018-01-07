@@ -189,6 +189,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
         add_action (filter_action);
 
+        this.get_application ().set_accels_for_action ("win.connect", {"<control>C"});
+        this.get_application ().set_accels_for_action ("win.disconnect", {"<control>D"});
+
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
         menu_button.set_menu_model (menu_model);
@@ -205,6 +208,11 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         this.key_press_event.connect ((event) => {
             if (view == View.SPOTS) {
+
+                if (event.state != Gdk.ModifierType.MOD2_MASK) {
+                    return false;
+                }
+
                 if ((event.keyval >= Gdk.Key.@0 && event.keyval <= Gdk.Key.@9) ||
                     (event.keyval >= Gdk.Key.@KP_0 && event.keyval <= Gdk.Key.@KP_9) ||
                     (event.keyval >= Gdk.Key.a && event.keyval <= Gdk.Key.z) ||
