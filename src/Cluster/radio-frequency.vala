@@ -7,8 +7,9 @@
  *
  */
 
-public class Frequency : Object {
+public class RadioFrequency : Object {
     double kHz;
+    Multiples multiple = Multiples.kHz;
 
     enum Multiples {
         Hz  = 0,
@@ -18,11 +19,11 @@ public class Frequency : Object {
         THz = 12
     }
 
-    public Frequency (double frequency = 0.0) {
+    public RadioFrequency (double frequency = 0.0) {
         kHz = frequency;
     }
 
-    public Frequency.from_string (string frequency) {
+    public RadioFrequency.from_string (string frequency) {
         // float parse method?
         kHz = double.parse (frequency);
     }
