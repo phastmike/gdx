@@ -15,8 +15,8 @@ public class Connector : Object {
     private DataOutputStream? stream_output;
     private string? last_host_address = null;
     private uint16 last_host_port = 0;
-    public bool auto_reconnect  {set; get; default = false;}
     private Cancellable? cancellable;
+    public bool auto_reconnect  {set; get; default = false;}
      
     public signal void disconnected ();
     public signal void connection_lost ();
