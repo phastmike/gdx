@@ -9,10 +9,10 @@
 
 public class RadioBand {
     string name;
-    Frequency begin;
-    Frequency end;
+    RadioFrequency begin;
+    RadioFrequency end;
 
-    public RadioBand (string name, Frequency begin, Frequency end) {
+    public RadioBand (string name, RadioFrequency begin, RadioFrequency end) {
         this.name = name;
         this.begin = begin;
         this.end = end;
