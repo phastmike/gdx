@@ -3,6 +3,7 @@
 #*#
 *.swp
 doc/*
+tests/*
 build/*
 .vscode/*
 .anjuta/*
