@@ -5,6 +5,7 @@
  *
  * Jose Miguel Fonte, 2017
  */
+using Gee;
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/filter-window.ui")]
 public class FilterWindow : Gtk.Window {
@@ -16,12 +17,14 @@ public class FilterWindow : Gtk.Window {
     private Gtk.Button close_button;
     [GtkChild]
     private Gtk.Button apply_button;
+    ArrayList<RadioBand> bands;
 
     public FilterWindow () {
         Object (default_width: 350, default_height: 150);
         set_titlebar (headerbar);
 
         setup_callbacks ();
+        setup_bands ();
     }
 
     private void setup_callbacks () {
@@ -31,5 +34,13 @@ public class FilterWindow : Gtk.Window {
         apply_button.clicked.connect (() => {
             destroy ();
         });
+    }
+
+    private void setup_bands () {
+        bands = new ArrayList<RadioBand> ();
+
+        // Should do a band Filter with status flag
+        bands.add (new RadioBand ("10m", new RadioFrequency (28000.0), new RadioFrequency (29700.0)));
+
     }
 }

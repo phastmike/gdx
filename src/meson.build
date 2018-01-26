@@ -5,6 +5,8 @@ vala_sources = [
     'Cluster/dx-spot.vala',
     'Cluster/dx-cluster.vala',
     'Cluster/dx-clusters.vala',
+    'Cluster/radio-band.vala',
+    'Cluster/radio-frequency.vala',
     'Parsers/iparsable.vala',
     'Parsers/parser-console.vala',
     'ShareAction/share-action.vala',
