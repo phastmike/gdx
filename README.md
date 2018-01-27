@@ -1,6 +1,6 @@
 # gdx
 
-A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via the packet radio network not available at the moment but could be implemented.
+A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via radio frequency modem, or TNC, not available at the moment.
 
 ## What is the a DX Cluster network
 
