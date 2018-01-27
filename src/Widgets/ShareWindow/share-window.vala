@@ -69,7 +69,8 @@ public class ShareWindow : Gtk.Window {
         input_freq.key_press_event.connect ((event) => {
             var key = event.keyval;
 
-            if ((key >= Gdk.Key.@0 && key <= Gdk.Key.@9) ||
+            if ((key == Gdk.Key.Tab) ||
+                (key >= Gdk.Key.@0 && key <= Gdk.Key.@9) ||
                 (key >= Gdk.Key.KP_0 && key <= Gdk.Key.KP_9) ||
                 (key == Gdk.Key.KP_Decimal) || (key == Gdk.Key.period) ||
                 (key == Gdk.Key.BackSpace || key == Gdk.Key.Delete || key == Gdk.Key.KP_Delete) ||
