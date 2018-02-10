@@ -4,7 +4,7 @@ A DX Cluster client for Radio amateurs. It allows hamradio operators to connect 
 
 ## What is the a DX Cluster network
 
-The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast dx information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
+The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast DX information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
 
 ## DX Cluster node software
 There are a few software packages that implement this kind of service and due to the legacy they all provide a ASCII based interface to the user leaving the [AK1A PC protocol](http://www.dxcluster.org/tech/pcprot.html) to the cluster nodes. Well, this is not exactly true because some developers added additional commands to force the reception of dx spots with the [PC protocol](http://www.dxcluster.org/tech/pcprot.html) semantic. Of course this depends on the cluster node software to support it. Nevertheless, support for different methods is necessary (standard and enhanced).
@@ -25,11 +25,11 @@ Start by cloning this repository:
 
 	$ git clone https://github.com/phastmike/gdx
 
-To build it, `cd` into it and run:
+To build it, `cd` into the repository and run:
 
 	$ meson build && cd build && ninja
 
-Then run it with:
+Then run the application it with:
 
 	$ ./src/gdx
 
