@@ -67,13 +67,13 @@ public class ParserConsole : Object, IParsable {
 
         if (split[length - 1].@get(4) == 'Z') {
             utc = split[length - 1];
-            foreach (string c in split[6:length-1]) {
+            foreach (string c in split[5:length-1]) {
                 comment += " " + c;
             }
         } else if (split[length - 2].@get(4) == 'Z') {
             utc = split[length - 2];
             qth = split[length - 1];
-            foreach (string c in split[6:length-2]) {
+            foreach (string c in split[5:length-2]) {
                 comment += " " + c;
             }
         } else {
