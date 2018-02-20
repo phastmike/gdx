@@ -122,12 +122,12 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         connector.received_message.connect ((text) => {
-            if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
+            if (IParsable.text_get_type (text) == IParsable.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
                 if (!settings.filter_spots_from_console) {
                     add_text_to_console (text);
                 }
-            } else if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.PROMPT) {
+            } else if (IParsable.text_get_type (text) == IParsable.MsgType.PROMPT) {
                 //entry_commands.set_text (text);
                 var split = text.split_set (" ");
                 if (split.length > 2) {
