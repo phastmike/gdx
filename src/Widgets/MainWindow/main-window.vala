@@ -101,7 +101,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         }
 
         connector.connection_established.connect (() => {
-            connector.send (settings.user_callsign);
+            //connector.send (settings.user_callsign);
             button_share.sensitive = true;
             var action = (SimpleAction) lookup_action ("disconnect");
             action.set_enabled (true);
@@ -122,6 +122,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         connector.received_message.connect ((text) => {
+            // received text from connector is waiting for \r\n which login: does not send!
+            if (text.has_prefix ("login: ") || text.has_prefix ("Please enter your call: ")) {
+                connector.send (settings.user_callsign);
+            }
+
             if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
                 if (!settings.filter_spots_from_console) {

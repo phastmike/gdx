@@ -4,12 +4,15 @@
  * frequency.vala
  * 
  * Frequency as kHz.
+ * Clusters use frequencies in kHz so it makes sense to use the same multiple
+ * and avoid unnecessary conversions.
  *
+ * José Miguel Fonte
  */
 
 public class RadioFrequency : Object {
     double kHz;
-    Multiples multiple = Multiples.kHz;
+    Multiples multiple;
 
     enum Multiples {
         Hz  = 0,
@@ -19,6 +22,10 @@ public class RadioFrequency : Object {
         THz = 12
     }
 
+    construct {
+        multiple = Multiples.kHz;
+    }
+
     public RadioFrequency (double frequency = 0.0) {
         kHz = frequency;
     }
@@ -26,5 +33,9 @@ public class RadioFrequency : Object {
     public RadioFrequency.from_string (string frequency) {
         // float parse method?
         kHz = double.parse (frequency);
+    }
+
+    public string to_string () {
+        return kHz.to_string ();
     }
 }

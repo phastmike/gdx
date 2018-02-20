@@ -10,6 +10,7 @@ public class DXCluster : Object {
     public string address {set;get;default="";}
     public string port {set;get;default="";}
     public Type @type;
+    public ConnectionType connection_type;
 
     public enum Type {
         UNKNOWN,
@@ -22,8 +23,15 @@ public class DXCluster : Object {
         OTHER
     }
 
+    public enum ConnectionType {
+        UNKNOWN,
+        TELNET,
+        AX25
+    }
+
     construct {
         type = Type.UNKNOWN;
+        connection_type = ConnectionType.TELNET;
     }
 
     public DXCluster.with_data (string call, string address, string port) {

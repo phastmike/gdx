@@ -5,6 +5,7 @@
  *
  * Connection handler. 
  *
+ * Jose Miguel Fonte
  */
 
 public class Connector : Object {

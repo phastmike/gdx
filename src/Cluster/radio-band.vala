@@ -5,10 +5,11 @@
  *
  * Radio band
  *
+ * José Miguel Fonte
  */
 
-public class RadioBand {
-    string name;
+public class RadioBand : Object {
+    public string name;
     RadioFrequency begin;
     RadioFrequency end;
 

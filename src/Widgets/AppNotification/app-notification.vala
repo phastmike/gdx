@@ -3,6 +3,7 @@
 /*
  * settings-window.vala
  *
+ * José Miguel Fonte
  */
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/app-notification.ui")]

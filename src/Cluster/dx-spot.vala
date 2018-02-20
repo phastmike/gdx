@@ -3,6 +3,7 @@
 /*
  * dx-spot.vala
  *
+ * José Miguel Fonte
  */
 
 public class DxSpot : Object {
