@@ -18,5 +18,4 @@ public class RadioBand : Object {
         this.begin = begin;
         this.end = end;
     }
-
 }
