@@ -41,11 +41,6 @@ public class ShareWindow : Gtk.Window {
         ANNOUNCE
     }
 
-    public enum AnnounceRange {
-        LOCAL,
-        GLOBAL
-    }
-
     public signal void cancelled ();
     public signal void share_action (ShareAction action);
 
@@ -97,7 +92,7 @@ public class ShareWindow : Gtk.Window {
 
         range_selection.changed.connect (() => {
             check_enable_share ();
-            if (range_selection.get_active () == AnnounceRange.GLOBAL) {
+            if (range_selection.get_active () == ShareActionAnnouncement.Range.GLOBAL) {
                 warning_icon.set_visible (true);
                 label_info_range.set_visible (true);
             } else {

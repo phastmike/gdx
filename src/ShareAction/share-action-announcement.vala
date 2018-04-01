@@ -6,13 +6,26 @@
  */
 
 public class ShareActionAnnouncement : ShareAction {
-    ShareAction.Type @type;
     public Range range;
     public string message;
 
     public enum Range {
         LOCAL,
         GLOBAL
+    }
+
+    construct {
+        range = Range.LOCAL;
+        @type = ShareAction.Type.ANNOUNCEMENT;
+    }
+
+    public ShareActionAnnouncement () {
+
+    }
+
+    public ShareActionAnnouncement.with_data (Range range, string message) {
+        this.range = range;
+        this.message = message;
     }
 
     public override string to_string () {
@@ -25,23 +38,6 @@ public class ShareActionAnnouncement : ShareAction {
         }
 
         return message;
-    }
-
-    public override ShareAction.Type get_action_type () {
-        return @type;
-    }
-
-    construct {
-        @type = ShareAction.Type.ANNOUNCEMENT;
-    }
-
-    public ShareActionAnnouncement () {
-
-    }
-
-    public ShareActionAnnouncement.with_data (Range range, string message) {
-        this.range = range;
-        this.message = message;
     }
 }
 

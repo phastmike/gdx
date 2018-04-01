@@ -6,14 +6,9 @@
  */
 
 public class ShareActionSpot : ShareAction {
-    ShareAction.Type @type;
     public string frequency;
     public string dx_station;
     public string comment;
-
-    public override ShareAction.Type get_action_type () {
-        return @type;
-    }
 
     construct {
         @type = ShareAction.Type.SPOT;

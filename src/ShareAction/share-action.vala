@@ -6,11 +6,16 @@
  */
 
 public abstract class ShareAction : Object {
+    protected Type @type;
+
     public enum Type {
         SPOT,
         ANNOUNCEMENT
     }
 
+    public Type get_action_type () {
+        return @type;
+    }
+
     public abstract string to_string ();
-    public abstract Type get_action_type ();
 }
