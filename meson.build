@@ -26,5 +26,6 @@ c_args = [
 subdir('data')
 subdir('po')
 subdir('src')
+subdir('tests')
 
 meson.add_install_script('meson-post-install.py')

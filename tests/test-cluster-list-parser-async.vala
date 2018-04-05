@@ -13,19 +13,17 @@ public class DXCluster : Object {
     }
 }
 
-public class DXClustersParser : Object {
-    public ArrayList<DXCluster> clusters;
+public class DXClusterList : Gee.ArrayList<DXCluster> {
+    // A reference to clusters list file
+    // FIX: Add resource | dowloadable? | Options?
+    private const string filename = "../data/resources/clusters_combined_ve7cc_tested.txt";
 
-    public async ArrayList<DXCluster> get_clusters () {
-        clusters = new ArrayList<DXCluster> ();
-
-        // A reference to clusters list file
-        // FIX: Add resource | dowloadable? | Options?
-        var file = File.new_for_path ("../data/resources/clusters_combined_ve7cc_tested.txt");
+    public async void add_from_file () {
+        var file = File.new_for_path (filename);
 
         if (!file.query_exists ()) {
             stderr.printf ("File '%s' doesn't exist.\n", file.get_path ());
-            return clusters;
+            return;
         }
 
         try {
@@ -35,40 +33,48 @@ public class DXClustersParser : Object {
             string line;
             // Read lines until end of file (null) is reached
             while ((line = yield dis.read_line_async ()) != null) {
-                stdout.printf ("%s\n", line);
+                //stdout.printf ("%s\n", line);
                 string[] split = line.split (",", 0);
-                clusters.add (new DXCluster (split[0], split[1], split[2]));
+                this.add (new DXCluster (split[0], split[1], split[2]));
+                /*
                 foreach (unowned string s in split) {
                     stdout.printf ("[%s]", s);
                 }
                 print ("\n");
+                */
             }
         } catch (Error e) {
             error ("%s", e.message);
         }
-
-        return clusters;
     }
 }
 
 int main (string[] args) {
+    int idle_cycles = 0;
     Gtk.init(ref args);
 
-    new DXClustersParser ().get_clusters.begin ((obj, res) => {
-        DXClustersParser list = (DXClustersParser) obj;
-        list.get_clusters.end (res);
-        foreach (DXCluster cluster in list.clusters) {
+    var list = new DXClusterList ();
+
+    list.add_from_file.begin ((obj, res) => {
+        DXClusterList clusters = (DXClusterList) obj;
+        clusters.add_from_file.end (res);
+        /*
+        foreach (DXCluster cluster in clusters) {
             stdout.printf ("%s [%s:%s]\n", cluster.call, cluster.address, cluster.port);
         }
+        */
         Gtk.main_quit ();
     });
 
     Idle.add (() => {
-        print ("IDLE..................................................\n");
+        idle_cycles += 1;
         return true;
     });
 
     Gtk.main ();
+    
+    print ("*** Number of idle cycles: %d\n", idle_cycles);
+    print ("*** Number of clusters in list: %d\n", list.size);
 
     return 0;
 }
