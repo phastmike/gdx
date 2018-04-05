@@ -14,8 +14,6 @@ public class DXCluster : Object {
 }
 
 public class DXClusterList : Gee.ArrayList<DXCluster> {
-    // A reference to clusters list file
-    // FIX: Add resource | dowloadable? | Options?
     private const string filename = "../data/resources/clusters_combined_ve7cc_tested.txt";
 
     public async void add_from_file () {
@@ -27,21 +25,11 @@ public class DXClusterList : Gee.ArrayList<DXCluster> {
         }
 
         try {
-            // Open file for reading and wrap returned FileInputStream into a
-            // DataInputStream, so we can read line by line
             var dis = new DataInputStream (file.read ());
             string line;
-            // Read lines until end of file (null) is reached
             while ((line = yield dis.read_line_async ()) != null) {
-                //stdout.printf ("%s\n", line);
                 string[] split = line.split (",", 0);
                 this.add (new DXCluster (split[0], split[1], split[2]));
-                /*
-                foreach (unowned string s in split) {
-                    stdout.printf ("[%s]", s);
-                }
-                print ("\n");
-                */
             }
         } catch (Error e) {
             error ("%s", e.message);
