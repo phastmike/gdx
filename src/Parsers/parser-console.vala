@@ -12,7 +12,7 @@ public class ParserConsole : Object, IParsable {
         string comment = "";
         string s = text.substring (0, text.length); // remove \r\n
 
-        if (!text.validate (-1, null)) return;
+        if (!text.validate (-1, null)) return; // On UTF-8 errors just return: FIXME
 
         while (s.contains ("  ")) {
             s = s.replace ("  ", " ");

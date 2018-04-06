@@ -31,7 +31,6 @@ public class RadioFrequency : Object {
     }
 
     public RadioFrequency.from_string (string frequency) {
-        // float parse method?
         kHz = double.parse (frequency);
     }
 
