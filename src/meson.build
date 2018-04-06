@@ -1,8 +1,8 @@
 # File definitions
 
 share_action = files('ShareAction/share-action.vala',
-	'ShareAction/share-action-spot.vala',
-	'ShareAction/share-action-announcement.vala')
+    'ShareAction/share-action-spot.vala',
+    'ShareAction/share-action-announcement.vala')
 radio_frequency = files('Cluster/radio-frequency.vala')
 
 
@@ -17,13 +17,10 @@ vala_sources = [
     'Cluster/radio-band.vala',
     'Cluster/band-filter.vala',
     'Cluster/dx-clusters.vala',
-	 radio_frequency,
+    radio_frequency,
     'Parsers/iparsable.vala',
     'Parsers/parser-console.vala',
-	 share_action,
-    #'ShareAction/share-action.vala',
-    #'ShareAction/share-action-spot.vala',
-    #'ShareAction/share-action-announcement.vala',
+    share_action,
     'Widgets/MainWindow/main-window.vala',
     'Widgets/FilterWindow/filter-window.vala',
     'Widgets/SpotWindow/spot-window.vala',
@@ -39,10 +36,10 @@ vala_args = [
 ]
 
 executable('gdx',
-                     vala_sources,
-                     resources,
-                     c_args: c_args,
-                     vala_args: vala_args,
-                     install: true,
-                     dependencies : [glib, gobject, gio, gee, gtk, posix])
+            vala_sources,
+            resources,
+            c_args: c_args,
+            vala_args: vala_args,
+            install: true,
+            dependencies : [glib, gobject, gio, gee, gtk, posix])
 
