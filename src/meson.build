@@ -46,36 +46,3 @@ executable('gdx',
                      install: true,
                      dependencies : [glib, gobject, gio, gee, gtk, posix])
 
-# Unit tests
-
-#test_radio_frequency_sources = [
-#    'tests/test_radio_frequency.vala',
-#    'Cluster/radio-frequency.vala',
-#]
-
-#test1 = executable('test1',
-#                     test_radio_frequency_sources,
-#                     resources,
-#                     c_args: c_args,
-#                     vala_args: vala_args,
-#                     install: false,
-#                     dependencies : [glib, gobject, gio, gee, gtk, posix])
-
-#test('Test RadioFrequency', test1)
-
-#test_share_action_sources = [
-#    'tests/test-share-action.vala',
-#    'ShareAction/share-action.vala',
-#    'ShareAction/share-action-spot.vala',
-#    'ShareAction/share-action-announcement.vala',
-#]
-
-#test2 = executable('test2',
-#                     test_share_action_sources,
-#                     resources,
-#                     c_args: c_args,
-#                     vala_args: vala_args,
-#                     install: false,
-#                     dependencies : [glib, gobject, gio, gee, gtk, posix])
-
-#test('Test ShareActions', test2)
