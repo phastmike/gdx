@@ -20,9 +20,8 @@ public class RadioBand : Object {
         this.end = end;
     }
 
-    public bool frequency_belongs_to_band (RadioFrequency freq) {
+    public bool contains (RadioFrequency freq) {
         double f = freq.get_frequency ();
-
         return f >= begin.get_frequency ()  && f <= end.get_frequency ();
     } 
 }

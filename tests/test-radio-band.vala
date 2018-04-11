@@ -10,7 +10,7 @@ using GLib;
 
 public int main (string args[]) {
     var band = new RadioBand ("20m", new RadioFrequency (14000.0), new RadioFrequency(14350.0));
-    assert (band.frequency_belongs_to_band (new RadioFrequency (14200.0)) == true);
+    assert (band.contains (new RadioFrequency (14200.0)) == true);
 
     return 0;
 }
