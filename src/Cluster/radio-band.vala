@@ -14,8 +14,15 @@ public class RadioBand : Object {
     RadioFrequency end;
 
     public RadioBand (string name, RadioFrequency begin, RadioFrequency end) {
+        // FIXME: Check for freq begin < freq end!
         this.name = name;
         this.begin = begin;
         this.end = end;
     }
+
+    public bool frequency_belongs_to_band (RadioFrequency freq) {
+        double f = freq.get_frequency ();
+
+        return f >= begin.get_frequency ()  && f <= end.get_frequency ();
+    } 
 }

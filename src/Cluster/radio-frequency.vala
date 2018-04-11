@@ -37,4 +37,8 @@ public class RadioFrequency : Object {
     public string to_string () {
         return kHz.to_string ();
     }
+
+    public double get_frequency () {
+        return kHz;
+    }
 }

@@ -3,12 +3,10 @@
 /*
  * band-filter.vala
  *
- * Radio band
- *
  * José Miguel Fonte
  */
 
- public class BandFilter : Object {
+public class BandFilter : Object {
     Type type;
     bool status;
     public RadioBand band;
@@ -23,4 +21,5 @@
         this.status = status;
         this.type = type;
     }
+
  }
