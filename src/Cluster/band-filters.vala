@@ -9,6 +9,15 @@
 using Gee;
 
 public class BandFilters : ArrayList<BandFilter> {
+    public bool enabled = true;
 
+    public bool check_frequency (RadioFrequency freq) {
+        foreach (var bf in this) {
+            if (bf.enabled && bf.filter (freq)) {
+                return true; 
+            }
+        }
+        return (false);
+    }
     
 }

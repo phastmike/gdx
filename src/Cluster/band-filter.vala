@@ -7,8 +7,8 @@
  */
 
 public class BandFilter : Object {
-    Type type;
-    bool enabled;
+    public Type type;
+    public bool enabled;
     public RadioBand band;
 
     public enum Type {

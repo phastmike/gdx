@@ -22,14 +22,7 @@ public int main (string args[]) {
     filters.add (filter2);
     filters.add (filter3);
 
-    var result = false;
-    foreach (var filter in filters) {
-        if (filter.filter (new RadioFrequency (21250.0)) == true) {
-            result = true;
-        }
-    }
-
-    assert (result == false);
+    assert (filters.check_frequency (new RadioFrequency (21250.0)) == false);
 
     return 0;
 }
