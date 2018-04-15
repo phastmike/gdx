@@ -5,6 +5,8 @@ share_action = files('ShareAction/share-action.vala',
     'ShareAction/share-action-announcement.vala')
 radio_frequency = files('Cluster/radio-frequency.vala')
 radio_band = files('Cluster/radio-band.vala')
+band_filter = files ('Cluster/band-filter.vala')
+band_filters = files ('Cluster/band-filters.vala')
 
 
 # Project sources
@@ -17,8 +19,8 @@ vala_sources = [
     'Cluster/dx-cluster.vala',
 	 radio_band,
     #'Cluster/radio-band.vala',
-    'Cluster/band-filter.vala',
-    'Cluster/band-filters.vala',
+    band_filter,
+	 band_filters,
     'Cluster/dx-clusters.vala',
     radio_frequency,
     'Parsers/iparsable.vala',

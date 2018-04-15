@@ -9,12 +9,11 @@
  */
 
 public class RadioBand : Object {
-    public string name;
-    RadioFrequency begin;
-    RadioFrequency end;
+    public string name {construct set; get;}
+    public RadioFrequency begin {construct set; get;}
+    public RadioFrequency end {construct set; get;}
 
-    public RadioBand (string name, RadioFrequency begin, RadioFrequency end) {
-        // FIXME: Check for freq begin < freq end!
+    public RadioBand (string name, RadioFrequency begin, RadioFrequency end) requires (begin.get_frequency () < end.get_frequency ()) {
         this.name = name;
         this.begin = begin;
         this.end = end;

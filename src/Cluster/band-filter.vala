@@ -8,7 +8,7 @@
 
 public class BandFilter : Object {
     Type type;
-    bool status;
+    bool enabled;
     public RadioBand band;
 
     public enum Type {
@@ -16,10 +16,13 @@ public class BandFilter : Object {
         REJECT
     }
 
-    public BandFilter (RadioBand band, bool status = true, Type type = Type.ACCEPT) {
+    public BandFilter (RadioBand band, bool enabled = true, Type type = Type.ACCEPT) {
         this.band = band;
-        this.status = status;
+        this.enabled = enabled;
         this.type = type;
     }
 
+    public bool filter (RadioFrequency frequency) {
+        return this.band.contains (frequency);
+    }
  }
