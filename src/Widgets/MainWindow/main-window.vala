@@ -107,7 +107,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (true);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (false);
-            app_notification.set_message ("You are now connected");
+            app_notification.set_message ("You are now connected to " + connector.last_host_address);
             app_notification.set_reveal_child (true);
         });
 

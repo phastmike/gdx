@@ -14,7 +14,7 @@ public class Connector : Object {
     private SocketConnection? connection = null;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
-    private string? last_host_address = null;
+    public string? last_host_address = null;
     private uint16 last_host_port = 0;
     private Cancellable? cancellable;
     public bool auto_reconnect  {set; get; default = false;}
