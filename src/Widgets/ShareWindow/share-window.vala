@@ -45,7 +45,7 @@ public class ShareWindow : Gtk.Window {
     public signal void share_action (ShareAction action);
 
     public ShareWindow () {
-        Object (default_width: 400, default_height: 200);
+        Object (default_width: 440, default_height: 220);
         set_titlebar (headerbar);
         setup_callbacks ();
     }
@@ -105,10 +105,8 @@ public class ShareWindow : Gtk.Window {
             var widget = stack1.get_visible_child ();
             if (widget == announce_grid) {
                 view = View.ANNOUNCE; 
-                print ("ANNOUNCE\n");
             } else if (widget == spot_grid) {
                 view = View.SPOT;
-                print ("SPOTS\n");
             }
 
             check_enable_share ();
