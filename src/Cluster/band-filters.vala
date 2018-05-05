@@ -86,7 +86,7 @@ public class FilterBuilder : BandFilters {
             new RadioFrequency (1240000.0),
             new RadioFrequency (1300000.0))));
         add(new BandFilter (
-            new RadioBand ("13cm",
+            new RadioBand ("12cm",
             new RadioFrequency (2300000.0),
             new RadioFrequency (2450000.0))));
     }
