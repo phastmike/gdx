@@ -18,6 +18,8 @@ public class AppNotification: Gtk.Revealer {
     public AppNotification () {
         timeout_seconds = 10;
 
+        label.set_use_markup (true);
+
         close_button.clicked.connect (() => {
             set_reveal_child (false);
             Source.remove (timeout_id);
@@ -38,6 +40,6 @@ public class AppNotification: Gtk.Revealer {
     }
 
     public void set_message (string message) {
-        label.set_text (message);
+        label.set_markup ("<b>" + message + "</b>");
     }
 } 
