@@ -71,6 +71,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         UTC
     }
 
+    // IMPORTANT:
     // Main Window needs to have an application set before its shown
     // otherwise menu-app wont be set!
     // Thats why we need to set the application at construct!
