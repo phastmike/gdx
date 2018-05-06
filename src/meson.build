@@ -29,7 +29,6 @@ vala_sources = [
     share_action,
     'Widgets/MainWindow/main-window.vala',
     'Widgets/FilterWindow/filter-window.vala',
-    'Widgets/SpotWindow/spot-window.vala',
     'Widgets/ShareWindow/share-window.vala',
     'Widgets/SettingsWindow/settings-window.vala',
     'Widgets/AppNotification/app-notification.vala',
