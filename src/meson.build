@@ -1,12 +1,13 @@
 # File definitions
 
+dx_spot = files ('Cluster/dx-spot.vala')
 share_action = files('ShareAction/share-action.vala',
     'ShareAction/share-action-spot.vala',
     'ShareAction/share-action-announcement.vala')
-radio_frequency = files('Cluster/radio-frequency.vala')
 radio_band = files('Cluster/radio-band.vala')
 band_filter = files ('Cluster/band-filter.vala')
 band_filters = files ('Cluster/band-filters.vala')
+radio_frequency = files('Cluster/radio-frequency.vala')
 
 
 # Project sources

@@ -1,5 +1,6 @@
 # Tests are in folders
 
+subdir('dx-spot')
 subdir('radio-band')
 subdir('band-filter')
 subdir('share-action')
