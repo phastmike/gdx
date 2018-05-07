@@ -124,7 +124,9 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         connector.received_message.connect ((text) => {
             // received text from connector is waiting for \r\n which login: does not send!
-            if (text.has_prefix ("login: ") || text.has_prefix ("Please enter your call: ")) {
+            // Now connector finds login: and sends it to handler.
+            // FIXME: contains method may be misleading...
+            if (text.contains ("login:")) {
                 connector.send (settings.user_callsign);
             }
 

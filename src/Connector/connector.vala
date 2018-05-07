@@ -78,7 +78,8 @@ public class Connector : Object {
             stream_input.set_newline_type (DataStreamNewlineType.CR_LF);
 
             connection_established ();
-            receive_async.begin ();
+            receive_upto_login.begin ();
+            //receive_async.begin ();
 
         } catch (Error e) {
             connection_failed ();
@@ -106,6 +107,39 @@ public class Connector : Object {
     public bool reconnect () {
         connect_async (last_host_address, last_host_port);
         return false;
+    }
+
+    private async void receive_upto_login () {
+        bool found_login = false;
+        string? message= null;
+        while (cancellable.is_cancelled () == false && connection != null && !found_login) {
+            try {
+                message = yield stream_input.read_upto_async (":", 1, Priority.DEFAULT, cancellable, null);
+                if (message != null) {
+                    stream_input.read_byte ();
+                    message += ":";
+                    if (message.length >= 5) {
+                        var test_login = message[-6:message.length];
+                        if (test_login == "login:") {
+                            found_login = true;
+                            stream_input.read_byte ();
+                            message += " ";
+                        }
+                    }
+                    message_handler (message);
+                } else {
+                    connection_lost ();
+                }
+
+                if (connection == null) {
+                    cancellable.cancel ();
+                }
+            } catch (IOError e) {
+                stderr.printf ("%s\n", e.message);
+            }
+        }
+
+        if (found_login) receive_async.begin ();
     }
 
     private async void receive_async () {
