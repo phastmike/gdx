@@ -58,6 +58,13 @@ public class ParserConsole : Object, IParsable {
             utc = "%c%c:%c%c".printf (utc[0], utc[1], utc[2], utc[3]);
         }
 
-        rcvd_spot (new DxSpot.with_data (spotter, freq, dx, comment, utc, qth));
+        rcvd_spot (new DxSpotBuilder ().
+            add_spotter (spotter).
+            add_frequency (freq).
+            add_dx (dx).
+            add_comment (comment).
+            add_utc (utc).
+            add_qth (qth).
+            build ());
     }
 } 
