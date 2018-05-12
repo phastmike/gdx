@@ -306,11 +306,14 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         store = liststore_spots;
         store.append (out iter);
-        store.@set (iter, SpotsViewColumn.SPOTTER, spotter);
-        store.@set (iter, SpotsViewColumn.FREQ, freq);
-        store.@set (iter, SpotsViewColumn.DX, dx);
-        store.@set (iter, SpotsViewColumn.COMMENT, comment);
-        store.@set (iter, SpotsViewColumn.UTC, utc);
+        store.@set (
+            iter,
+            SpotsViewColumn.SPOTTER, spotter,
+            SpotsViewColumn.FREQ, freq,
+            SpotsViewColumn.DX, dx,
+            SpotsViewColumn.COMMENT, comment,
+            SpotsViewColumn.UTC, utc
+        );
 
         if (!searchbar.search_mode_enabled && !scrolled_spots_moved) {
             var path = new Gtk.TreePath.from_string (store.get_string_from_iter(iter));
