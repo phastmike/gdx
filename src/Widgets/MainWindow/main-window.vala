@@ -63,7 +63,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         CONSOLE
     }
 
-    private enum Col{
+    private enum SpotsViewColumn{
         SPOTTER,
         FREQ,
         DX,
@@ -252,7 +252,7 @@ public class MainWindow : Gtk.ApplicationWindow {
                 return true;
             }
 
-            model.get (iter, Col.DX, out dx);
+            model.get (iter, SpotsViewColumn.DX, out dx);
 
             if (dx == null) return false;
 
@@ -306,7 +306,11 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         store = liststore_spots;
         store.append (out iter);
-        store.@set (iter, Col.SPOTTER, spotter, Col.FREQ, freq, Col.DX, dx, Col.COMMENT, comment, Col.UTC, utc);
+        store.@set (iter, SpotsViewColumn.SPOTTER, spotter);
+        store.@set (iter, SpotsViewColumn.FREQ, freq);
+        store.@set (iter, SpotsViewColumn.DX, dx);
+        store.@set (iter, SpotsViewColumn.COMMENT, comment);
+        store.@set (iter, SpotsViewColumn.UTC, utc);
 
         if (!searchbar.search_mode_enabled && !scrolled_spots_moved) {
             var path = new Gtk.TreePath.from_string (store.get_string_from_iter(iter));
