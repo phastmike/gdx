@@ -163,8 +163,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             });
         });
 
-        parser.rcvd_spot.connect ((s) => {
-            add_spot_to_view (s.spotter, s.freq, s.dx, s.comment, s.utc);
+        parser.rcvd_spot.connect ((spot) => {
+            add_spot_to_view (spot);
         });
 
         show_all ();
@@ -300,7 +300,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
     }
 
-    public void add_spot_to_view (string spotter, string freq, string dx, string comment, string utc) {
+    public void add_spot_to_view (DxSpot spot) {
         Gtk.TreeIter iter;
         Gtk.ListStore store;
 
@@ -308,11 +308,11 @@ public class MainWindow : Gtk.ApplicationWindow {
         store.append (out iter);
         store.@set (
             iter,
-            SpotsViewColumn.SPOTTER, spotter,
-            SpotsViewColumn.FREQ, freq,
-            SpotsViewColumn.DX, dx,
-            SpotsViewColumn.COMMENT, comment,
-            SpotsViewColumn.UTC, utc
+            SpotsViewColumn.SPOTTER, spot.spotter,
+            SpotsViewColumn.FREQ, spot.freq,
+            SpotsViewColumn.DX, spot.dx,
+            SpotsViewColumn.COMMENT, spot.comment,
+            SpotsViewColumn.UTC, spot.utc
         );
 
         if (!searchbar.search_mode_enabled && !scrolled_spots_moved) {
