@@ -41,7 +41,8 @@ public class Connector : Object {
         connection_failed.connect (()=> {
             debug ("signal::connection_failed");
             if (auto_reconnect) {
-                Idle.add(reconnect);
+                reconnect ();
+                //Idle.add(reconnect);
             }
         });
 
@@ -50,6 +51,7 @@ public class Connector : Object {
             disconnect_async ();
             if (auto_reconnect) {
                 reconnect ();
+                //Idle.add(reconnect);
             }
         });
 

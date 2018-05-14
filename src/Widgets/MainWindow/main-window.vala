@@ -126,15 +126,18 @@ public class MainWindow : Gtk.ApplicationWindow {
             // received text from connector is waiting for \r\n which login: does not send!
             // Now connector finds login: and sends it to handler.
             // FIXME: contains method may be misleading...
+
+            /*
             if (text.contains ("login:")) {
                 connector.send (settings.user_callsign);
             }
+            */
 
             //if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
             if (IParsable.text_get_type (text) == IParsable.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
                 if (!settings.filter_spots_from_console) {
-                    add_text_to_console (text);
+                    add_text_to_console (text, true);
                 }
             } else if (IParsable.text_get_type (text) == IParsable.MsgType.PROMPT) {
                 //entry_commands.set_text (text);
@@ -142,9 +145,14 @@ public class MainWindow : Gtk.ApplicationWindow {
                 if (split.length > 2) {
                     // got node call
                 }
-                add_text_to_console (text);
+                add_text_to_console (text, true);
             } else {
-                add_text_to_console (text);
+                if (text.contains ("login:")) {
+                    connector.send (settings.user_callsign);
+                    add_text_to_console (text, false);
+                } else {
+                    add_text_to_console (text, true);
+                }
             }
         });
 
@@ -321,14 +329,16 @@ public class MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    public void add_text_to_console (string text) {
+    public void add_text_to_console (string text, bool add_newline) {
         Gtk.TextIter iter;
 
         textbuffer_console.get_end_iter (out iter);
-        textbuffer_console.insert (ref iter, "\n", 1);
+        if (add_newline) {
+            textbuffer_console.insert (ref iter, "\n", 1);
+        }
         textbuffer_console.insert (ref iter, text, text.length);
 
-        if (view == View.SPOTS) {
+        if (view != View.CONSOLE) {
             set_console_need_attention (true);
         }
 
@@ -339,9 +349,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             iter.set_line_index (0);
             var mark = textbuffer_console.get_mark ("scroll");
             textbuffer_console.move_mark (mark, iter);
-            //if (!scrolled_console_moved) {
-                textview_console.scroll_mark_onscreen (mark);
-            //}
+            textview_console.scroll_mark_onscreen (mark);
             return false;
         });
     }
