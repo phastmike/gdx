@@ -112,6 +112,17 @@ public class MainWindow : Gtk.ApplicationWindow {
             app_notification.set_reveal_child (true);
         });
 
+        connector.connection_failed.connect (() => {
+            button_share.sensitive = false;
+            var action = (SimpleAction) lookup_action ("disconnect");
+            action.set_enabled (false);
+            action = (SimpleAction) lookup_action ("connect");
+            action.set_enabled (true);
+            app_notification.set_message ("Connection to %s failed".printf (connector.last_host_address));
+            app_notification.set_reveal_child (true);
+
+        });
+
         connector.disconnected.connect (() => {
             button_share.sensitive = false;
             var action = (SimpleAction) lookup_action ("disconnect");
