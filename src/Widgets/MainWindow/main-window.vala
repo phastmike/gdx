@@ -97,12 +97,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         connection_popover.set_relative_to (connection_menu_button);
         searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
-        if (settings.auto_connect_startup) {
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
-        }
 
         connector.connection_established.connect (() => {
-            //connector.send (settings.user_callsign);
             button_share.sensitive = true;
             var action = (SimpleAction) lookup_action ("disconnect");
             action.set_enabled (true);
@@ -144,7 +140,6 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
             */
 
-            //if (ParserConsole.text_get_type (text) == ParserConsole.MsgType.DX_REAL_SPOT) {
             if (IParsable.text_get_type (text) == IParsable.MsgType.DX_REAL_SPOT) {
                 parser.parse_spot (text);
                 if (!settings.filter_spots_from_console) {
@@ -166,6 +161,10 @@ public class MainWindow : Gtk.ApplicationWindow {
                 }
             }
         });
+
+        if (settings.auto_connect_startup) {
+            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+        }
 
         entry_commands.activate.connect (() => {
             connector.send (entry_commands.get_text ());
