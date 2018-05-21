@@ -8,9 +8,8 @@
  * Jose Miguel Fonte
  */
 
-public class Connector : Object {
+public class Connector : SocketClient {
     private Socket socket;
-    private SocketClient client;
     private SocketConnection? connection = null;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
@@ -26,10 +25,9 @@ public class Connector : Object {
     public signal void received_message (string text);
 
     public Connector () {
-        client = new SocketClient ();
         cancellable = new Cancellable ();
 
-        client.event.connect ((e, c, ios) => {
+        this.event.connect ((e, c, ios) => {
             string dmsg;
 
             dmsg = "[%s]: ".printf (new DateTime.now_local ().format ("%F %T").to_string ());
@@ -41,7 +39,7 @@ public class Connector : Object {
         connection_failed.connect (()=> {
             debug ("signal::connection_failed");
             if (auto_reconnect) {
-                reconnect ();
+                reconnect.begin ();
                 //Idle.add(reconnect);
             }
         });
@@ -50,7 +48,7 @@ public class Connector : Object {
             debug ("signal::connection_lost");
             disconnect_async ();
             if (auto_reconnect) {
-                reconnect ();
+                reconnect.begin ();
                 //Idle.add(reconnect);
             }
         });
@@ -60,7 +58,7 @@ public class Connector : Object {
         });
     }
     
-    public async void connect_async (string host, uint16 port) {
+    public new async void connect_async (string host, uint16 port) {
         if (connection != null) {
             disconnect_async ();
         }
@@ -71,7 +69,7 @@ public class Connector : Object {
         cancellable.reset ();
         
         try {
-            connection = yield client.connect_to_host_async (host, port, this.cancellable);
+            connection = yield this.connect_to_host_async (host, port, this.cancellable);
             socket = connection.get_socket ();
             socket.set_timeout (0); 
             socket.set_keepalive (true);
@@ -106,8 +104,8 @@ public class Connector : Object {
         disconnected ();
     }
 
-    public bool reconnect () {
-        connect_async (last_host_address, last_host_port);
+    public async bool reconnect () {
+        yield connect_async (last_host_address, last_host_port);
         return false;
     }
 

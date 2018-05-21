@@ -163,7 +163,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         if (settings.auto_connect_startup) {
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+            connector.connect_async.begin (settings.default_cluster_address, (int16) settings.default_cluster_port);
         }
 
         entry_commands.activate.connect (() => {
@@ -192,7 +192,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         var connect_action = new GLib.SimpleAction ("connect", null);
         connect_action.activate.connect (() => {
             var settings = Settings.instance ();
-            connector.connect_async (settings.default_cluster_address, (int16) settings.default_cluster_port);
+            connector.connect_async.begin (settings.default_cluster_address, (int16) settings.default_cluster_port);
         });
         add_action (connect_action);
 
