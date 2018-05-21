@@ -40,7 +40,6 @@ public class Connector : SocketClient {
             debug ("signal::connection_failed");
             if (auto_reconnect) {
                 reconnect.begin ();
-                //Idle.add(reconnect);
             }
         });
 
@@ -49,7 +48,6 @@ public class Connector : SocketClient {
             disconnect_async ();
             if (auto_reconnect) {
                 reconnect.begin ();
-                //Idle.add(reconnect);
             }
         });
 
