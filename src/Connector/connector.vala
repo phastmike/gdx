@@ -76,8 +76,12 @@ public class Connector : SocketClient {
             stream_input.set_newline_type (DataStreamNewlineType.CR_LF);
 
             connection_established ();
-            receive_upto_login.begin ();
-            //receive_async.begin ();
+
+            receive_upto_login.begin ((obj,res) => {
+                if (receive_upto_login.end (res)) {
+                    receive_async.begin ();
+                }
+            });
 
         } catch (Error e) {
             connection_failed ();
@@ -107,7 +111,7 @@ public class Connector : SocketClient {
         return false;
     }
 
-    private async void receive_upto_login () {
+    private async bool receive_upto_login () {
         bool found_login = false;
         string? message= null;
         while (cancellable.is_cancelled () == false && connection != null && !found_login) {
@@ -137,7 +141,7 @@ public class Connector : SocketClient {
             }
         }
 
-        if (found_login) receive_async.begin ();
+        return found_login;
     }
 
     private async void receive_async () {
