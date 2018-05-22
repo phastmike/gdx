@@ -39,7 +39,7 @@ public class Connector : SocketClient {
         connection_failed.connect (()=> {
             debug ("Connector::connection_failed");
             if (auto_reconnect) {
-                reconnect.begin ();
+                reconnect_async.begin ();
             }
         });
 
@@ -47,7 +47,7 @@ public class Connector : SocketClient {
             debug ("Connector::connection_lost");
             disconnect_async ();
             if (auto_reconnect) {
-                reconnect.begin ();
+                reconnect_async.begin ();
             }
         });
 
@@ -102,7 +102,7 @@ public class Connector : SocketClient {
         disconnected ();
     }
 
-    public async bool reconnect () {
+    public async bool reconnect_async () {
         yield connect_async (last_host_address, last_host_port);
         return false;
     }
