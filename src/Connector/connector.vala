@@ -37,14 +37,14 @@ public class Connector : SocketClient {
         });
 
         connection_failed.connect (()=> {
-            debug ("signal::connection_failed");
+            debug ("Connector::connection_failed");
             if (auto_reconnect) {
                 reconnect.begin ();
             }
         });
 
         connection_lost.connect (()=> {
-            debug ("signal::connection_lost");
+            debug ("Connector::connection_lost");
             disconnect_async ();
             if (auto_reconnect) {
                 reconnect.begin ();
@@ -52,7 +52,7 @@ public class Connector : SocketClient {
         });
 
         connection_established.connect (() => {
-            debug ("signal::connection_established");
+            debug ("Connector::connection_established");
         });
     }
     
@@ -85,18 +85,18 @@ public class Connector : SocketClient {
     }
 
     public void disconnect_async () requires (connection != null) {
-        debug ("signal::disconnect_async");
+        debug ("Connector::disconnect_async");
         cancellable.cancel ();
         try {
             connection.close ();
         } catch (IOError e) {
-            debug ("iostream close error::%s\n",e.message);
+            debug ("Connector::iostream close error::%s\n",e.message);
         }
 
         try {
             socket.close ();
         } catch (Error e) {
-            debug ("iostream close error::%s\n",e.message);
+            debug ("Connector::iostream close error::%s\n",e.message);
         }
         connection = null;
         disconnected ();
