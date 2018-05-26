@@ -9,3 +9,4 @@ build/*
 *.autosave
 .buildconfig
 data/ui/#*.*#
+doc/*
