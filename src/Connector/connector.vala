@@ -82,7 +82,6 @@ public class Connector : SocketClient {
                     receive_async.begin ();
                 }
             });
-
         } catch (Error e) {
             connection_failed ();
         }
