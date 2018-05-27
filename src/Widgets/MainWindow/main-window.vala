@@ -13,6 +13,8 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     public Gtk.Button button_share;
     [GtkChild]
+    public Gtk.Button button_go_bottom;
+    [GtkChild]
     private Gtk.Stack stack_main;
     [GtkChild]
     public Gtk.Entry entry_commands;
@@ -52,8 +54,9 @@ public class MainWindow : Gtk.ApplicationWindow {
     private Connector connector;
     private ParserConsole parser;
     private AppNotification app_notification;
+    private Gtk.TreeIter last_spot_iter;
 
-    private bool scrolled_spots_moved = false;
+    public bool scrolled_spots_moved {set;get;default = false;}
     private bool scrolled_console_moved = false;
 
     public signal void share_clicked ();
@@ -97,6 +100,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         connection_popover.set_relative_to (connection_menu_button);
         searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
+        //button_go_bottom.bind_property("sensitive", this, "scrolled-spots-moved", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+        this.bind_property("scrolled-spots-moved", button_go_bottom, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
         connector.connection_established.connect (() => {
             button_share.sensitive = true;
@@ -293,6 +298,14 @@ public class MainWindow : Gtk.ApplicationWindow {
     }
 
     private void setup_auto_scroll_callbacks () {
+        button_go_bottom.clicked.connect (() => {
+            Gtk.TreeIter iter = last_spot_iter;
+            Gtk.ListStore store = liststore_spots;
+            var path = new Gtk.TreePath.from_string (store.get_string_from_iter(iter));
+            treeview_spots.scroll_to_cell (path, null, true, 0, 0);
+        });
+
+
         var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
 
         vscrollbar_spots.value_changed.connect ( () => {
@@ -324,6 +337,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         store = liststore_spots;
         store.append (out iter);
+        last_spot_iter = iter;
         store.@set (
             iter,
             SpotsViewColumn.SPOTTER, spot.spotter,

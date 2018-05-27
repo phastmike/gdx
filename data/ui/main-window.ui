@@ -353,6 +353,32 @@
       </object>
     </child>
     <child>
+      <object class="GtkButton" id="button_go_bottom">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="sensitive">False</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">go-bottom-symbolic.symbolic</property>
+            <property name="use_fallback">True</property>
+            <style>
+              <class name="image-button"/>
+            </style>
+          </object>
+        </child>
+        <style>
+          <class name="suggested-action"/>
+        </style>
+      </object>
+      <packing>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
       <object class="GtkMenuButton" id="connection_menu_button">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
@@ -395,7 +421,7 @@
         </style>
       </object>
       <packing>
-        <property name="position">1</property>
+        <property name="position">2</property>
       </packing>
     </child>
     <child type="title">
