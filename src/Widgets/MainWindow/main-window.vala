@@ -100,27 +100,26 @@ public class MainWindow : Gtk.ApplicationWindow {
         connection_popover.set_relative_to (connection_menu_button);
         searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
-        //button_go_bottom.bind_property("sensitive", this, "scrolled-spots-moved", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
-        this.bind_property("scrolled-spots-moved", button_go_bottom, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+        this.bind_property("scrolled-spots-moved", button_go_bottom, "sensitive", BindingFlags.SYNC_CREATE);
 
         connector.connection_established.connect (() => {
             button_share.sensitive = true;
+            entry_commands.sensitive = true;
             var action = (SimpleAction) lookup_action ("disconnect");
             action.set_enabled (true);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (false);
             app_notification.set_message ("You are now connected to " + connector.last_host_address);
-            app_notification.set_reveal_child (true);
         });
 
-        connector.connection_failed.connect (() => {
+        connector.connection_failed.connect ((err_msg) => {
             button_share.sensitive = false;
+            entry_commands.sensitive = false;
             var action = (SimpleAction) lookup_action ("disconnect");
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
-            app_notification.set_message ("Connection to %s failed".printf (connector.last_host_address));
-            app_notification.set_reveal_child (true);
+            app_notification.set_message ("Connection to %s failed\n<small>%s</small>".printf (connector.last_host_address, err_msg));
 
         });
 
@@ -131,7 +130,6 @@ public class MainWindow : Gtk.ApplicationWindow {
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
             app_notification.set_message ("You are now disconnected");
-            app_notification.set_reveal_child (true);
         });
 
         connector.received_message.connect ((text) => {

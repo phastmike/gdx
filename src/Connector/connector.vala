@@ -20,7 +20,7 @@ public class Connector : SocketClient {
      
     public signal void disconnected ();
     public signal void connection_lost ();
-    public signal void connection_failed ();
+    public signal void connection_failed (string err_msg);
     public signal void connection_established ();
     public signal void received_message (string text);
 
@@ -36,7 +36,7 @@ public class Connector : SocketClient {
             debug (dmsg);
         });
 
-        connection_failed.connect (()=> {
+        connection_failed.connect ((err_msg)=> {
             debug ("Connector::connection_failed");
             if (auto_reconnect) {
                 reconnect_async.begin ();
@@ -83,7 +83,7 @@ public class Connector : SocketClient {
                 }
             });
         } catch (Error e) {
-            connection_failed ();
+            connection_failed (e.message);
         }
     }
 

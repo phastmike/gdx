@@ -41,5 +41,6 @@ public class AppNotification: Gtk.Revealer {
 
     public void set_message (string message) {
         label.set_markup ("<b>" + message + "</b>");
+        set_reveal_child (true);
     }
 } 
