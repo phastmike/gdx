@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.1 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.18"/>
   <template class="AppNotification" parent="GtkRevealer">
@@ -34,6 +34,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkImage" id="image-button">

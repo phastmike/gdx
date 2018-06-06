@@ -67,6 +67,7 @@
                           <object class="GtkEntry" id="entry_callsign">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="hexpand">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -161,6 +162,7 @@ You must be a legally licensed operator.</property>
                           <object class="GtkEntry" id="entry_cluster_name">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="hexpand">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
