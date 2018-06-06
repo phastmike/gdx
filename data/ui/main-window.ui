@@ -337,6 +337,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Share a DX or announcement</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
@@ -357,6 +358,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Go to the last DX</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkImage">
