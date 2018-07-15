@@ -78,7 +78,7 @@ public class Settings : Object {
         }
 
         set {
-            if (value >= 0 && value <= uint16.MAX) {
+            if (value >= 1 && value <= uint16.MAX) {
                 _default_cluster_port = value;
                 settings.set_int ("default-cluster-port", value);
             }

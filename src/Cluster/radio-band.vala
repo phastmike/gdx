@@ -21,6 +21,6 @@ public class RadioBand : Object {
 
     public bool contains (RadioFrequency freq) {
         double f = freq.get_frequency ();
-        return f >= begin.get_frequency ()  && f <= end.get_frequency ();
+        return f >= begin.get_frequency () && f <= end.get_frequency ();
     } 
 }
