@@ -22,10 +22,13 @@ public class ParserConsole : Object, IParsable {
 
         int length = split.length;
 
+        string msgspot = "";
+
         foreach (string token in split) {
-            print ("[%s]  ", token);
+            msgspot += "[%s] ".printf (token);
         }
-        print ("\n");
+
+        message ("%s", msgspot);
 
         if (length < 6) return;
 
@@ -68,3 +71,4 @@ public class ParserConsole : Object, IParsable {
             build ());
     }
 } 
+
