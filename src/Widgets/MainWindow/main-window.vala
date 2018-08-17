@@ -109,7 +109,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (true);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (false);
-            app_notification.set_message ("You are now connected to " + connector.last_host_address);
+            app_notification.present ("You are now connected to " + connector.last_host_address);
         });
 
         connector.connection_failed.connect ((err_msg) => {
@@ -119,7 +119,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
-            app_notification.set_message ("Connection to %s failed\n<small>%s</small>".printf (connector.last_host_address, err_msg));
+            app_notification.present ("Connection to %s failed\n<small>%s</small>".printf (connector.last_host_address, err_msg));
 
         });
 
@@ -129,7 +129,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
-            app_notification.set_message ("You are now disconnected");
+            app_notification.present ("You are now disconnected");
         });
 
         connector.received_message.connect ((text) => {

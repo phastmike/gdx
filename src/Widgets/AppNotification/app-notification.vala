@@ -26,12 +26,12 @@ public class AppNotification: Gtk.Revealer {
         show_all ();
     }
 
-    public void set_message (string message) {
+    public void present (string message) {
         label.set_markup ("<b>" + message + "</b>");
         reveal ();
     }
 
-    public void reveal () {
+    private void reveal () {
         base.set_reveal_child (true);
         timeout_id = Timeout.add_seconds (timeout_seconds, () => {
             base.set_reveal_child (false);
@@ -39,7 +39,7 @@ public class AppNotification: Gtk.Revealer {
         });
     }
 
-    public void dismiss () {
+    private void dismiss () {
         base.set_reveal_child (false);
         if (timeout_id != 0) {
             Source.remove (timeout_id);
