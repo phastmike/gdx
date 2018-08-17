@@ -8,39 +8,41 @@
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/app-notification.ui")]
 public class AppNotification: Gtk.Revealer {
-    private uint timeout_id;
-    public int timeout_seconds;
     [GtkChild]
     private Gtk.Label label;
     [GtkChild]
     private Gtk.Button close_button;
 
-    public AppNotification () {
-        timeout_seconds = 10;
+    private uint timeout_id;
+    public int timeout_seconds {get; set; default = 10;}
 
+    public AppNotification () {
         label.set_use_markup (true);
 
         close_button.clicked.connect (() => {
-            set_reveal_child (false);
-            Source.remove (timeout_id);
+            dismiss ();
         });
 
         show_all ();
     }
 
-    public new void set_reveal_child (bool reveal_child) {
-        base.set_reveal_child (reveal_child);
-
-        if (reveal_child == true) {
-            timeout_id = Timeout.add_seconds (timeout_seconds, () => {
-                set_reveal_child (false);
-                return false;
-            });
-        }
-    }
-
     public void set_message (string message) {
         label.set_markup ("<b>" + message + "</b>");
-        set_reveal_child (true);
+        reveal ();
+    }
+
+    public void reveal () {
+        base.set_reveal_child (true);
+        timeout_id = Timeout.add_seconds (timeout_seconds, () => {
+            base.set_reveal_child (false);
+            return Source.REMOVE;
+        });
+    }
+
+    public void dismiss () {
+        base.set_reveal_child (false);
+        if (timeout_id != 0) {
+            Source.remove (timeout_id);
+        }
     }
 } 
