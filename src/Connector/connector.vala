@@ -13,9 +13,9 @@ public class Connector : SocketClient {
     private SocketConnection? connection = null;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
-    public string? last_host_address = null;
     private uint16 last_host_port = 0;
     private Cancellable? cancellable;
+    public string? last_host_address = null;
     public bool auto_reconnect  {set; get; default = false;}
      
     public signal void disconnected ();
@@ -136,7 +136,7 @@ public class Connector : SocketClient {
                     cancellable.cancel ();
                 }
             } catch (IOError e) {
-                stderr.printf ("%s\n", e.message);
+                GLib.message ("receive_up_to_login: %s", e.message);
             }
         }
 
@@ -159,7 +159,7 @@ public class Connector : SocketClient {
                     cancellable.cancel ();
                 }
             } catch (IOError e) {
-                stderr.printf ("%s\n", e.message);
+                GLib.message ("receive_async: %s", e.message);
             }
         }
     }
