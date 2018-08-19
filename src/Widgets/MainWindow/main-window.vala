@@ -219,8 +219,8 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
         add_action (filter_action);
 
-        this.get_application ().set_accels_for_action ("win.connect", {"<control>C"});
-        this.get_application ().set_accels_for_action ("win.disconnect", {"<control>D"});
+        this.get_application ().set_accels_for_action ("win.connect", {"<Alt>C"});
+        this.get_application ().set_accels_for_action ("win.disconnect", {"<Alt>D"});
 
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/main-menu.ui");
         var menu_model = (GLib.MenuModel) builder.get_object ("main-menu");
