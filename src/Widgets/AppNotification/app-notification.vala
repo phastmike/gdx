@@ -27,6 +27,7 @@ public class AppNotification: Gtk.Revealer {
     }
 
     public void present (string message) {
+        dismiss ();
         label.set_markup ("<b>" + message + "</b>");
         reveal ();
     }
