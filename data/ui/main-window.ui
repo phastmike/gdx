@@ -181,11 +181,15 @@
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn" id="col_spots1">
+                            <property name="fixed_width">90</property>
                             <property name="title" translatable="yes">Spotter</property>
-                            <property name="expand">True</property>
                             <property name="reorderable">True</property>
                             <child>
-                              <object class="GtkCellRendererText" id="cellrenderertext6"/>
+                              <object class="GtkCellRendererText" id="cellrenderertext6">
+                                <property name="ellipsize">end</property>
+                                <property name="width_chars">8</property>
+                                <property name="max_width_chars">8</property>
+                              </object>
                               <attributes>
                                 <attribute name="text">0</attribute>
                               </attributes>
@@ -194,11 +198,14 @@
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn" id="col_freq1">
+                            <property name="fixed_width">100</property>
                             <property name="title" translatable="yes">Freq. (kHz)</property>
-                            <property name="expand">True</property>
+                            <property name="alignment">1</property>
                             <property name="reorderable">True</property>
                             <child>
-                              <object class="GtkCellRendererText" id="cellrenderertext7"/>
+                              <object class="GtkCellRendererText" id="cellrenderertext7">
+                                <property name="xalign">1</property>
+                              </object>
                               <attributes>
                                 <attribute name="text">1</attribute>
                               </attributes>
@@ -207,12 +214,15 @@
                         </child>
                         <child>
                           <object class="GtkTreeViewColumn" id="col_dx1">
+                            <property name="fixed_width">120</property>
                             <property name="title" translatable="yes">DX</property>
-                            <property name="expand">True</property>
                             <property name="reorderable">True</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext8">
+                                <property name="ellipsize">end</property>
                                 <property name="weight">600</property>
+                                <property name="width_chars">12</property>
+                                <property name="max_width_chars">12</property>
                               </object>
                               <attributes>
                                 <attribute name="text">2</attribute>
