@@ -326,6 +326,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             } else {
                 scrolled_spots_moved = false;
             }
+            treeview_spots.queue_draw ();
         });
 
         var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
@@ -338,6 +339,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             } else {
                 scrolled_console_moved = false;
             }
+            treeview_spots.queue_draw ();
         });
     }
 
