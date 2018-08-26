@@ -27,7 +27,6 @@ public class DXClusters {
             string line;
             // Read lines until end of file (null) is reached
             while ((line = dis.read_line (null)) != null) {
-                //stdout.printf ("%s\n", line);
                 string[] split = line.split (",", 0);
                 clusters.add (new DXCluster.with_data (split[0], split[1], split[2]));
                 foreach (unowned string s in split) {

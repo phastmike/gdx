@@ -13,7 +13,7 @@ public class DXCluster : Object {
     public ConnectionType connection_type;
 
     public enum Type {
-        UNKNOWN,
+        NONE,
         PACKET_CLUSTER,
         DX_SPIDER,
         AR_CLUSTER,
@@ -24,14 +24,14 @@ public class DXCluster : Object {
     }
 
     public enum ConnectionType {
-        UNKNOWN,
+        NONE,
         TELNET,
         AX25
     }
 
     construct {
-        type = Type.UNKNOWN;
-        connection_type = ConnectionType.TELNET;
+        type = Type.NONE;
+        connection_type = ConnectionType.NONE;
     }
 
     public DXCluster.with_data (string call, string address, string port) {
