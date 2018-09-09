@@ -167,6 +167,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         if (settings.auto_connect_startup) {
             connector.connect_async.begin (settings.default_cluster_address, (int16) settings.default_cluster_port);
+            //app_notification.present ("Connecting to %s...".printf (settings.default_cluster_address));
         }
 
         entry_commands.activate.connect (() => {
