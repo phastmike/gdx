@@ -307,18 +307,6 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
 
-        /*
-        vscrollbar_spots.value_changed.connect (() => {
-            var val = vscrollbar_spots.adjustment.@value;
-            var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
-            if (val != upper) {
-                scrolled_spots_moved = true;
-            } else {
-                scrolled_spots_moved = false;
-            }
-        });
-        */
-
         vscrollbar_spots.size_allocate.connect ((allocation) => {
             var val = vscrollbar_spots.adjustment.@value;
             var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
