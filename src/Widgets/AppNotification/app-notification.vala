@@ -35,7 +35,7 @@ public class AppNotification: Gtk.Revealer {
     private void reveal () {
         base.set_reveal_child (true);
         timeout_id = Timeout.add_seconds (timeout_seconds, () => {
-            base.set_reveal_child (false);
+            dismiss ();
             return Source.REMOVE;
         });
     }
@@ -44,6 +44,7 @@ public class AppNotification: Gtk.Revealer {
         base.set_reveal_child (false);
         if (timeout_id != 0) {
             Source.remove (timeout_id);
+            timeout_id = 0;
         }
     }
 } 
