@@ -87,7 +87,7 @@ public class Application : Gtk.Application {
             "license-type", Gtk.License.MIT_X11,
             "logo-icon-name", "org.ampr.ct1enq.gdx",
             "version", Application.version,
-            "comments", _("Access the Radio Amateur DX Cluster Network"),
+            "comments", _("Access the Radio Amateur DX Cluster Network\nNorthern Portugal DX Group"),
             "website", "https://github.com/phastmike/gdx",
             "website-label", "https://github.com/phastmike/gdx",
             "wrap-license", true);
