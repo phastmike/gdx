@@ -8,6 +8,7 @@
 using Gtk;
 
 public class Application : Gtk.Application {
+    public const string version = "0.1";
 
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
@@ -85,8 +86,8 @@ public class Application : Gtk.Application {
             "title", _("About Gdx"),
             "license-type", Gtk.License.MIT_X11,
             "logo-icon-name", "org.ampr.ct1enq.gdx",
-            "version", "0.1",
-            "comments", "Access the Radio Amateur DX Cluster Network",
+            "version", Application.version,
+            "comments", _("Access the Radio Amateur DX Cluster Network"),
             "website", "https://github.com/phastmike/gdx",
             "website-label", "https://github.com/phastmike/gdx",
             "wrap-license", true);

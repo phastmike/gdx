@@ -49,11 +49,11 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.MenuButton connection_menu_button;
 
-    private View view = View.SPOTS;
     private Connector connector;
     private ParserConsole parser;
-    private AppNotification app_notification;
+    private View view = View.SPOTS;
     private Gtk.TreeIter last_spot_iter;
+    private AppNotification app_notification;
 
     public bool scrolled_spots_moved {set;get;default = false;}
     private bool scrolled_console_moved = false;
