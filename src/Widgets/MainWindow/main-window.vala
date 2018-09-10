@@ -49,8 +49,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     [GtkChild]
     private Gtk.MenuButton connection_menu_button;
 
-    View view = View.SPOTS;
-
+    private View view = View.SPOTS;
     private Connector connector;
     private ParserConsole parser;
     private AppNotification app_notification;
