@@ -22,10 +22,10 @@
       <image>https://raw.githubusercontent.com/haecker-felix/gradio-appdata/master/screenshot_4.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://github.com/haecker-felix/gradio</url>
-  <url type="bugtracker">https://github.com/haecker-felix/gradio/issues</url>
-  <url type="help">https://github.com/haecker-felix/gradio/wiki</url>
-  <update_contact>haecker.felix1207@gmail.com</update_contact>
+  <url type="homepage">https://github.com/phastmike/gdx</url>
+  <url type="bugtracker">https://github.com/phastmike/gradio/gdx</url>
+  <url type="help">https://github.com/phastmike/gdx/wiki</url>
+  <update_contact>phastmike_AT_gmail.com</update_contact>
   <kudos>
     <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
