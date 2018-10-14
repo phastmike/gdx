@@ -10,11 +10,11 @@
 
 public class Connector : SocketClient {
     private Socket socket;
-    private SocketConnection? connection = null;
+    private Cancellable? cancellable;
     private DataInputStream? stream_input;
     private DataOutputStream? stream_output;
+    private SocketConnection? connection = null;
     private uint16 last_host_port = 0;
-    private Cancellable? cancellable;
     public string? last_host_address = null;
     public bool auto_reconnect  {set; get; default = false;}
      
@@ -37,14 +37,14 @@ public class Connector : SocketClient {
         });
 
         connection_failed.connect ((err_msg)=> {
-            debug ("Connector::connection_failed");
+            GLib.message ("(signal) connection_failed...");
             if (auto_reconnect) {
                 reconnect_async.begin ();
             }
         });
 
         connection_lost.connect (()=> {
-            debug ("Connector::connection_lost");
+            GLib.message ("(signal) connection_lost...");
             disconnect_async ();
             if (auto_reconnect) {
                 reconnect_async.begin ();
@@ -52,8 +52,13 @@ public class Connector : SocketClient {
         });
 
         connection_established.connect (() => {
-            debug ("Connector::connection_established");
+            GLib.message ("(signal) connection_established with %s:%d", last_host_address, last_host_port);
         });
+
+        disconnected.connect (() => {
+            GLib.message ("(signal) disconnected...");
+        });
+
     }
     
     public new async void connect_async (string host, uint16 port) {
@@ -87,27 +92,31 @@ public class Connector : SocketClient {
         }
     }
 
-    public void disconnect_async () requires (connection != null) {
-        debug ("Connector::disconnect_async");
+    public void disconnect_async () {
+        if (connection == null) {
+            return;
+        }
+
         cancellable.cancel ();
+
         try {
             connection.close ();
         } catch (IOError e) {
-            debug ("Connector::iostream close error::%s\n",e.message);
+            GLib.warning ("connection.close () error: %s", e.message);
         }
 
         try {
             socket.close ();
         } catch (Error e) {
-            debug ("Connector::iostream close error::%s\n",e.message);
+            GLib.warning ("socket.close () error: %s", e.message);
         }
+
         connection = null;
         disconnected ();
     }
 
-    public async bool reconnect_async () {
+    public async void reconnect_async () {
         yield connect_async (last_host_address, last_host_port);
-        return false;
     }
 
     private async bool receive_upto_login () {
@@ -137,6 +146,9 @@ public class Connector : SocketClient {
                 }
             } catch (IOError e) {
                 GLib.message ("receive_up_to_login: %s", e.message);
+                if (connection != null) {
+                    connection_lost ();
+                }
             }
         }
 
@@ -160,6 +172,9 @@ public class Connector : SocketClient {
                 }
             } catch (IOError e) {
                 GLib.message ("receive_async: %s", e.message);
+                if (connection != null) {
+                    connection_lost ();
+                }
             }
         }
     }
@@ -170,6 +185,7 @@ public class Connector : SocketClient {
                 connection_lost ();
             } 
         } catch (IOError e) {
+            GLib.message ("error: %s", e.message);
             connection_lost ();
         }
     }
