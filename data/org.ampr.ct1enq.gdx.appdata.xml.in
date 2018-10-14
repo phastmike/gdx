@@ -9,17 +9,11 @@
     Gdx lets you access the DXClusters network.
   </description>
   <screenshots>
-    <screenshot type="default" height="568" width="818">
-      <image>https://raw.githubusercontent.com/haecker-felix/gradio-appdata/master/screenshot_1.png</image>
+    <screenshot type="default" height="540" width="733">
+      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot1.png</image>
     </screenshot>
-    <screenshot height="568" width="818">
-      <image>https://raw.githubusercontent.com/haecker-felix/gradio-appdata/master/screenshot_2.png</image>
-    </screenshot>
-    <screenshot height="568" width="818">
-      <image>https://raw.githubusercontent.com/haecker-felix/gradio-appdata/master/screenshot_3.png</image>
-    </screenshot>
-    <screenshot height="568" width="818">
-      <image>https://raw.githubusercontent.com/haecker-felix/gradio-appdata/master/screenshot_4.png</image>
+    <screenshot type="default" height="527" width="733">
+      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot1dark.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/phastmike/gdx</url>
