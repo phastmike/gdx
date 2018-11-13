@@ -22,7 +22,7 @@ i18n.merge_file(
   po_dir: '../po/',
   type:   'xml',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'appdata')
+  install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
 # Settings Schema

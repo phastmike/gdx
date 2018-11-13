@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017-2018 José Miguel Fonte <phastmike_AT_gmail_DOT_com> -->
 <component type="desktop">
   <id>org.ampr.ct1enq.gdx.desktop</id>
-  <metadata_license>MIT</metadata_license>
+  <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <_name>Gdx</_name>
-  <_summary>DXCluster client for Radioamateurs</_summary>
+  <name>Gdx</name>
+  <summary>DXCluster client for Radioamateurs</summary>
   <description>
-    Gdx lets you access the DXClusters network.
+    <p>
+		 Gdx lets you access the DXCluster network by connecting
+		 to DXClusters via telnet. You need to be a licensed hamradio
+		 operator in order to use this application unless you use it
+		 to connect to non hamradio nodes (eg CB, PMR, etc).
+    </p>
   </description>
   <screenshots>
     <screenshot type="default" height="540" width="733">
@@ -17,9 +23,9 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/phastmike/gdx</url>
-  <url type="bugtracker">https://github.com/phastmike/gradio/gdx</url>
+  <url type="bugtracker">https://github.com/phastmike/gdx/issues</url>
   <url type="help">https://github.com/phastmike/gdx/wiki</url>
-  <update_contact>phastmike_AT_gmail.com</update_contact>
+  <update_contact>phastmike_AT_gmail_DOT_com</update_contact>
   <kudos>
     <kudo>AppMenu</kudo>
     <kudo>HiDpiIcon</kudo>
@@ -27,7 +33,7 @@
     <kudo>Notifications</kudo>
   </kudos>
   <translation type="gettext">gdx</translation>
-  <_developer_name>Jose Miguel Fonte</_developer_name>
+  <developer_name>Jose Miguel Fonte</developer_name>
   <content_rating type="oars-1.0">
     <content_attribute id="violence-cartoon">none</content_attribute>
     <content_attribute id="violence-fantasy">none</content_attribute>
@@ -54,7 +60,9 @@
 
     <release version="0.1" date="2017-10-01">
       <description>
-        <p>First version</p>
+		  <p>
+          First version. This is a test version of the application.
+		  </p>
       </description>
     </release>
 

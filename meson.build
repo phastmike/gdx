@@ -1,7 +1,7 @@
 project('gdx', ['vala', 'c'],
 	version: '1.0.0',
 	license: 'MIT',	
-   meson_version: '>=0.29')
+   meson_version: '>=0.37')
 
 i18n = import('i18n')
 
