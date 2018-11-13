@@ -25,4 +25,4 @@ public class BandFilter : Object {
     public bool filter (RadioFrequency frequency) {
         return this.band.contains (frequency);
     }
- }
+}
