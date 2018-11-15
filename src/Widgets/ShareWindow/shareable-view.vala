@@ -6,6 +6,7 @@
  */
 
 public interface ShareableView: Object {
-    public abstract ShareAction get_share_action();
+    //public signal void data_changed (bool has_data)
     public abstract bool entries_have_data ();
+    public abstract ShareAction get_share_action();
 }

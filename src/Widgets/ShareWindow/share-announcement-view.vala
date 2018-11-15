@@ -21,7 +21,7 @@ public class ShareAnnouncementView: Gtk.Grid, ShareableView {
         });
 
         entry_message.changed.connect (() => {
-            //check_enable_share ();
+            entries_have_data ();
             handle_entry_delete_icon (entry_message);
 
         });
@@ -68,5 +68,4 @@ public class ShareAnnouncementView: Gtk.Grid, ShareableView {
     private bool entries_have_data () {
         return entry_message.text_length >= 1;
     }
-
 }

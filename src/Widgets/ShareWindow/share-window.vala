@@ -10,36 +10,11 @@ public class ShareWindow : Gtk.Window {
     [GtkChild]
     private Gtk.HeaderBar headerbar;
     [GtkChild]
-    private Gtk.Stack stack1;
-    [GtkChild]
-    private Gtk.Grid spot_grid;
-    [GtkChild]
-    private Gtk.Grid announce_grid;
+    private Gtk.Stack stack;
     [GtkChild]
     private Gtk.Button button_share;
     [GtkChild]
     private Gtk.Button button_cancel;
-    [GtkChild]
-    private Gtk.Entry input_freq;
-    [GtkChild]
-    private Gtk.Entry input_dx;
-    [GtkChild]
-    private Gtk.Entry input_comment;
-    [GtkChild]
-    private Gtk.ComboBoxText range_selection;
-    [GtkChild]
-    private Gtk.Entry entry_message;
-    [GtkChild]
-    private Gtk.Label label_info_range;
-    [GtkChild]
-    private Gtk.Image warning_icon;
-
-    View view = View.SPOT;
-
-    private enum View {
-        SPOT,
-        ANNOUNCE
-    }
 
     public signal void cancelled ();
     public signal void share_action (ShareAction action);
@@ -48,69 +23,12 @@ public class ShareWindow : Gtk.Window {
         Object (default_width: 440, default_height: 220);
         set_titlebar (headerbar);
         setup_callbacks ();
-        stack1.add_titled (new ShareSpotView (), "DX", "DX1");
-        stack1.add_titled (new ShareAnnouncementView (), "ANN", "ANN1");
-    }
-
-    private void on_entry_button_press (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
-        if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
-            entry.set_text ("");
-        }
+        stack.add_titled (new ShareSpotView (), "child1", "DX Spot");
+        stack.add_titled (new ShareAnnouncementView (), "child2", "Announce");
     }
 
     private void setup_callbacks () {
-        input_freq.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_freq, position, event);
-        });
-
-        input_freq.key_press_event.connect ((event) => {
-            var key = event.keyval;
-
-            if ((key == Gdk.Key.Tab) ||
-                (key >= Gdk.Key.@0 && key <= Gdk.Key.@9) ||
-                (key >= Gdk.Key.KP_0 && key <= Gdk.Key.KP_9) ||
-                (key == Gdk.Key.KP_Decimal) || (key == Gdk.Key.period) ||
-                (key == Gdk.Key.BackSpace || key == Gdk.Key.Delete || key == Gdk.Key.KP_Delete) ||
-                (key == Gdk.Key.Return) || (key == Gdk.Key.KP_Enter) ||
-                (key == Gdk.Key.Left || key == Gdk.Key.Right || key == Gdk.Key.Home || key == Gdk.Key.End) ||
-                (key == Gdk.Key.KP_Left || key == Gdk.Key.KP_Right || key == Gdk.Key.KP_Home || key == Gdk.Key.KP_End)) {
-                return false;
-            }
-
-            return true;
-        });
-
-        input_dx.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_dx, position, event);
-        });
-
-        input_comment.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_comment, position, event);
-        });
-
-        entry_message.icon_press.connect ((position, event) => {
-            on_entry_button_press (entry_message, position, event);
-        });
-
-        range_selection.changed.connect (() => {
-            check_enable_share ();
-            if (range_selection.get_active () == ShareActionAnnouncement.Range.GLOBAL) {
-                warning_icon.set_visible (true);
-                label_info_range.set_visible (true);
-            } else {
-                warning_icon.set_visible (false);
-                label_info_range.set_visible (false);
-            }
-        });
-
-        stack1.notify["visible-child"].connect ((s, p) => {
-            var widget = stack1.get_visible_child ();
-            if (widget == announce_grid) {
-                view = View.ANNOUNCE; 
-            } else if (widget == spot_grid) {
-                view = View.SPOT;
-            }
-
+        stack.notify["visible-child"].connect ((s, p) => {
             check_enable_share ();
         });
 
@@ -120,69 +38,16 @@ public class ShareWindow : Gtk.Window {
         });
 
         button_share.clicked.connect (() => {
-            if (view == View.SPOT) {
-                var freq = input_freq.get_text ();
-                var dx_station = input_dx.get_text ();
-                var comment = input_comment.get_text ();
-                var share_spot = new ShareActionSpot.with_data (freq, dx_station, comment);
-                share_action (share_spot);
-            } else if (view == View.ANNOUNCE) {
-                var range = (ShareActionAnnouncement.Range) range_selection.get_active ();
-                var message = entry_message.get_text ();
-                var share_announcement = new ShareActionAnnouncement.with_data (range, message);
-                share_action (share_announcement);
-            }
+            ShareableView view = stack.get_visible_child () as ShareableView;
+            share_action (view.get_share_action ());
             
             this.destroy ();
         });
 
-        entry_message.changed.connect (() => {
-            check_enable_share ();
-            handle_entry_delete_icon (entry_message);
-
-        });
-
-        input_freq.changed.connect (() => {
-            check_enable_share ();
-            handle_entry_delete_icon (input_freq);
-        });
-
-        input_dx.changed.connect (() => {
-            check_enable_share ();
-            handle_entry_delete_icon (input_dx);
-        });
-
-        input_comment.changed.connect (() => {
-            handle_entry_delete_icon (input_comment);
-        });
-    }
-
-    private void handle_entry_delete_icon (Gtk.Entry entry) {
-        var text_length = entry.get_text ().length;
-
-        switch (text_length) {
-            case 0:
-                entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY, "");
-                break;
-            case 1:
-                entry.set_icon_from_icon_name (Gtk.EntryIconPosition.SECONDARY, "edit-clear-symbolic");
-                break;
-            default:
-                break;
-        }
     }
 
     private void check_enable_share () {
-        button_share.set_sensitive (entries_have_data ());
-    }
-
-    private bool entries_have_data () {
-        if (view == View.SPOT) {
-            return (double.parse (input_freq.get_text ()) > 0.0 && input_dx.text_length > 1);
-        } else if (view == View.ANNOUNCE) {
-            return entry_message.text_length >= 1;
-        }
-
-        return false;
+        ShareableView view = stack.get_visible_child () as ShareableView;
+        button_share.set_sensitive (view.entries_have_data ());
     }
 }
