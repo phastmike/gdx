@@ -48,6 +48,8 @@ public class ShareWindow : Gtk.Window {
         Object (default_width: 440, default_height: 220);
         set_titlebar (headerbar);
         setup_callbacks ();
+        stack1.add_titled (new ShareSpotView (), "DX", "DX1");
+        stack1.add_titled (new ShareAnnouncementView (), "ANN", "ANN1");
     }
 
     private void on_entry_button_press (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {

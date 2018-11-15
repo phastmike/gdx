@@ -6,7 +6,7 @@
  */
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/share-spot-view.ui")]
-public class ShareSpotView : Gtk.Window, ShareableView {
+public class ShareSpotView : Gtk.Grid, ShareableView {
     [GtkChild]
     private Gtk.Entry input_freq;
     [GtkChild]
