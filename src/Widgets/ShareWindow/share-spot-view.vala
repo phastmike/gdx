@@ -45,12 +45,12 @@ public class ShareSpotView : Gtk.Grid, ShareableView {
         });
 
         input_freq.changed.connect (() => {
-            //check_enable_share ();
+            data_changed ();
             handle_entry_delete_icon (input_freq);
         });
 
         input_dx.changed.connect (() => {
-            //check_enable_share ();
+            data_changed ();
             handle_entry_delete_icon (input_dx);
         });
 

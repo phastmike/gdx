@@ -23,8 +23,18 @@ public class ShareWindow : Gtk.Window {
         Object (default_width: 440, default_height: 220);
         set_titlebar (headerbar);
         setup_callbacks ();
-        stack.add_titled (new ShareSpotView (), "child1", "DX Spot");
-        stack.add_titled (new ShareAnnouncementView (), "child2", "Announce");
+
+        var share_spots_view = new ShareSpotView ();
+        stack.add_titled (share_spots_view, "child1", "DX Spot");
+        share_spots_view.data_changed.connect (() => {
+           check_enable_share();
+        });
+
+        var share_announce_view = new ShareAnnouncementView ();
+        stack.add_titled (share_announce_view, "child2", "Announce");
+        share_announce_view.data_changed.connect (() => {
+           check_enable_share();
+        });
     }
 
     private void setup_callbacks () {

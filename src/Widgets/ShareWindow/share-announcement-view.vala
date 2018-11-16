@@ -21,13 +21,12 @@ public class ShareAnnouncementView: Gtk.Grid, ShareableView {
         });
 
         entry_message.changed.connect (() => {
-            entries_have_data ();
+            data_changed ();
             handle_entry_delete_icon (entry_message);
 
         });
 
         range_selection.changed.connect (() => {
-            entries_have_data ();
             if (range_selection.get_active () == ShareActionAnnouncement.Range.GLOBAL) {
                 warning_icon.set_visible (true);
                 label_info_range.set_visible (true);
