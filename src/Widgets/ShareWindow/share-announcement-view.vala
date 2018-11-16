@@ -7,6 +7,7 @@
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/share-announcement-view.ui")]
 public class ShareAnnouncementView: Gtk.Grid, ShareableView {
+    [GtkChild]
     private Gtk.ComboBoxText range_selection;
     [GtkChild]
     private Gtk.Entry entry_message;
