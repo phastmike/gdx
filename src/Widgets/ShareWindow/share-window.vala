@@ -53,7 +53,6 @@ public class ShareWindow : Gtk.Window {
             
             this.destroy ();
         });
-
     }
 
     private void check_enable_share () {
