@@ -23,6 +23,11 @@ public int main (string args[]) {
     filters.add (filter3);
 
     assert (filters.check_frequency (new RadioFrequency (21250.0)) == false);
+    assert (filters.check_frequency (new RadioFrequency (28250.0)) == true);
+    assert (filters.check_frequency (new RadioFrequency (7150.0))  == true);
+    assert (filters.check_frequency (new RadioFrequency (14350.0)) == true);
+    assert (filters.check_frequency (new RadioFrequency (14350.1)) == false);
+    assert (filters.check_frequency (new RadioFrequency (13999.9)) == false);
 
     return 0;
 }

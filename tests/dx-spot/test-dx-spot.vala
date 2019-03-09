@@ -9,19 +9,25 @@ using Gtk;
 using GLib;
 
 public int main (string args[]) {
+    var spotter = "CT0AAA";
+    var frequency = "14260.0";
+    var dx = "3Y0PI";
+    var comment = "No takers";
+    var utc = "2230Z";
+
     var spot = new DxSpotBuilder ().
-        add_spotter ("CT1ENQ").
-        add_frequency ("14045.0").
-        add_dx ("3Y0PI").
-        add_comment ("Tnx new one").
-        add_utc ("23:30").
+        add_spotter (spotter).
+        add_frequency (frequency).
+        add_dx (dx).
+        add_comment (comment).
+        add_utc (utc).
         build ();
 
-    assert (spot.spotter == "CT1ENQ");
-    assert (spot.freq == "14045.0");
-    assert (spot.dx == "3Y0PI");
-    assert (spot.comment == "Tnx new one");
-    assert (spot.utc == "23:30");
+    assert (spot.spotter == spotter);
+    assert (spot.freq == frequency);
+    assert (spot.dx == dx);
+    assert (spot.comment == comment);
+    assert (spot.utc == utc);
 
     return 0;
 }
