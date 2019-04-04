@@ -1,8 +1,11 @@
-dist: trusty
+dist: 
+	- trusty
 
-language: c
+language: 
+	- c
 
-compiler: gcc
+compiler: 
+	- gcc
 
 before_install:
 	- sudo add-apt-repository --yes pps:vala-team
