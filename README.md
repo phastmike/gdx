@@ -46,7 +46,7 @@ If you wish to install gdx then run
 ## Dependencies
 
 * meson (>= 0.40.0)
-* ninja (>= 1.8.2)
+* ninja (>= 1.6.0)
 * valac (>= 0.38.3)
 * Gtk+ (>= 3.18)
 * libgee
