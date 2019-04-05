@@ -1,3 +1,4 @@
+[![build](https://travis-ci.org/phastmike/gdx.svg?branch=master)](https://travis-ci.org/phastmike/gdx)
 
 # gdx
 
@@ -21,9 +22,6 @@ These software applications provide a console based user interface (session) and
 Nodes use a protocol, known as [PC protocol](http://www.dxcluster.org/tech/pcprot.html), to communicate. Most of this protocol has been reverse engineered due to AK1A being a commercial product and lack of documentation.
 
 # Building and running
-
-## Build status
-[![build](https://travis-ci.org/phastmike/gdx.svg?branch=master)](https://travis-ci.org/phastmike/gdx)
 
 Start by cloning this repository:
 
