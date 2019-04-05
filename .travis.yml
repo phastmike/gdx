@@ -5,14 +5,14 @@ language: c
 compiler: gcc
 
 matrix:
-   include:
-		addons:
-			apt:
-				- llvm-toolchain-trusty-6.0
-				- ubuntu-toolchain-r-test
-			packages:
-				- python3.5
-				- python3-pip
+    include:
+        addons:
+            apt:
+                - llvm-toolchain-trusty-6.0
+                - ubuntu-toolchain-r-test
+            packages:
+                - python3.5
+                - python3-pip
 
 before_install:
     - sudo add-apt-repository --yes ppa:vala-team
