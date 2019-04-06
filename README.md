@@ -4,7 +4,7 @@
 
 A DX Cluster client for Radio amateurs. It allows hamradio operators to connect to the Packet Radio DX Clusters network via telnet. Connection via radio frequency modem, or TNC, not available at the moment.
 
-## What is the a DX Cluster network
+## What is the DX Cluster network
 
 The DX Cluster network it's a legacy service, still in active use today, that used the packet radio network to broadcast DX information. Developed, initially, to use RF network links (AX25), it has migrated, mostly, to the Internet.
 
