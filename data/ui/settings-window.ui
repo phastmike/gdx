@@ -148,8 +148,8 @@ You must be a legally licensed operator.</property>
                         <property name="column_spacing">12</property>
                         <child>
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="no_show_all">True</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Name</property>
                           </object>
@@ -160,8 +160,8 @@ You must be a legally licensed operator.</property>
                         </child>
                         <child>
                           <object class="GtkEntry" id="entry_cluster_name">
-                            <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="no_show_all">True</property>
                             <property name="hexpand">True</property>
                           </object>
                           <packing>
@@ -235,8 +235,8 @@ You must be a legally licensed operator.</property>
             </child>
             <child>
               <object class="GtkFrame">
-                <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="no_show_all">True</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
