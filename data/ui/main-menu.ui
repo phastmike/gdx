@@ -7,18 +7,22 @@
         <attribute name="label" translatable="yes">Connect</attribute>
         <attribute name="action">win.connect</attribute>
       </item>
+		<!--
       <item>
         <attribute name="label" translatable="yes">Connect to...</attribute>
         <attribute name="action">win.connect_to</attribute>
       </item>
+		-->
       <item>
         <attribute name="label" translatable="yes">Disconnect</attribute>
         <attribute name="action">win.disconnect</attribute>
       </item>
+		<!--
       <item>
         <attribute name="label" translatable="yes">Filter</attribute>
         <attribute name="action">win.spot_filter</attribute>
       </item>
+		-->
     </section>
     <section>
       <item>
