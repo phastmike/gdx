@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-17 22:09+0000\n"
+"POT-Creation-Date: 2019-04-10 23:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/ui/app-menu.ui:6
+#: data/ui/app-menu.ui:6 data/ui/settings-window.ui:15
 msgid "Settings"
 msgstr ""
 
@@ -29,208 +29,146 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: data/ui/share-window.ui:36
-msgid "Frequency (kHz)"
-msgstr ""
-
-#: data/ui/share-window.ui:49
-msgid "0"
-msgstr ""
-
-#: data/ui/share-window.ui:65
-msgid "DX Station"
-msgstr ""
-
-#: data/ui/share-window.ui:88 data/ui/main-window.ui:120
-msgid "Comments"
-msgstr ""
-
-#: data/ui/share-window.ui:109
-msgid "DX Spot"
-msgstr ""
-
-#: data/ui/share-window.ui:125
-msgid "Range"
-msgstr ""
-
-#: data/ui/share-window.ui:137
-msgid "Message"
-msgstr ""
-
-#: data/ui/share-window.ui:180
-msgid ""
-"Announce to everyone should be used carefuly to avoid spamming the network"
-msgstr ""
-
-#: data/ui/share-window.ui:204
-msgid " \n"
-msgstr ""
-
-#: data/ui/share-window.ui:220
-msgid "Local"
-msgstr ""
-
-#: data/ui/share-window.ui:221
-msgid "Everyone"
-msgstr ""
-
-#: data/ui/share-window.ui:232
-msgid "Announce"
-msgstr ""
-
-#: data/ui/share-window.ui:260
+#: data/ui/share-window.ui:48
 msgid "Share"
 msgstr ""
 
-#: data/ui/preferences.ui:30
-msgid "<b>Callsign</b>"
+#: data/ui/main-window.ui:21
+msgid "DXCLUSTER"
 msgstr ""
 
-#: data/ui/preferences.ui:42
-msgid "NOCALL"
+#: data/ui/main-window.ui:38
+msgid "Status"
 msgstr ""
 
-#: data/ui/preferences.ui:54 data/ui/preferences.ui:374
-msgid "Name *"
+#: data/ui/main-window.ui:68
+msgid "Connect"
 msgstr ""
 
-#: data/ui/preferences.ui:65
-msgid "Your name"
+#: data/ui/main-window.ui:80
+msgid "Disconnect"
 msgstr ""
 
-#: data/ui/preferences.ui:77 data/ui/preferences.ui:443
-#: data/ui/preferences.ui:765
-msgid "Location *"
-msgstr ""
-
-#: data/ui/preferences.ui:88
-msgid "Your location (eg: City)"
-msgstr ""
-
-#: data/ui/preferences.ui:99
-msgid "Qth Locator *"
-msgstr ""
-
-#: data/ui/preferences.ui:110
-msgid "Your Qth Locator"
-msgstr ""
-
-#: data/ui/preferences.ui:131 data/ui/preferences.ui:560
-msgid "* Optional"
-msgstr ""
-
-#: data/ui/preferences.ui:145 data/ui/preferences.ui:577
-msgid "Personal"
-msgstr ""
-
-#: data/ui/preferences.ui:177
-msgid "Auto connect on startup"
-msgstr ""
-
-#: data/ui/preferences.ui:192
-msgid "Auto reconnect if connection lost"
-msgstr ""
-
-#: data/ui/preferences.ui:206
-msgid "What else?"
-msgstr ""
-
-#: data/ui/preferences.ui:227
-msgid "<b>Connection</b>"
-msgstr ""
-
-#: data/ui/preferences.ui:253
-msgid "Application"
-msgstr ""
-
-#: data/ui/preferences.ui:305
-msgid "Callsign"
-msgstr ""
-
-#: data/ui/preferences.ui:316
-msgid "Radio amateur callsign"
-msgstr ""
-
-#: data/ui/preferences.ui:385
-msgid "Radio operator name or handle"
-msgstr ""
-
-#: data/ui/preferences.ui:454 data/ui/preferences.ui:776
-msgid "nearest location (City, Village)"
-msgstr ""
-
-#: data/ui/preferences.ui:512 data/ui/preferences.ui:834
-msgid "Locator *"
-msgstr ""
-
-#: data/ui/preferences.ui:523 data/ui/preferences.ui:845
-msgid "Station QTH Locator"
-msgstr ""
-
-#: data/ui/preferences.ui:613
-msgid "Connect on startup"
-msgstr ""
-
-#: data/ui/preferences.ui:624
-msgid "Connect automatically on startup to default DX Cluster"
-msgstr ""
-
-#: data/ui/preferences.ui:684
-msgid "Auto reconnect"
-msgstr ""
-
-#: data/ui/preferences.ui:695
-msgid "Reconnect automatically if connection lost"
-msgstr ""
-
-#: data/ui/preferences.ui:889
-msgid "Title"
-msgstr ""
-
-#: data/ui/preferences.ui:901
-msgid "Subtitle"
-msgstr ""
-
-#: data/ui/preferences.ui:947
-msgid "Connection"
-msgstr ""
-
-#: data/ui/main-window.ui:47
+#: data/ui/main-window.ui:149
 msgid "Search DX station"
 msgstr ""
 
-#: data/ui/main-window.ui:79
+#: data/ui/main-window.ui:183
 msgid "Spotter"
 msgstr ""
 
-#: data/ui/main-window.ui:92
+#: data/ui/main-window.ui:200
 msgid "Freq. (kHz)"
 msgstr ""
 
-#: data/ui/main-window.ui:105
+#: data/ui/main-window.ui:216
 msgid "DX"
 msgstr ""
 
-#: data/ui/main-window.ui:133
+#: data/ui/main-window.ui:233
+msgid "Comments"
+msgstr ""
+
+#: data/ui/main-window.ui:246
 msgid "UTC"
 msgstr ""
 
-#: data/ui/main-window.ui:151
+#: data/ui/main-window.ui:264
 msgid "DX Spots"
 msgstr ""
 
-#: data/ui/main-window.ui:172
+#: data/ui/main-window.ui:285
 msgid "Type commands here..."
 msgstr ""
 
-#: data/ui/main-window.ui:206
+#: data/ui/main-window.ui:319
 msgid "Console"
 msgstr ""
 
-#: src/Application/application.vala:116
+#: data/ui/main-window.ui:347
+msgid "Share a DX or announcement"
+msgstr ""
+
+#: data/ui/main-window.ui:368
+msgid "Go to the last DX"
+msgstr ""
+
+#: data/ui/settings-window.ui:59
+msgid "Callsign"
+msgstr ""
+
+#: data/ui/settings-window.ui:85
+msgid "<b>User</b>"
+msgstr ""
+
+#: data/ui/settings-window.ui:100
+msgid ""
+"Notice:\n"
+"You must be a legally licensed operator."
+msgstr ""
+
+#: data/ui/settings-window.ui:119
+msgid "Personal"
+msgstr ""
+
+#: data/ui/settings-window.ui:154
+msgid "Name"
+msgstr ""
+
+#: data/ui/settings-window.ui:177
+msgid "Address"
+msgstr ""
+
+#: data/ui/settings-window.ui:199
+msgid "Port"
+msgstr ""
+
+#: data/ui/settings-window.ui:225
+msgid "<b>Default Cluster</b>"
+msgstr ""
+
+#: data/ui/settings-window.ui:257
+msgid "Additional login data goes here"
+msgstr ""
+
+#: data/ui/settings-window.ui:270
+msgid "Use semicolon as line break"
+msgstr ""
+
+#: data/ui/settings-window.ui:292
+msgid "<b>Login commands</b>"
+msgstr ""
+
+#: data/ui/settings-window.ui:322
+msgid "Auto connect on startup"
+msgstr ""
+
+#: data/ui/settings-window.ui:337
+msgid "Auto reconnect if connection lost"
+msgstr ""
+
+#: data/ui/settings-window.ui:352
+msgid "FIlter DX spots from the console"
+msgstr ""
+
+#: data/ui/settings-window.ui:373
+msgid "<b>Connection</b>"
+msgstr ""
+
+#: data/ui/settings-window.ui:396
+msgid "Connection"
+msgstr ""
+
+#: src/Application/application.vala:84
 msgid "translator-credits"
 msgstr ""
 
-#: src/Application/application.vala:118
+#: src/Application/application.vala:86
 msgid "About Gdx"
+msgstr ""
+
+#: src/Application/application.vala:90
+msgid ""
+"Access the Radio Amateur DX Cluster Network\n"
+"Northern Portugal DX Group"
 msgstr ""

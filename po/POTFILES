@@ -1,6 +1,6 @@
 data/ui/app-menu.ui
 data/ui/share-window.ui
-data/ui/preferences.ui
 data/ui/main-window.ui
+data/ui/settings-window.ui
 src/Settings/settings.vala
 src/Application/application.vala
