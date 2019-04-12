@@ -81,7 +81,7 @@ public class Application : Gtk.Application {
         Gtk.show_about_dialog (get_active_window (),
             "artists", artists,
             "authors", authors,
-            "translator-credits", _("translator-credits"),
+            "translator-credits", _("add translator-credits, eg: name"),
             "program-name", "Gdx",
             "title", _("About Gdx"),
             "license-type", Gtk.License.MIT_X11,

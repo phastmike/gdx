@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-10 23:46+0100\n"
+"POT-Creation-Date: 2019-04-12 01:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgid "Connection"
 msgstr ""
 
 #: src/Application/application.vala:84
-msgid "translator-credits"
+msgid "add translator-credits, eg: name"
 msgstr ""
 
 #: src/Application/application.vala:86
@@ -171,4 +171,24 @@ msgstr ""
 msgid ""
 "Access the Radio Amateur DX Cluster Network\n"
 "Northern Portugal DX Group"
+msgstr ""
+
+#: src/Widgets/MainWindow/main-window.vala:111
+msgid "You are now connected to"
+msgstr ""
+
+#: src/Widgets/MainWindow/main-window.vala:121
+#, c-format
+msgid ""
+"Connection to %s failed\n"
+"<small>%s</small>"
+msgstr ""
+
+#: src/Widgets/MainWindow/main-window.vala:130
+msgid "You are now disconnected"
+msgstr ""
+
+#: src/Widgets/MainWindow/main-window.vala:167
+#: src/Widgets/MainWindow/main-window.vala:198
+msgid "Connecting to"
 msgstr ""

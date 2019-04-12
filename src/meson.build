@@ -40,6 +40,8 @@ vala_sources = [
 
 vala_args = [
     '--target-glib=2.38',
+    '--pkg=config',
+    '--vapidir=' + meson.current_source_dir() + '/vapi',
     #'--gresources=../data/org.ampr.ct1enq.gdx.gresource.xml',
 ]
 

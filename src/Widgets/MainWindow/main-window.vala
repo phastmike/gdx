@@ -108,7 +108,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (true);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (false);
-            app_notification.present ("You are now connected to " + connector.last_host_address);
+            app_notification.present (_("You are now connected to") + " " + connector.last_host_address);
         });
 
         connector.connection_failed.connect ((err_msg) => {
@@ -118,8 +118,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
-            app_notification.present ("Connection to %s failed\n<small>%s</small>".printf (connector.last_host_address, err_msg));
-
+            app_notification.present (_("Connection to %s failed\n<small>%s</small>").printf (connector.last_host_address, err_msg));
         });
 
         connector.disconnected.connect (() => {
@@ -128,7 +127,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             action.set_enabled (false);
             action = (SimpleAction) lookup_action ("connect");
             action.set_enabled (true);
-            app_notification.present ("You are now disconnected");
+            app_notification.present (_("You are now disconnected"));
         });
 
         connector.received_message.connect ((text) => {
@@ -165,7 +164,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         if (settings.auto_connect_startup) {
-            app_notification.present ("Connecting to %s...".printf (settings.default_cluster_address));
+            app_notification.present (_("Connecting to") + " %s...".printf (settings.default_cluster_address));
             connector.connect_async.begin (settings.default_cluster_address, (int16) settings.default_cluster_port);
             //app_notification.present ("Connecting to %s...".printf (settings.default_cluster_address));
         }
@@ -196,7 +195,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         var connect_action = new GLib.SimpleAction ("connect", null);
         connect_action.activate.connect (() => {
             var settings = Settings.instance ();
-            app_notification.present ("Connecting to %s...".printf (settings.default_cluster_address));
+            app_notification.present (_("Connecting to") + " %s...".printf (settings.default_cluster_address));
             connector.connect_async.begin (settings.default_cluster_address, (int16) settings.default_cluster_port);
         });
         add_action (connect_action);

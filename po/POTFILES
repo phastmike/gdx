@@ -4,3 +4,4 @@ data/ui/main-window.ui
 data/ui/settings-window.ui
 src/Settings/settings.vala
 src/Application/application.vala
+src/Widgets/MainWindow/main-window.vala

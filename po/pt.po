@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gdx\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-10 23:46+0100\n"
-"PO-Revision-Date: 2019-04-10 23:57+0100\n"
+"POT-Creation-Date: 2019-04-12 01:40+0100\n"
+"PO-Revision-Date: 2019-04-12 01:42+0100\n"
 "Last-Translator: Miguel <phastmike@gmail.com>\n"
 "Language-Team: Portuguese <>\n"
 "Language: pt\n"
@@ -129,7 +129,7 @@ msgstr "Porto"
 
 #: data/ui/settings-window.ui:225
 msgid "<b>Default Cluster</b>"
-msgstr "<b>Cluster por defeito</b>"
+msgstr "<b>Cluster</b>"
 
 #: data/ui/settings-window.ui:257
 msgid "Additional login data goes here"
@@ -164,8 +164,8 @@ msgid "Connection"
 msgstr "Conexão"
 
 #: src/Application/application.vala:84
-msgid "translator-credits"
-msgstr "créditos-tradução"
+msgid "add translator-credits, eg: name"
+msgstr "Miguel, CT1ENQ"
 
 #: src/Application/application.vala:86
 msgid "About Gdx"
@@ -178,6 +178,28 @@ msgid ""
 msgstr ""
 "Aceda à rede DX Cluster de rádio amador\n"
 "Northern Portugal DX Group"
+
+#: src/Widgets/MainWindow/main-window.vala:111
+msgid "You are now connected to"
+msgstr "Está agora ligado a"
+
+#: src/Widgets/MainWindow/main-window.vala:121
+#, c-format
+msgid ""
+"Connection to %s failed\n"
+"<small>%s</small>"
+msgstr ""
+"Conexão a %s falhou\n"
+"<small>%s</small>"
+
+#: src/Widgets/MainWindow/main-window.vala:130
+msgid "You are now disconnected"
+msgstr "Está agora desligado"
+
+#: src/Widgets/MainWindow/main-window.vala:167
+#: src/Widgets/MainWindow/main-window.vala:198
+msgid "Connecting to"
+msgstr "A estabelecer conexão com"
 
 #~ msgid "Gdx"
 #~ msgstr "Gdx"
