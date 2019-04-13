@@ -74,14 +74,13 @@ public class Application : Gtk.Application {
         };
 
         string[] artists = {
-            "Miguel, CT1ENQ",
             "App Icon by Smashicons from flaticon.com"
         };
 
         Gtk.show_about_dialog (get_active_window (),
             "artists", artists,
             "authors", authors,
-            "translator-credits", _("add translator-credits, eg: name"),
+            "translator-credits", _("Miguel, CT1ENQ"),
             "program-name", "Gdx",
             "title", _("About Gdx"),
             "license-type", Gtk.License.MIT_X11,
