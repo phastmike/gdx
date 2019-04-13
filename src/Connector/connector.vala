@@ -62,9 +62,13 @@ public class Connector : SocketClient {
     }
     
     public new async void connect_async (string host, uint16 port) {
+        /*
         if (connection != null) {
             disconnect_async ();
         }
+        */
+
+        disconnect_async ();
 
         last_host_address = host.dup (); 
         last_host_port = port;

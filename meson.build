@@ -1,7 +1,7 @@
 project('gdx', ['vala', 'c'],
 	version: '1.0.0',
 	license: 'MIT',	
-   meson_version: '>=0.37')
+        meson_version: '>=0.37')
 
 i18n = import('i18n')
 
@@ -12,7 +12,6 @@ glib = dependency('glib-2.0', version: '>=2.32')
 gobject = dependency('gobject-2.0', version: '>=2.32')
 posix = meson.get_compiler('vala').find_library('posix')
 
-# I18N START Configuration
 conf = configuration_data()
 conf.set_quoted('VERSION', meson.project_version())
 conf.set_quoted('GETTEXT_PACKAGE', meson.project_name())
@@ -22,9 +21,7 @@ config_h_dir = include_directories('.')
 
 c_args = [
   '-include', 'config.h',
-  #'-DVERSION="' + meson.project_version() + '"', '-DGETTEXT_PACKAGE="gradio"', '-DGNOMELOCALEDIR="' + get_option('prefix') + '/' + get_option('localedir') + '"',
 ]
-# I18N END
 
 subdir('data')
 subdir('po')
