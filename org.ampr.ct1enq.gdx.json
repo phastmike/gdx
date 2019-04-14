@@ -1,0 +1,30 @@
+{
+   "app-id":"org.ampr.ct1enq.gdx",
+   "runtime":"org.gnome.Platform",
+   "runtime-version":"3.28",
+   "sdk":"org.gnome.Sdk",
+   "command":"gdx",
+   "finish-args":[
+      "--share=network",
+      "--socket=x11",
+      "--socket=wayland",
+      "--device=dri",
+      "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+      "--filesystem=xdg-run/dconf",
+      "--filesystem=~/.config/dconf:ro",
+      "--talk-name=ca.desrt.dconf"
+   ],
+   "modules":[
+      {
+         "name": "gradio",
+         "buildsystem": "meson",
+         "sources":[
+            {
+               "type": "archive",
+               "url": "https://github.com/phastmike/gdx/archive/v0.1.tar.gz",
+               "sha256": "230889e200344beef176c54a35bd2eac0ba3bf66c4269b897b74761a90adc651"
+            }
+         ]
+      }
+   ]
+}
