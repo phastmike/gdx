@@ -4,6 +4,7 @@
 *.swp
 doc/*
 build/*
+_build/*
 .vscode/*
 .anjuta/*
 *.autosave
