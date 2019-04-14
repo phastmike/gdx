@@ -1,0 +1,54 @@
+{
+    "app-id": "org.flatpak.Hello",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "18.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "hello.sh",
+    "modules": [
+        {
+            "name": "hello",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D hello.sh /app/bin/hello.sh"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "hello.sh"
+                }
+            ]
+        }
+    ]
+}
+
+
+{
+   "app-id":"org.ampr.ct1enq.gdx",
+   "runtime":"org.gnome.Platform",
+   "runtime-version":"3.28",
+   "sdk":"org.gnome.Sdk",
+   "command":"gdx",
+   "finish-args":[
+      "--share=network",
+      "--socket=x11",
+      "--socket=wayland",
+      "--device=dri",
+      "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+      "--filesystem=xdg-run/dconf",
+      "--filesystem=~/.config/dconf:ro",
+      "--talk-name=ca.desrt.dconf"
+   ],
+   "modules":[
+      {
+         "name": "gradio",
+         "buildsystem": "meson",
+         "build-commands":
+
+      }
+   ]
+         "sources":[
+            {
+               "type": "archive",
+               "url": "https://github.com/haecker-felix/gradio/archive/v7.2.tar.gz",
+               "sha256": "5a85d7d4afb1424e46c935114b268e4a65de2629d60f48eccd75d67ff4b113d2"
+            }}
