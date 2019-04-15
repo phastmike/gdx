@@ -24,14 +24,16 @@
     "modules" : [
         {
             "name": "libgee",
-            "config-opts" : [
-                "--enable-introspection=no"
+            "buildsystem": "meson",
+            "config-opts": [
+                "--libdir=lib"
             ],
+            "builddir": true,
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libgee.git",
-                    "branch": "master"
+                    "tag": "meson",
+                    "url": "https://github.com/GNOME/libgee.git"
                 }
             ]
         },

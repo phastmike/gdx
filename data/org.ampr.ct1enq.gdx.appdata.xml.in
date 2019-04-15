@@ -16,10 +16,10 @@
   </description>
   <screenshots>
     <screenshot type="default" height="540" width="733">
-      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot1.png</image>
+      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot2.png</image>
     </screenshot>
     <screenshot type="default" height="527" width="733">
-      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot1dark.png</image>
+      <image>https://raw.githubusercontent.com/phastmike/gdx/master/data/screenshots/screenshot3.png</image>
     </screenshot>
   </screenshots>
   <url type="homepage">https://github.com/phastmike/gdx</url>
@@ -58,11 +58,18 @@
   </content_rating>
   <releases>
 
+    <release version="0.1.1" date="2019-04-15">
+      <description>
+      <p>
+          MVP with flatpak integration.
+      </p>
+      </description>
+    </release>
     <release version="0.1" date="2017-10-01">
       <description>
-		  <p>
+      <p>
           First version. This is a test version of the application.
-		  </p>
+      </p>
       </description>
     </release>
 

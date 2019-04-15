@@ -8,7 +8,7 @@
 using Gtk;
 
 public class Application : Gtk.Application {
-    public const string version = "0.1";
+    public const string version = "0.1.1";
 
     public Application () {
         Object (application_id: "org.ampr.ct1enq.gdx", flags: ApplicationFlags.FLAGS_NONE);
