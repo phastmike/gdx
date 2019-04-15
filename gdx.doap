@@ -1,5 +1,5 @@
 <Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns="http://usefulinc.com/ns/doap#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:admin="http://webns.net/mvcb/">
- <name>GDx</name>
+ <name>Gdx</name>
  <shortname>gdx</shortname>
  <shortdesc>Dx cluster client</shortdesc>
  <description>A DX Cluster telnet client for gnome</description>
