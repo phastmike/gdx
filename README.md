@@ -41,7 +41,7 @@ If you wish to install gdx then run
 
 ## Screenshot
 
-![Screenshot](/data/screenshots/screenshot2.png "Screenshot")
+![Screenshot](/data/screenshots/screenshot4.png "Screenshot")
 
 ## Dependencies
 
