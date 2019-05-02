@@ -8,7 +8,7 @@
 using Gtk;
 using GLib;
 
-public int main (string args[]) {
+public int main (string[] args) {
 
     var band = new RadioBand ("20m", new RadioFrequency (14000.0), new RadioFrequency(14350.0));
 
