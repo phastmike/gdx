@@ -7,7 +7,7 @@
 using Gtk;
 using GLib;
 
-public int main (string args[]) {
+public int main (string[] args) {
     var spot = new ShareActionSpot ();
     var annc = new ShareActionAnnouncement ();
 

@@ -352,7 +352,6 @@
             <property name="sensitive">False</property>
             <property name="can_focus">False</property>
             <property name="icon_name">list-add-symbolic.symbolic</property>
-            <property name="use_fallback">True</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -373,7 +372,6 @@
             <property name="sensitive">False</property>
             <property name="can_focus">False</property>
             <property name="icon_name">go-bottom-symbolic.symbolic</property>
-            <property name="use_fallback">True</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -450,7 +448,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="icon_name">open-menu-symbolic.symbolic</property>
-            <property name="use_fallback">True</property>
             <style>
               <class name="image-button"/>
             </style>
@@ -476,7 +473,6 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="icon_name">edit-find-symbolic.symbolic</property>
-            <property name="use_fallback">True</property>
           </object>
         </child>
         <style>

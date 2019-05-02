@@ -6,9 +6,8 @@
  */
 
 using Gtk;
-using GLib;
 
-public int main (string args[]) {
+public int main (string[] args) {
     var spotter = "CT0AAA";
     var frequency = "14260.0";
     var dx = "3Y0PI";
