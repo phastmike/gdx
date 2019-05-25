@@ -240,7 +240,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         this.key_press_event.connect ((event) => {
             if (view == View.SPOTS) {
 
-                if (event.state != Gdk.ModifierType.SHIFT_MASK && event.state != 0) {
+                if (event.state != Gdk.ModifierType.MOD2_MASK && event.state != Gdk.ModifierType.LOCK_MASK && event.state != Gdk.ModifierType.SHIFT_MASK) {
                     return false;
                 }
 
@@ -269,19 +269,18 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         liststore_spots_with_filter.set_visible_func ((model, iter) => {
             string dx;
+            string entry_text;
 
-            if (searchentry.get_text () == "" || searchentry.get_text == null) {
-                return true;
-            }
+            entry_text = searchentry.get_text ();
+
+            return_val_if_fail (entry_text != "" || entry_text != null, true);
 
             model.get (iter, SpotsViewColumn.DX, out dx);
 
-            if (dx == null) return false;
-
-            if (dx.up ().contains (searchentry.get_text ().up())) {
-                return true;
-            } else {
+            if (dx == null) {
                 return false;
+            } else {
+                return dx.up ().contains (searchentry.get_text ().up());
             }
         });
 
