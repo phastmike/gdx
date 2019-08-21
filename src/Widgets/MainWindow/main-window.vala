@@ -240,7 +240,9 @@ public class MainWindow : Gtk.ApplicationWindow {
         this.key_press_event.connect ((event) => {
             if (view == View.SPOTS) {
 
-                if (event.state != Gdk.ModifierType.MOD2_MASK && event.state != Gdk.ModifierType.LOCK_MASK && event.state != Gdk.ModifierType.SHIFT_MASK) {
+                if (event.state != Gdk.ModifierType.MOD2_MASK && 
+                    event.state != Gdk.ModifierType.LOCK_MASK && 
+                    event.state != Gdk.ModifierType.SHIFT_MASK) {
                     return false;
                 }
 
