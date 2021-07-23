@@ -27,7 +27,7 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         base.activate ();
-
+        new Warehouse ();
         setup_main_window ();
     }
 

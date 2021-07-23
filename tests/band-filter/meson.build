@@ -4,8 +4,8 @@ test_band_filter_sources = [
     'test-band-filter.vala',
 	 radio_frequency,
 	 radio_band,
-	 band_filter,
-	 band_filters,
+	 radio_band_filter,
+	 radio_band_filters,
 ]
 
 test_band_filter = executable('test_band_filter',

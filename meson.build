@@ -10,6 +10,7 @@ gtk = dependency('gtk+-3.0', version: '>=3.18')
 gee = dependency('gee-0.8', version: '>=0.18')
 glib = dependency('glib-2.0', version: '>=2.32')
 gobject = dependency('gobject-2.0', version: '>=2.32')
+sqlite3 = dependency('sqlite3')
 posix = meson.get_compiler('vala').find_library('posix')
 
 conf = configuration_data()

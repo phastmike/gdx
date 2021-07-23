@@ -6,7 +6,7 @@
  * José Miguel Fonte
  */
 
-public class BandFilter : Object {
+public class RadioBandFilter : Object {
     public Type type;
     public bool enabled;
     public RadioBand band;
@@ -16,7 +16,7 @@ public class BandFilter : Object {
         REJECT
     }
 
-    public BandFilter (RadioBand band, bool enabled = true, Type type = Type.ACCEPT) {
+    public RadioBandFilter (RadioBand band, bool enabled = false, Type type = Type.REJECT) {
         this.band = band;
         this.enabled = enabled;
         this.type = type;

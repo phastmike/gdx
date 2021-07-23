@@ -13,11 +13,11 @@ public int main (string[] args) {
     var band2 = new RadioBand ("10m", new RadioFrequency (28000.0), new RadioFrequency(29700.0));
     var band3 = new RadioBand ("40m", new RadioFrequency (7000.0), new RadioFrequency(7200.0));
 
-    var filter1 = new BandFilter (band1);
-    var filter2 = new BandFilter (band2);
-    var filter3 = new BandFilter (band3);
+    var filter1 = new RadioBandFilter (band1);
+    var filter2 = new RadioBandFilter (band2);
+    var filter3 = new RadioBandFilter (band3);
 
-    var filters = new BandFilters ();
+    var filters = new RadioBandFilters ();
     filters.add (filter1);
     filters.add (filter2);
     filters.add (filter3);

@@ -3,7 +3,7 @@
 /*
  * filter-window.vala
  *
- * Jose Miguel Fonte, 2017
+ * Jose Miguel Fonte
  */
 using Gee;
 
@@ -20,7 +20,7 @@ public class FilterWindow : Gtk.Window {
     [GtkChild]
     private Gtk.Grid grid1;
 
-    BandFilters band_filters;
+    RadioBandFilters band_filters;
 
     public FilterWindow () {
         Object (default_width: 350, default_height: 150);
@@ -49,7 +49,7 @@ public class FilterWindow : Gtk.Window {
         int x = 0;
         int y = 5;
 
-        foreach (BandFilter filter in band_filters) {
+        foreach (RadioBandFilter filter in band_filters) {
             grid1.attach (new Gtk.CheckButton.with_label (filter.band.name),x,y,1,1);
             x = x + 1;
             if (x > 3) {
