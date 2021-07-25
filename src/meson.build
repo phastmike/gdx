@@ -7,6 +7,7 @@ share_action = files('ShareAction/share-action.vala',
 radio_band = files('Cluster/radio-band.vala')
 radio_band_filter = files ('Cluster/radio-band-filter.vala')
 radio_band_filters = files ('Cluster/radio-band-filters.vala')
+radio_band_filters_builder = files ('Cluster/radio-band-filters-builder.vala')
 radio_frequency = files('Cluster/radio-frequency.vala')
 warehouse = files('Warehouse/warehouse.vala')
 
@@ -22,6 +23,7 @@ vala_sources = [
     radio_band,
     radio_band_filter,
     radio_band_filters,
+    radio_band_filters_builder,
     'Cluster/dx-clusters.vala',
     radio_frequency,
     'Parsers/iparsable.vala',

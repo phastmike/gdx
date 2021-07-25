@@ -41,7 +41,7 @@ public class FilterWindow : Gtk.Window {
     }
 
     private void setup_filters () {
-        band_filters = new FilterBuilder ();
+        band_filters = new RadioBandFiltersBuilder ();
         band_filters.bind_property ("enabled", status_switch, "active", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
     }
 
