@@ -11,13 +11,6 @@ before_install:
     - sudo apt-get install python3-pip python3-setuptools
     - sudo apt-get install meson 
 
-install:
-	#- python3 -m pip install -U --upgrade pip 
-	#- wget https://github.com/mesonbuild/meson/releases/download/0.37.0/meson-0.37.0.tar.gz
-	#- tar -xvf meson-0.37.0.tar.gz -C $HOME/.local/bin
-	#- wget https://github.com/ninja-build/ninja/releases/download/v1.6.0/ninja-linux.zip
-	#- unzip ninja-linux.zip -d $HOME/.local/bin
-
 script:
     - mkdir build 
     - meson build
