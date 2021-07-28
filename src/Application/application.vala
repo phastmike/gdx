@@ -8,6 +8,7 @@
 using Gtk;
 
 public class Application : Gtk.Application {
+    public Warehouse warehouse;
     public const string version = "0.1.1";
 
     public Application () {
@@ -27,7 +28,8 @@ public class Application : Gtk.Application {
 
     protected override void activate () {
         base.activate ();
-        new Warehouse ();
+
+        warehouse = new Warehouse ();
         setup_main_window ();
     }
 

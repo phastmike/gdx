@@ -185,7 +185,18 @@ public class MainWindow : Gtk.ApplicationWindow {
         });
 
         parser.rcvd_spot.connect ((spot) => {
-            add_spot_to_view (spot);
+            var band_filters = ((Application) get_application ()).warehouse.band_filters;
+
+            if (band_filters.enabled) {
+                foreach (RadioBandFilter filter in band_filters) { 
+                    if (filter.enabled && filter.filter (new RadioFrequency.from_string (spot.freq))) {
+                        add_spot_to_view (spot);
+                        break;
+                    }
+                }
+            } else {
+                add_spot_to_view (spot);
+            }
         });
 
         show_all ();
@@ -214,7 +225,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         var filter_action = new GLib.SimpleAction ("spot_filter", null);
         filter_action.activate.connect (() => {
-            var filter_window = new FilterWindow ();
+            var filter_window = new FilterWindow (((Application) this.get_application ()).warehouse.band_filters);
             filter_window.set_transient_for (this);
             filter_window.show_all ();
         });
@@ -336,7 +347,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     public void add_spot_to_view (DxSpot spot) {
         Gtk.TreeIter iter;
         Gtk.ListStore store;
-
+        
         store = liststore_spots;
         store.append (out iter);
         last_spot_iter = iter;

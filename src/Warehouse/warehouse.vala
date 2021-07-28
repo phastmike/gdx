@@ -13,9 +13,15 @@
 using Sqlite;
 
 public class Warehouse : Object {
-	Sqlite.Database db;
-	File db_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gdx"));
-	File db_file = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gdx", "gdx.db"));
+	private Sqlite.Database db;
+	private File db_dir = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gdx"));
+	private File db_file = File.new_for_path (Path.build_filename (Environment.get_user_data_dir (), "gdx", "gdx.db"));
+
+	public RadioBandFilters band_filters; // if not static, crash on filter window
+
+	construct {
+		band_filters = null;
+	}
 
 	public Warehouse () {
 		if (!database_exists ()) {
@@ -25,6 +31,9 @@ public class Warehouse : Object {
 		} else {
 			open_database ();
 		}
+		
+		band_filters = new RadioBandFilters ();
+		read_radio_band_filters.begin ();
 	}
 
 	private bool database_exists () {
@@ -77,8 +86,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -92,8 +101,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -107,8 +116,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -122,8 +131,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -137,8 +146,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -152,8 +161,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -167,23 +176,23 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
                                  7,
                                  '17m',
                                  18068,
-                                 10168,
+                                 18168,
                                  0
                              );
 
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -197,8 +206,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -212,8 +221,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -227,8 +236,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -242,8 +251,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -257,8 +266,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -272,8 +281,8 @@ public class Warehouse : Object {
 			INSERT INTO RadioBandFilters (
                                  id,
                                  name,
-                                 FreqBegin,
-                                 FreqEnd,
+                                 freq_begin,
+                                 freq_end,
                                  enabled
                              )
                              VALUES (
@@ -291,5 +300,41 @@ public class Warehouse : Object {
 			} else {
 				critical ("Could not initialize database: %s\n", db_error_message);
 			}
+	}
+
+	private async void read_radio_band_filters () {
+		message ("Reading band filters...");
+		Statement stmt;
+		
+		int rc = 0;
+		int cols;
+
+		if ((rc = db.prepare_v2 ("SELECT * FROM RadioBandFilters", -1, out stmt, null)) == 1) {
+			critical ("SQL error: %d, %s<n", rc, db.errmsg ());
+		}
+
+		cols = stmt.column_count ();
+		
+		do {
+			rc = stmt.step ();
+			switch (rc) {
+				case Sqlite.DONE:
+					break;
+				case Sqlite.ROW:
+					message ("Found radio band filter: %s - %d (%s)...", stmt.column_text (1), stmt.column_int (2), stmt.column_text (4));
+					var band = new RadioBand (stmt.column_text (1), new RadioFrequency (stmt.column_double (2)), new RadioFrequency (stmt.column_double (3)));
+					var band_filter = new RadioBandFilter (band, (bool) stmt.column_int(4), RadioBandFilter.Type.ACCEPT); 
+
+					if (band_filter != null) {
+						band_filters.add (band_filter); // add sorted?
+					}
+					break;
+				default:
+					printerr ("Error: %d, %s\n", rc, db.errmsg ());
+					break;
+			}
+
+		} while (rc == Sqlite.ROW);
+		message ("Read all filters...");
 	}
 }

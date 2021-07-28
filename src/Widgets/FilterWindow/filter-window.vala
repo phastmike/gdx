@@ -20,11 +20,13 @@ public class FilterWindow : Gtk.Window {
     [GtkChild]
     private Gtk.Grid grid1;
 
-    RadioBandFilters band_filters;
+    private RadioBandFilters? band_filters = null;
 
-    public FilterWindow () {
+    public FilterWindow (RadioBandFilters band_filters) {
         Object (default_width: 350, default_height: 150);
         set_titlebar (headerbar);
+
+        this.band_filters = band_filters;
 
         setup_filters ();
         setup_filters_ui ();
@@ -41,8 +43,9 @@ public class FilterWindow : Gtk.Window {
     }
 
     private void setup_filters () {
-        band_filters = new RadioBandFiltersBuilder ();
-        band_filters.bind_property ("enabled", status_switch, "active", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+        if (band_filters != null) {
+            band_filters.bind_property ("enabled", status_switch, "active", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+        }
     }
 
     private void setup_filters_ui () {
@@ -50,7 +53,9 @@ public class FilterWindow : Gtk.Window {
         int y = 5;
 
         foreach (RadioBandFilter filter in band_filters) {
-            grid1.attach (new Gtk.CheckButton.with_label (filter.band.name),x,y,1,1);
+            var checkbutton = new Gtk.CheckButton.with_label (filter.band.name);
+            filter.bind_property ("enabled", checkbutton, "active", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            grid1.attach (checkbutton, x, y, 1, 1);
             x = x + 1;
             if (x > 3) {
                 x = 0;

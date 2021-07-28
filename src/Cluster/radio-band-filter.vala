@@ -8,7 +8,7 @@
 
 public class RadioBandFilter : Object {
     public Type type;
-    public bool enabled;
+    public bool enabled {get; set;} // needed to bind property
     public RadioBand band;
 
     public enum Type {
