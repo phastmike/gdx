@@ -12,7 +12,7 @@ before_install:
 
 install:
     - python3 -m pip install -U --upgrade pip 
-    - pip3 install meson
+    - sudo pip3 install meson
     - wget https://github.com/ninja-build/ninja/releases/download/v1.6.0/ninja-linux.zip
     - unzip ninja-linux.zip -d $HOME/.local/bin
 
