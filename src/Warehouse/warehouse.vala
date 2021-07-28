@@ -33,6 +33,7 @@ public class Warehouse : Object {
 		}
 		
 		band_filters = new RadioBandFilters ();
+		read_config.begin ();
 		read_radio_band_filters.begin ();
 	}
 
@@ -69,12 +70,118 @@ public class Warehouse : Object {
 		}
 	}
 
+	private async void read_config () {
+		message ("Reading config...");
+		Statement stmt;
+		
+		int rc = 0;
+		int cols;
+
+		if ((rc = db.prepare_v2 ("SELECT * FROM Config", -1, out stmt, null)) == 1) {
+			critical ("SQL error: %d, %s", rc, db.errmsg ());
+		}
+
+		cols = stmt.column_count ();
+		
+		do {
+			rc = stmt.step ();
+			switch (rc) {
+				case Sqlite.DONE:
+					break;
+				case Sqlite.ROW:
+					message ("Found config ...");
+					band_filters.enabled = (bool) stmt.column_int (0);
+					break;
+				default:
+					printerr ("Error: %d, %s\n", rc, db.errmsg ());
+					break;
+			}
+
+		} while (rc == Sqlite.ROW);
+		message ("Read Config...");
+	}
+
+
+	private async void read_radio_band_filters () {
+		message ("Reading band filters...");
+		Statement stmt;
+		
+		int rc = 0;
+		int cols;
+
+		if ((rc = db.prepare_v2 ("SELECT * FROM RadioBandFilters", -1, out stmt, null)) == 1) {
+			critical ("SQL error: %d, %s<n", rc, db.errmsg ());
+		}
+
+		cols = stmt.column_count ();
+		
+		do {
+			rc = stmt.step ();
+			switch (rc) {
+				case Sqlite.DONE:
+					break;
+				case Sqlite.ROW:
+					message ("Found radio band filter: %s - %d (%s)...", stmt.column_text (1), stmt.column_int (2), stmt.column_text (4));
+					var band = new RadioBand (stmt.column_text (1), new RadioFrequency (stmt.column_double (2)), new RadioFrequency (stmt.column_double (3)));
+					var band_filter = new RadioBandFilter (band, (bool) stmt.column_int (4), RadioBandFilter.Type.ACCEPT, stmt.column_int (0)); 
+
+					if (band_filter != null) {
+						band_filters.add (band_filter); // add sorted?
+					}
+					break;
+				default:
+					printerr ("Error: %d, %s\n", rc, db.errmsg ());
+					break;
+			}
+
+		} while (rc == Sqlite.ROW);
+		message ("Read all filters...");
+	}
+
+	public bool save_config () {
+		int rc;
+		string err_msg;
+
+		string query = "UPDATE Config SET enabled = %s ;".printf (band_filters.enabled ? "TRUE" : "FALSE");
+
+		rc = db.exec (query, null, out err_msg);
+
+		if (rc != Sqlite.OK) {
+			critical ("Could not save config :: %s", err_msg);
+			return false;
+		} else {
+			return true;
+		} 
+	}
+
+	public bool save_radio_band_filter (RadioBandFilter filter) {
+		int rc;
+		string err_msg;
+
+		string query = "UPDATE RadioBandFilters SET enabled = %s WHERE id = %u;".printf (filter.enabled ? "TRUE" : "FALSE", filter.id);
+
+		rc = db.exec (query, null, out err_msg);
+
+		if (rc != Sqlite.OK) {
+			critical ("Could not save radio band filter %s :: %s", filter.band.name, err_msg);
+			return false;
+		} else {
+			return true;
+		} 
+	}
+
 	private void init_database () {
 		string db_error_message;
 
 		message ("Initialize database...");
 
 		string sql_init = """
+			CREATE TABLE Config (
+				enabled BOOLEAN DEFAULT (0)
+			);
+
+			INSERT INTO Config (enabled) VALUES (0);
+								
 			CREATE TABLE RadioBandFilters (
     			id        INTEGER PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT,
     			name      CHAR    NOT NULL,
@@ -300,41 +407,5 @@ public class Warehouse : Object {
 			} else {
 				critical ("Could not initialize database: %s\n", db_error_message);
 			}
-	}
-
-	private async void read_radio_band_filters () {
-		message ("Reading band filters...");
-		Statement stmt;
-		
-		int rc = 0;
-		int cols;
-
-		if ((rc = db.prepare_v2 ("SELECT * FROM RadioBandFilters", -1, out stmt, null)) == 1) {
-			critical ("SQL error: %d, %s<n", rc, db.errmsg ());
-		}
-
-		cols = stmt.column_count ();
-		
-		do {
-			rc = stmt.step ();
-			switch (rc) {
-				case Sqlite.DONE:
-					break;
-				case Sqlite.ROW:
-					message ("Found radio band filter: %s - %d (%s)...", stmt.column_text (1), stmt.column_int (2), stmt.column_text (4));
-					var band = new RadioBand (stmt.column_text (1), new RadioFrequency (stmt.column_double (2)), new RadioFrequency (stmt.column_double (3)));
-					var band_filter = new RadioBandFilter (band, (bool) stmt.column_int(4), RadioBandFilter.Type.ACCEPT); 
-
-					if (band_filter != null) {
-						band_filters.add (band_filter); // add sorted?
-					}
-					break;
-				default:
-					printerr ("Error: %d, %s\n", rc, db.errmsg ());
-					break;
-			}
-
-		} while (rc == Sqlite.ROW);
-		message ("Read all filters...");
 	}
 }

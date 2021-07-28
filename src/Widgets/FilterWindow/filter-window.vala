@@ -20,13 +20,31 @@ public class FilterWindow : Gtk.Window {
     [GtkChild]
     private Gtk.Grid grid1;
 
-    private RadioBandFilters? band_filters = null;
+    private RadioBandFilters band_filters;
+    private RadioBandFilters band_filters_origin;
 
-    public FilterWindow (RadioBandFilters band_filters) {
+    public FilterWindow (RadioBandFilters band_filters) requires (band_filters != null) {
         Object (default_width: 350, default_height: 150);
         set_titlebar (headerbar);
 
-        this.band_filters = band_filters;
+        // To allow Cancel/Apply we need to keep a copy of the data
+        // and deal with user option.
+        // Replicate all data, verbose
+
+        band_filters_origin = band_filters;
+        this.band_filters = new RadioBandFilters ();
+        this.band_filters.enabled = band_filters.enabled;
+        foreach (var filter in band_filters_origin) {
+            this.band_filters.add (
+                new RadioBandFilter (
+                    new RadioBand (filter.band.name,
+                         new RadioFrequency (filter.band.begin.get_frequency ()),
+                         new RadioFrequency (filter.band.end.get_frequency ())
+                    ),
+                filter.enabled,
+                RadioBandFilter.Type.ACCEPT)
+            );
+        }
 
         setup_filters ();
         setup_filters_ui ();
@@ -37,7 +55,14 @@ public class FilterWindow : Gtk.Window {
         close_button.clicked.connect (() => {
             destroy ();
         });
+
         apply_button.clicked.connect (() => {
+            band_filters_origin.enabled = band_filters.enabled;
+            ((Application) transient_for.get_application ()).warehouse.save_config ();
+            for (var i=0; i < band_filters_origin.size; i++) {
+                band_filters_origin.@get (i).enabled = band_filters.@get (i).enabled;
+                ((Application) transient_for.get_application ()).warehouse.save_radio_band_filter (band_filters_origin.@get (i));
+            } 
             destroy ();
         });
     }

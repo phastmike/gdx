@@ -7,6 +7,7 @@
  */
 
 public class RadioBandFilter : Object {
+    public uint id;
     public Type type;
     public bool enabled {get; set;} // needed to bind property
     public RadioBand band;
@@ -16,7 +17,8 @@ public class RadioBandFilter : Object {
         REJECT
     }
 
-    public RadioBandFilter (RadioBand band, bool enabled = false, Type type = Type.REJECT) {
+    public RadioBandFilter (RadioBand band, bool enabled = false, Type type = Type.REJECT, uint id = 0) {
+        this.id = id;
         this.band = band;
         this.enabled = enabled;
         this.type = type;
