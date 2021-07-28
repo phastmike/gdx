@@ -17,6 +17,7 @@ install:
     - unzip ninja-linux.zip -d $HOME/.local/bin
 
 script:
+    - mkdir build 
     - meson build
     - ninja -C build
     # Test fails due to the nature of Gtk needing a screen. 
