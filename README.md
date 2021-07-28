@@ -31,13 +31,15 @@ To build it, `cd` into the repository and run:
 
 	$ meson build && cd build && ninja
 
-Then run the application it with:
+install gdx with:
+
+	$ sudo ninja install
+
+Then run the application:
 
 	$ ./src/gdx
 
-If you wish to install gdx then run
-
-	$ sudo ninja install
+User should install gdx, otherwise the application may not find some dependencies and fail.
 
 ## Screenshot
 

@@ -278,6 +278,7 @@
                           <object class="GtkEntry" id="entry_commands">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="has_focus">True</property>
                             <property name="margin_left">3</property>
                             <property name="margin_right">3</property>
                             <property name="margin_top">3</property>
@@ -339,6 +340,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
+    <property name="decoration_layout">:close</property>
     <child>
       <object class="GtkButton" id="button_share">
         <property name="visible">True</property>

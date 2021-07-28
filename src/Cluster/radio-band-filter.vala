@@ -6,9 +6,10 @@
  * José Miguel Fonte
  */
 
-public class BandFilter : Object {
+public class RadioBandFilter : Object {
+    public uint id;
     public Type type;
-    public bool enabled;
+    public bool enabled {get; set;} // needed to bind property
     public RadioBand band;
 
     public enum Type {
@@ -16,7 +17,8 @@ public class BandFilter : Object {
         REJECT
     }
 
-    public BandFilter (RadioBand band, bool enabled = true, Type type = Type.ACCEPT) {
+    public RadioBandFilter (RadioBand band, bool enabled = false, Type type = Type.REJECT, uint id = 0) {
+        this.id = id;
         this.band = band;
         this.enabled = enabled;
         this.type = type;
