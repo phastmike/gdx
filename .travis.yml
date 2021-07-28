@@ -14,7 +14,7 @@ before_install:
 install:
     - python3 -m pip install -U --upgrade pip 
     - wget https://github.com/mesonbuild/meson/releases/download/0.37.0/meson-0.37.0.tar.gz
-    - tar -xvf meson-0.37.0.tar.gz $HOME/.local/bin
+    - tar -xvf meson-0.37.0.tar.gz -C $HOME/.local/bin
     - wget https://github.com/ninja-build/ninja/releases/download/v1.6.0/ninja-linux.zip
     - unzip ninja-linux.zip -d $HOME/.local/bin
 
