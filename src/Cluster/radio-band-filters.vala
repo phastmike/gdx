@@ -9,7 +9,7 @@
 using Gee;
 
 public class RadioBandFilters : ArrayList<RadioBandFilter> {
-    public bool enabled {set; get; default = true;}
+    public bool enabled {set; get; default = false;}
 
     public bool check_frequency (RadioFrequency freq) {
         foreach (var band_filter in this) {

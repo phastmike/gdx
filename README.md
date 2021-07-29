@@ -47,10 +47,10 @@ User should install gdx, otherwise the application may not find some dependencie
 
 ## Dependencies
 
-* meson (>= 0.40.0)
+* meson (>= 0.37.0)
 * ninja (>= 1.6.0)
 * valac (>= 0.38.3)
-* Gtk+ (>= 3.18)
+* Gtk+ (>= 3.18 < 4)
 * libgee
 
 Probably will work with some previous versions but has not been tested.

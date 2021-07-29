@@ -191,14 +191,25 @@ public class Warehouse : Object {
 			);
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
+                                 'VLF',
                                  1,
+                                 1000,
+                                 0
+                             );
+
+			INSERT INTO RadioBandFilters (
+                                 name,
+                                 freq_begin,
+                                 freq_end,
+                                 enabled
+                             )
+                             VALUES (
                                  '160m',
                                  1800,
                                  2000,
@@ -206,14 +217,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 2,
                                  '80m',
                                  3500,
                                  4000,
@@ -221,14 +230,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 3,
                                  '60m',
                                  5350,
                                  5370,
@@ -236,14 +243,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 4,
                                  '40m',
                                  7000,
                                  7300,
@@ -251,14 +256,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 5,
                                  '30m',
                                  10000,
                                  10150,
@@ -266,14 +269,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 6,
                                  '20m',
                                  14000,
                                  14350,
@@ -281,14 +282,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 7,
                                  '17m',
                                  18068,
                                  18168,
@@ -296,14 +295,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 8,
                                  '15m',
                                  21000,
                                  21450,
@@ -311,14 +308,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 9,
                                  '12m',
                                  24890,
                                  24990,
@@ -326,14 +321,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 10,
                                  '10m',
                                  28000,
                                  29700,
@@ -341,14 +334,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 11,
                                  '6m',
                                  50000,
                                  54000,
@@ -356,14 +347,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 12,
                                  '70cm',
                                  420000,
                                  450000,
@@ -371,14 +360,12 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 13,
                                  '23cm',
                                  1240000,
                                  1300000,
@@ -386,17 +373,28 @@ public class Warehouse : Object {
                              );
 
 			INSERT INTO RadioBandFilters (
-                                 id,
                                  name,
                                  freq_begin,
                                  freq_end,
                                  enabled
                              )
                              VALUES (
-                                 14,
                                  '12cm',
                                  2300000,
                                  2450000,
+                                 0
+                             );
+
+			INSERT INTO RadioBandFilters (
+                                 name,
+                                 freq_begin,
+                                 freq_end,
+                                 enabled
+                             )
+                             VALUES (
+                                 'SHF',
+                                 2500000,
+                                 990000000,
                                  0
                              );
 			""";
