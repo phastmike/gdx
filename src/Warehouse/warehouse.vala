@@ -353,6 +353,19 @@ public class Warehouse : Object {
                                  enabled
                              )
                              VALUES (
+                                 '2m',
+                                 144000,
+                                 148000,
+                                 0
+                             );
+
+			INSERT INTO RadioBandFilters (
+                                 name,
+                                 freq_begin,
+                                 freq_end,
+                                 enabled
+                             )
+                             VALUES (
                                  '70cm',
                                  420000,
                                  450000,
