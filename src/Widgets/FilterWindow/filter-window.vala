@@ -80,6 +80,7 @@ public class FilterWindow : Gtk.Window {
         foreach (RadioBandFilter filter in band_filters) {
             var checkbutton = new Gtk.CheckButton.with_label (filter.band.name);
             filter.bind_property ("enabled", checkbutton, "active", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            status_switch.bind_property ("active", checkbutton, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
             grid1.attach (checkbutton, x, y, 1, 1);
             x = x + 1;
             if (x > 3) {
