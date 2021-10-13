@@ -1,4 +1,4 @@
-[![build](https://travis-ci.com/phastmike/gdx.svg?branch=master)](https://travis-ci.com/phastmike/gdx)
+[![build](https://app.travis-ci.com/phastmike/gdx.svg?branch=master)](https://app.travis-ci.com/github/phastmike/gdx)
 
 # gdx
 
