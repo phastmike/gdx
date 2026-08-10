@@ -6,10 +6,10 @@ project('gdx', ['vala', 'c'],
 i18n = import('i18n')
 
 gio = dependency('gio-2.0', version: '>=2.32')
-gtk = dependency('gtk+-3.0', version: '>=3.18')
+gtk = dependency('gtk4', version: '>=4.00')
 gee = dependency('gee-0.8', version: '>=0.18')
-glib = dependency('glib-2.0', version: '>=2.32')
-gobject = dependency('gobject-2.0', version: '>=2.32')
+glib = dependency('glib-2.0', version: '>=2.76')
+gobject = dependency('gobject-2.0', version: '>=2.76')
 sqlite3 = dependency('sqlite3')
 posix = meson.get_compiler('vala').find_library('posix')
 

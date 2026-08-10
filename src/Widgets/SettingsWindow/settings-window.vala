@@ -8,21 +8,21 @@
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/settings-window.ui")]
 public class SettingsWindow: Gtk.Window {
     [GtkChild]
-    private Gtk.Entry entry_callsign;
+    private unowned Gtk.Entry entry_callsign;
     [GtkChild]
-    private Gtk.Entry entry_cluster_name;
+    private unowned Gtk.Entry entry_cluster_name;
     [GtkChild]
-    private Gtk.Entry entry_cluster_address;
+    private unowned Gtk.Entry entry_cluster_address;
     [GtkChild]
-    private Gtk.SpinButton spinbutton_cluster_port;
+    private unowned Gtk.SpinButton spinbutton_cluster_port;
     [GtkChild]
-    private Gtk.Entry entry_cluster_login;
+    private unowned Gtk.Entry entry_cluster_login;
     [GtkChild]
-    private Gtk.CheckButton checkbutton_autoconnect;
+    private unowned Gtk.CheckButton checkbutton_autoconnect;
     [GtkChild]
-    private Gtk.CheckButton checkbutton_autoreconnect;
+    private unowned Gtk.CheckButton checkbutton_autoreconnect;
     [GtkChild]
-    private Gtk.CheckButton checkbutton_filterspots;
+    private unowned Gtk.CheckButton checkbutton_filterspots;
 
     
     public SettingsWindow () {
@@ -41,7 +41,7 @@ public class SettingsWindow: Gtk.Window {
         checkbutton_autoreconnect.set_active (settings.auto_reconnect);
         checkbutton_filterspots.set_active (settings.filter_spots_from_console);
 
-        destroy.connect (() => {
+        close_request.connect (() => {
             settings.user_callsign = entry_callsign.get_text ();
             settings.default_cluster_name = entry_cluster_name.get_text ();
             settings.default_cluster_address = entry_cluster_address.get_text ();
@@ -50,6 +50,7 @@ public class SettingsWindow: Gtk.Window {
             settings.auto_connect_startup = checkbutton_autoconnect.active;
             settings.auto_reconnect = checkbutton_autoreconnect.active; 
             settings.filter_spots_from_console = checkbutton_filterspots.active;
+            return true;
         });
     }
 }

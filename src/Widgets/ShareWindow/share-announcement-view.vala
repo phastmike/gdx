@@ -18,7 +18,7 @@ public class ShareAnnouncementView: Gtk.Grid, ShareableView {
 
     construct {
         entry_message.icon_press.connect ((position, event) => {
-            on_entry_button_press (entry_message, position, event);
+            //on_entry_button_press (entry_message, position, event);
         });
 
         entry_message.changed.connect (() => {
@@ -39,9 +39,11 @@ public class ShareAnnouncementView: Gtk.Grid, ShareableView {
     }
 
     private void on_entry_button_press (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
+        /*
         if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
             entry.set_text ("");
         }
+        */
     }
 
     private void handle_entry_delete_icon (Gtk.Entry entry) {

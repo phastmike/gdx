@@ -39,7 +39,7 @@ public class DXClusterList : Gee.ArrayList<DXCluster> {
 
 int main (string[] args) {
     int idle_cycles = 0;
-    Gtk.init(ref args);
+    //Gtk.init(ref args);
 
     var list = new DXClusterList ();
 
@@ -51,7 +51,7 @@ int main (string[] args) {
             stdout.printf ("%s [%s:%s]\n", cluster.call, cluster.address, cluster.port);
         }
         */
-        Gtk.main_quit ();
+        //Gtk.main_quit ();
     });
 
     Idle.add (() => {
@@ -59,7 +59,7 @@ int main (string[] args) {
         return true;
     });
 
-    Gtk.main ();
+    //Gtk.main ();
     
     print ("*** Number of idle cycles: %d\n", idle_cycles);
     print ("*** Number of clusters in list: %d\n", list.size);

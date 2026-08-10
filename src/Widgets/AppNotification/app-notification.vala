@@ -7,7 +7,7 @@
  */
 
 [GtkTemplate (ui = "/org/ampr/ct1enq/gdx/ui/app-notification.ui")]
-public class AppNotification: Gtk.Revealer {
+public class AppNotification: Gtk.Widget {
     [GtkChild]
     private Gtk.Label label;
     [GtkChild]
@@ -23,7 +23,7 @@ public class AppNotification: Gtk.Revealer {
             dismiss ();
         });
 
-        show_all ();
+        //show_all ();
     }
 
     public void present (string message) {
@@ -33,7 +33,7 @@ public class AppNotification: Gtk.Revealer {
     }
 
     private void reveal () {
-        base.set_reveal_child (true);
+        //base.set_reveal_child (true);
         timeout_id = Timeout.add_seconds (timeout_seconds, () => {
             dismiss ();
             return Source.REMOVE;
@@ -41,7 +41,7 @@ public class AppNotification: Gtk.Revealer {
     }
 
     private void dismiss () {
-        base.set_reveal_child (false);
+        //base.set_reveal_child (false);
         if (timeout_id != 0) {
             Source.remove (timeout_id);
             timeout_id = 0;

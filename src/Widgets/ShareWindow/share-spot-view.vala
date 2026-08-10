@@ -16,17 +16,18 @@ public class ShareSpotView : Gtk.Grid, ShareableView {
 
     construct {
         input_freq.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_freq, position, event);
+           // on_entry_button_press (input_freq, position, event);
         });
 
         input_dx.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_dx, position, event);
+            //on_entry_button_press (input_dx, position, event);
         });
 
         input_comment.icon_press.connect ((position, event) => {
-            on_entry_button_press (input_comment, position, event);
+            //on_entry_button_press (input_comment, position, event);
         });
 
+        /*
         input_freq.key_press_event.connect ((event) => {
             var key = event.keyval;
 
@@ -43,6 +44,7 @@ public class ShareSpotView : Gtk.Grid, ShareableView {
 
             return true;
         });
+        */
 
         input_freq.changed.connect (() => {
             data_changed ();
@@ -60,9 +62,11 @@ public class ShareSpotView : Gtk.Grid, ShareableView {
     }
 
     private void on_entry_button_press (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
+        /*
         if (event.button.button == 1 && position == Gtk.EntryIconPosition.SECONDARY) {
             entry.set_text ("");
         }
+        */
     }
 
     private void handle_entry_delete_icon (Gtk.Entry entry) {

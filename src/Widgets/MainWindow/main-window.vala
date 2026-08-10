@@ -96,7 +96,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         main_overlay.add_overlay (app_notification);
 
         connection_menu_button.set_popover (connection_popover);
-        connection_popover.set_relative_to (connection_menu_button);
+        //connection_popover.set_relative_to (connection_menu_button);
         searchbutton.bind_property ("active", searchbar, "search-mode-enabled", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
 
         this.bind_property("scrolled-spots-moved", button_go_bottom, "sensitive", BindingFlags.SYNC_CREATE);
@@ -177,7 +177,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         share_clicked.connect (() => {
             var share_window = new ShareWindow ();
             share_window.set_transient_for (this);
-            share_window.show_all ();
+            //share_window.show_all ();
 
             share_window.share_action.connect ((action) => {
                 connector.send (action.to_string ());
@@ -199,7 +199,8 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        show_all ();
+        present ();
+        //show_all ();
     }
 
     private void set_main_menu() {
@@ -227,7 +228,7 @@ public class MainWindow : Gtk.ApplicationWindow {
         filter_action.activate.connect (() => {
             var filter_window = new FilterWindow (((Application) this.get_application ()).warehouse.band_filters);
             filter_window.set_transient_for (this);
-            filter_window.show_all ();
+            //filter_window.show_all ();
         });
         add_action (filter_action);
 
@@ -248,6 +249,7 @@ public class MainWindow : Gtk.ApplicationWindow {
     private void set_callbacks () {
         setup_auto_scroll_callbacks ();
 
+        /*
         this.key_press_event.connect ((event) => {
             if (view == View.SPOTS) {
 
@@ -270,6 +272,7 @@ public class MainWindow : Gtk.ApplicationWindow {
                 return false;
             }
         });
+        */
 
         searchentry.search_changed.connect (() => {
             liststore_spots_with_filter.refilter ();
@@ -319,6 +322,7 @@ public class MainWindow : Gtk.ApplicationWindow {
 
         var vscrollbar_spots = (Gtk.Scrollbar) scrolled_spots.get_vscrollbar ();
 
+        /*
         vscrollbar_spots.size_allocate.connect ((allocation) => {
             var val = vscrollbar_spots.adjustment.@value;
             var upper = vscrollbar_spots.adjustment.upper - vscrollbar_spots.adjustment.page_size;
@@ -329,9 +333,11 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
             treeview_spots.queue_draw ();
         });
+        */
 
-        var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
+        //var vscrollbar_console = (Gtk.Scrollbar) scrolled_console.get_vscrollbar ();
 
+        /*
         vscrollbar_console.value_changed.connect (() => {
             var val = vscrollbar_console.adjustment.@value;
             var upper = vscrollbar_console.adjustment.upper - vscrollbar_console.adjustment.page_size;
@@ -342,6 +348,7 @@ public class MainWindow : Gtk.ApplicationWindow {
             }
             treeview_spots.queue_draw ();
         });
+        */
     }
 
     public void add_spot_to_view (DxSpot spot) {
@@ -398,6 +405,6 @@ public class MainWindow : Gtk.ApplicationWindow {
     private void set_console_need_attention (bool need) {
         var val = Value (typeof(bool));
         val.set_boolean (need);
-        stack_main.child_set_property (grid1, "needs-attention", val);
+        //stack_main.child_set_property (grid1, "needs-attention", val);
     }
 }

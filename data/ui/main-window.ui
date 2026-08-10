@@ -6,13 +6,13 @@
     <property name="width_request">175</property>
     <property name="height_request">150</property>
     <property name="can_focus">False</property>
-    <property name="border_width">6</property>
+    <!--<property name="border_width">6</property>-->
     <property name="position">right</property>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="border_width">3</property>
+        <!--<property name="border_width">3</property>-->
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
@@ -24,11 +24,13 @@
               <attribute name="weight" value="medium"/>
             </attributes>
           </object>
+          <!--
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">0</property>
             <property name="width">4</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkLabel">
@@ -43,11 +45,13 @@
               <class name="dim-label"/>
             </style>
           </object>
+          <!--
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">1</property>
             <property name="width">5</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkSeparator">
@@ -55,11 +59,13 @@
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>
           </object>
+          <!--
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">2</property>
             <property name="width">5</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkLabel">
@@ -67,11 +73,13 @@
             <property name="halign">start</property>
             <property name="label" translatable="yes">Connect</property>
           </object>
+          <!--
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">3</property>
             <property name="width">5</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkLabel">
@@ -79,11 +87,13 @@
             <property name="halign">start</property>
             <property name="label" translatable="yes">Disconnect</property>
           </object>
+          <!--
           <packing>
             <property name="left_attach">0</property>
             <property name="top_attach">4</property>
             <property name="width">5</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkImage">
@@ -91,10 +101,12 @@
             <property name="can_focus">False</property>
             <property name="icon_name">starred-symbolic</property>
           </object>
+          <!--
           <packing>
             <property name="left_attach">4</property>
             <property name="top_attach">0</property>
-          </packing>
+            </packing>
+          -->
         </child>
       </object>
     </child>
@@ -138,23 +150,27 @@
               <object class="GtkSearchBar" id="searchbar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="show_close_button">True</property>
+                <!--<property name="show_close_button">True</property>-->
                 <child>
                   <object class="GtkSearchEntry" id="searchentry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <!--
                     <property name="primary_icon_name">edit-find-symbolic</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="primary_icon_sensitive">False</property>
-                    <property name="placeholder_text" translatable="yes">Search DX station</property>
+                      <property name="placeholder_text" translatable="yes">Search DX station</property>
+                    -->
                   </object>
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <object class="GtkStack" id="stack_main">
@@ -164,13 +180,15 @@
                   <object class="GtkScrolledWindow" id="scrolled_spots">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="shadow_type">in</property>
+                    <!--
+                      <property name="shadow_type">in</property>
+                    -->
                     <child>
                       <object class="GtkTreeView" id="treeview_spots">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="model">liststore_spots_with_filter</property>
-                        <property name="rules_hint">True</property>
+                        <!--<property name="rules_hint">True</property>-->
                         <property name="enable_search">False</property>
                         <property name="search_column">2</property>
                         <property name="enable_grid_lines">both</property>
@@ -259,10 +277,12 @@
                       </object>
                     </child>
                   </object>
+                  <!--
                   <packing>
                     <property name="name">page1</property>
                     <property name="title" translatable="yes">DX Spots</property>
-                  </packing>
+                    </packing>
+                  -->
                 </child>
                 <child>
                   <object class="GtkGrid" id="grid1">
@@ -279,18 +299,22 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="has_focus">True</property>
+                            <!--
                             <property name="margin_left">3</property>
                             <property name="margin_right">3</property>
                             <property name="margin_top">3</property>
-                            <property name="margin_bottom">3</property>
+                              <property name="margin_bottom">3</property>
+                            -->
                             <property name="placeholder_text" translatable="yes">Type commands here...</property>
                           </object>
                         </child>
                       </object>
+                      <!--
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                      </packing>
+                        </packing>
+                      -->
                     </child>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolled_console">
@@ -298,7 +322,7 @@
                         <property name="can_focus">True</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
-                        <property name="shadow_type">in</property>
+                        <!--<property name="shadow_type">in</property>-->
                         <child>
                           <object class="GtkTextView" id="textview_console">
                             <property name="visible">True</property>
@@ -310,28 +334,36 @@
                           </object>
                         </child>
                       </object>
+                      <!--
                       <packing>
                         <property name="left_attach">0</property>
                         <property name="top_attach">0</property>
-                      </packing>
+                        </packing>
+                      -->
                     </child>
                   </object>
+                  <!--
                   <packing>
                     <property name="title" translatable="yes">Console</property>
                     <property name="position">1</property>
-                  </packing>
+                    </packing>
+                  -->
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
-              </packing>
+                </packing>
+              -->
             </child>
           </object>
+          <!--
           <packing>
             <property name="index">-1</property>
-          </packing>
+            </packing>
+          -->
         </child>
       </object>
     </child>
@@ -339,7 +371,7 @@
   <object class="GtkHeaderBar" id="headerbar1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="show_close_button">True</property>
+    <!--<property name="show_close_button">True</property>-->
     <property name="decoration_layout">:close</property>
     <child>
       <object class="GtkButton" id="button_share">
@@ -383,15 +415,17 @@
           <class name="suggested-action"/>
         </style>
       </object>
+      <!--
       <packing>
         <property name="position">2</property>
-      </packing>
+        </packing>
+      -->
     </child>
     <child>
       <object class="GtkMenuButton" id="connection_menu_button">
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="no_show_all">True</property>
+        <!--<property name="no_show_all">True</property>-->
         <property name="valign">center</property>
         <child>
           <object class="GtkGrid">
@@ -406,10 +440,12 @@
                 <property name="icon_name">network-server-symbolic</property>
                 <property name="use_fallback">True</property>
               </object>
+              <!--
               <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">0</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <object class="GtkImage">
@@ -417,10 +453,12 @@
                 <property name="can_focus">False</property>
                 <property name="icon_name">pan-down-symbolic</property>
               </object>
+              <!--
               <packing>
                 <property name="left_attach">1</property>
                 <property name="top_attach">0</property>
-              </packing>
+                </packing>
+              -->
             </child>
           </object>
         </child>
@@ -428,9 +466,11 @@
           <class name="image-button"/>
         </style>
       </object>
+      <!--
       <packing>
         <property name="position">2</property>
-      </packing>
+        </packing>
+      -->
     </child>
     <child type="title">
       <object class="GtkStackSwitcher" id="stackswitcher1">
@@ -459,10 +499,12 @@
           <class name="image-button"/>
         </style>
       </object>
+      <!--
       <packing>
         <property name="pack_type">end</property>
         <property name="position">2</property>
-      </packing>
+        </packing>
+      -->
     </child>
     <child>
       <object class="GtkToggleButton" id="searchbutton">
@@ -481,10 +523,12 @@
           <class name="image-button"/>
         </style>
       </object>
+      <!--
       <packing>
         <property name="pack_type">end</property>
         <property name="position">3</property>
-      </packing>
+        </packing>
+      -->
     </child>
   </object>
 </interface>

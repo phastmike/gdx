@@ -61,13 +61,13 @@ public class Application : Gtk.Application {
         var builder = new Gtk.Builder.from_resource ("/org/ampr/ct1enq/gdx/ui/app-menu.ui");
         var app_menu = builder.get_object ("app-menu") as GLib.MenuModel;
 
-        set_app_menu (app_menu);
+        //set_app_menu (app_menu);
     }
 
     private void show_settings () {
         var settings_window = new SettingsWindow ();
         settings_window.set_transient_for (get_active_window ());
-        settings_window.show_all ();
+        settings_window.show ();
     }
 
     private void show_about_dialog () {
