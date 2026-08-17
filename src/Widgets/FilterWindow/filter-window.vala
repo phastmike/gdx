@@ -49,6 +49,7 @@ public class FilterWindow : Gtk.Window {
         setup_filters ();
         setup_filters_ui ();
         setup_callbacks ();
+        present ();
     }
 
     private void setup_callbacks () {

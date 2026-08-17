@@ -54,5 +54,5 @@ executable('gdx',
             c_args: c_args,
             vala_args: vala_args,
             install: true,
-            dependencies : [glib, gobject, gio, gee, gtk, posix, sqlite3])
+            dependencies : [glib, gobject, gio, gee, gtk, posix, sqlite3, adwaita])
 

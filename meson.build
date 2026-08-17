@@ -1,16 +1,17 @@
 project('gdx', ['vala', 'c'],
 	version: '0.1.1',
 	license: 'MIT',	
-        meson_version: '>=0.37')
+   meson_version: '>=0.37')
 
 i18n = import('i18n')
 
-gio = dependency('gio-2.0', version: '>=2.32')
+sqlite3 = dependency('sqlite3')
 gtk = dependency('gtk4', version: '>=4.00')
+gio = dependency('gio-2.0', version: '>=2.32')
 gee = dependency('gee-0.8', version: '>=0.18')
 glib = dependency('glib-2.0', version: '>=2.76')
 gobject = dependency('gobject-2.0', version: '>=2.76')
-sqlite3 = dependency('sqlite3')
+adwaita = dependency('libadwaita-1', version: '>= 1.2')
 posix = meson.get_compiler('vala').find_library('posix')
 
 conf = configuration_data()

@@ -11,12 +11,12 @@
   </object>
   <template class="SettingsWindow" parent="GtkWindow">
     <property name="can_focus">False</property>
-    <property name="border_width">0</property>
+    <!--<property name="border_width">0</property>-->
     <property name="title" translatable="yes">Settings</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="type_hint">dialog</property>
+    <!--<property name="window_position">center-on-parent</property>-->
+    <!--<property name="type_hint">dialog</property>-->
     <child>
       <placeholder/>
     </child>
@@ -29,22 +29,17 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="border_width">18</property>
+            <!--<property name="border_width">18</property>-->
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkFrame">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="border_width">0</property>
+                <!--<property name="border_width">0</property>-->
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <!--<property name="shadow_type">none</property>-->
                 <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="border_width">0</property>
-                    <child>
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -58,10 +53,12 @@
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Callsign</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkEntry" id="entry_callsign">
@@ -69,14 +66,14 @@
                             <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                       </object>
-                    </child>
-                  </object>
                 </child>
                 <child type="label">
                   <object class="GtkLabel">
@@ -87,11 +84,13 @@
                   </object>
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <object class="GtkLabel">
@@ -104,11 +103,13 @@ You must be a legally licensed operator.</property>
                   <class name="dim-label"/>
                 </style>
               </object>
+              <!--
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
+              -->
             </child>
           </object>
         </child>
@@ -118,15 +119,17 @@ You must be a legally licensed operator.</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Personal</property>
           </object>
+          <!--
           <packing>
             <property name="tab_fill">False</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="border_width">18</property>
+            <!--<property name="border_width">18</property>-->
             <property name="orientation">vertical</property>
             <property name="spacing">18</property>
             <child>
@@ -134,12 +137,8 @@ You must be a legally licensed operator.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <!--<property name="shadow_type">none</property>-->
                 <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
                       <object class="GtkGrid">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -149,25 +148,29 @@ You must be a legally licensed operator.</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="can_focus">False</property>
-                            <property name="no_show_all">True</property>
+                            <!--<property name="no_show_all">True</property>-->
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Name</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">0</property>
                           </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkEntry" id="entry_cluster_name">
                             <property name="can_focus">True</property>
-                            <property name="no_show_all">True</property>
+                            <!--<property name="no_show_all">True</property>-->
                             <property name="hexpand">True</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">0</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkLabel">
@@ -176,20 +179,24 @@ You must be a legally licensed operator.</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Address</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">1</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkEntry" id="entry_cluster_address">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">1</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkLabel">
@@ -198,10 +205,12 @@ You must be a legally licensed operator.</property>
                             <property name="halign">end</property>
                             <property name="label" translatable="yes">Port</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkSpinButton" id="spinbutton_cluster_port">
@@ -209,14 +218,14 @@ You must be a legally licensed operator.</property>
                             <property name="can_focus">True</property>
                             <property name="adjustment">adjustment1</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="left_attach">1</property>
                             <property name="top_attach">2</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                       </object>
-                    </child>
-                  </object>
                 </child>
                 <child type="label">
                   <object class="GtkLabel">
@@ -227,23 +236,21 @@ You must be a legally licensed operator.</property>
                   </object>
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <object class="GtkFrame">
                 <property name="can_focus">False</property>
-                <property name="no_show_all">True</property>
+                <!--<property name="no_show_all">True</property>-->
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <!--<property name="shadow_type">none</property>-->
                 <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -256,11 +263,13 @@ You must be a legally licensed operator.</property>
                             <property name="can_focus">True</property>
                             <property name="placeholder_text" translatable="yes">Additional login data goes here</property>
                           </object>
+                          <!--
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkLabel">
@@ -275,15 +284,15 @@ You must be a legally licensed operator.</property>
                               <class name="dim-label"/>
                             </style>
                           </object>
+                          <!--
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                       </object>
-                    </child>
-                  </object>
                 </child>
                 <child type="label">
                   <object class="GtkLabel">
@@ -294,23 +303,21 @@ You must be a legally licensed operator.</property>
                   </object>
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <object class="GtkFrame">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label_xalign">0</property>
-                <property name="shadow_type">none</property>
+                <!--<property name="shadow_type">none</property>-->
                 <child>
-                  <object class="GtkAlignment">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -324,13 +331,15 @@ You must be a legally licensed operator.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="halign">start</property>
-                            <property name="draw_indicator">True</property>
+                            <!--<property name="draw_indicator">True</property>-->
                           </object>
+                          <!--
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton_autoreconnect">
@@ -339,13 +348,15 @@ You must be a legally licensed operator.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="halign">start</property>
-                            <property name="draw_indicator">True</property>
+                            <!--<property name="draw_indicator">True</property>-->
                           </object>
+                          <!--
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
-                          </packing>
+                            </packing>
+                          -->
                         </child>
                         <child>
                           <object class="GtkCheckButton" id="checkbutton_filterspots">
@@ -354,17 +365,17 @@ You must be a legally licensed operator.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="halign">start</property>
-                            <property name="draw_indicator">True</property>
+                            <!--<property name="draw_indicator">True</property>-->
                           </object>
+                          <!--
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">2</property>
                           </packing>
+                          -->
                         </child>
                       </object>
-                    </child>
-                  </object>
                 </child>
                 <child type="label">
                   <object class="GtkLabel">
@@ -375,19 +386,23 @@ You must be a legally licensed operator.</property>
                   </object>
                 </child>
               </object>
+              <!--
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
-              </packing>
+                </packing>
+              -->
             </child>
             <child>
               <placeholder/>
             </child>
           </object>
+          <!--
           <packing>
             <property name="position">1</property>
-          </packing>
+            </packing>
+          -->
         </child>
         <child type="tab">
           <object class="GtkLabel">
@@ -395,10 +410,12 @@ You must be a legally licensed operator.</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Connection</property>
           </object>
+          <!--
           <packing>
             <property name="position">1</property>
             <property name="tab_fill">False</property>
           </packing>
+          -->
         </child>
         <child>
           <placeholder/>
